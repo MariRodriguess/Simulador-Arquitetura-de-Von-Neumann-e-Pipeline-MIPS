@@ -9,8 +9,8 @@
 #include <unordered_map>
 #include <vector>
 #include <queue>
+#include <pthread.h> // Inclusão para suporte a threads
 #include <mutex>
-
 
 #define NUM_PERIFERICOS 5
 
@@ -25,10 +25,22 @@ extern vector<vector<int>> disco;
 
 extern bool perifericos[NUM_PERIFERICOS];
 
-struct Processo{
+struct Processo {
     int quantum;
     int timestamp;
-    int id; // Identificador do processo 
+    int id; // Identificador do processo
 };
+
+struct PCB {
+    int id;               // Identificador do processo
+    int prioridade;       // Prioridade do processo
+    int quantum;          // Quantum de tempo
+    int *registradores;   // Registradores do processo
+    string caminhoArquivo; // Caminho do arquivo .data
+};
+
+extern queue<PCB> filaProcessos; // Fila de processos
+extern pthread_mutex_t filaLock; // Mutex para proteger o acesso à fila
+
 
 #endif

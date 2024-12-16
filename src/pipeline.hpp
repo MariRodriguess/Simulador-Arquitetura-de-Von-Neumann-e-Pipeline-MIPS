@@ -3,6 +3,8 @@
 
 #include "include.hpp"
 
+extern pthread_mutex_t lockPipeline;
+
 void WriteBack(int resultado);
 void MemoryAccess(int resultado, int *registradores, int info1);
 void Execute(char instrucao, int info1, int info2, int info3, string info4, int *registradores);

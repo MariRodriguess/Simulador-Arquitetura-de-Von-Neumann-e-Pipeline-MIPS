@@ -1,16 +1,6 @@
 #include "unidadeControle.hpp"
 #include "functions.hpp"
 
-// Função para inicializar um processo com quantum e timestamp
-Processo criarProcesso(int quantumInicial, int idProcesso)
-{
-    Processo p;
-    p.quantum = quantumInicial;
-    p.timestamp = CLOCK; // Timestamp inicial é o valor atual do CLOCK
-    p.id = idProcesso;
-    return p;
-}
-
 void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores) {
     ifstream arquivo(nomeArquivo);
     string linha;
@@ -26,6 +16,29 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores) {
     }
 
     arquivo.close();
+}
+
+void carregarProcessos(const string &diretorio, queue<PCB> &filaProcessos) {
+    namespace fs = filesystem;
+
+    int idProcesso = 0;
+    for (const auto &entry : fs::directory_iterator(diretorio)) {
+        if (entry.is_regular_file() && entry.path().extension() == ".data") {
+            PCB processo;
+            processo.id = idProcesso++;
+            processo.prioridade = rand() % 10;
+            processo.quantum = 10;
+            processo.registradores = (int *)malloc(32 * sizeof(int));
+            processo.caminhoArquivo = entry.path().string();
+
+            pthread_mutex_lock(&filaLock);
+            filaProcessos.push(processo);
+            pthread_mutex_unlock(&filaLock);
+
+            cout << "Carregado processo " << processo.id << " do arquivo: " 
+                 << processo.caminhoArquivo << endl;
+        }
+    }
 }
 
 void LogSaida(const string &mensagem) {
