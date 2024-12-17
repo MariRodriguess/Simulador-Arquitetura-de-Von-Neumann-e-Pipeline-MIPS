@@ -1,5 +1,5 @@
 #include "cpu.hpp"
-#include "functions.cpp"
+#include "functions.hpp"
 
 int PC = 0;
 int CLOCK = 0;
@@ -15,8 +15,8 @@ int main() {
 	// Carregar processos da pasta
     carregarProcessos(diretorio, filaProcessos);
 
-    CPU cpu("instrucoes.txt");
-    cpu.inicializar();    // Inicializa registradores e componentes
+    CPU cpu;
+    //cpu.inicializar();    // Inicializa registradores e componentes
     cpu.executar();       // Executa as instruções do arquivo
     cpu.exibirEstado();   // Exibe o estado final da CPU
 

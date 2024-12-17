@@ -4,17 +4,12 @@
 #include "cpu.hpp"
 
 #include "include.hpp"
-pthread_mutex_t lockPipeline = PTHREAD_MUTEX_INITIALIZER; // Inicializando o mutex
 
 void WriteBack(int resultado) {
-
-    pthread_mutex_lock(&lockPipeline);  // Garante que apenas um processo acesse o pipeline
 
     principal.push_back(resultado);
     CLOCK++; // Incremento de clock na etapa WRITEBACK
     LogSaida("CLOCK: " + to_string(CLOCK) + ", PC: " + to_string(PC) + ", ETAPA: WRITEBACK, Escrevendo: " + to_string(resultado) + " na memoria.");
-
-    pthread_mutex_unlock(&lockPipeline);  // Libera o acesso ao pipeline
 }
 
 
@@ -100,7 +95,6 @@ void InstructionFetch(int *registradores, string linha) {
     CLOCK++; // Incremento de clock na etapa FETCH
 
     LogSaida("CLOCK: " + to_string(CLOCK) + ", PC: " + to_string(PC) + ", ETAPA: FETCH, Instrucao: " + linha);
-
 
     InstructionDecode(instrucao, info1, info2, info3, info4, registradores);
     PC++;
