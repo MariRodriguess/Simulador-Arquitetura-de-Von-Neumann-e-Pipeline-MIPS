@@ -15,10 +15,10 @@ int main() {
 	// Carregar processos da pasta
     carregarProcessos(diretorio, filaProcessos);
 
-    CPU cpu;
+    //CPU cpu;
     //cpu.inicializar();    // Inicializa registradores e componentes
-    cpu.executar();       // Executa as instruções do arquivo
-    cpu.exibirEstado();   // Exibe o estado final da CPU
+    //cpu.executar();       // Executa as instruções do arquivo
+    //cpu.exibirEstado();   // Exibe o estado final da CPU
 
     return 0;
 }

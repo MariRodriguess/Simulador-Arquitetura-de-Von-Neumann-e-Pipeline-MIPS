@@ -57,3 +57,37 @@ void LogSaida(const string &mensagem) {
         logFile.close();
     }
 }
+
+/*
+// bootloader.cpp
+void bootloader() {
+    std::cout << "Bootloader: Inicialização iniciada...\n";
+
+    // Instâncias das classes
+    CPU cpu;
+    Memoria memoria;
+    SistemaOperacional so;
+
+    // Criação das threads
+    pthread_t th_cpu, th_mem, th_so;
+
+    // Passa a instância da CPU para a thread e chama o método de inicialização
+    pthread_create(&th_cpu, nullptr, [](void* arg) -> void* {
+        CPU* cpuInstance = static_cast<CPU*>(arg); 
+        cpuInstance->inicializarCpu();
+        return nullptr;
+    }, &cpu);
+
+    // Criação de threads para Memoria e SistemaOperacional
+    pthread_create(&th_mem, nullptr, &Memoria::inicializar, nullptr);
+    pthread_create(&th_so, nullptr, &SistemaOperacional::inicializar, nullptr);
+
+    // Aguarda as threads terminarem
+    pthread_join(th_cpu, nullptr);
+    pthread_join(th_mem, nullptr);
+    pthread_join(th_so, nullptr);
+
+    std::cout << "Bootloader: Arquitetura inicializada com sucesso!\n";
+}
+*/
+

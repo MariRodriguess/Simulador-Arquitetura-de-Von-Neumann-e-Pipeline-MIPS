@@ -4,7 +4,10 @@
 pthread_mutex_t lockPipeline = PTHREAD_MUTEX_INITIALIZER; // Inicializando o mutex
 
 CPU::CPU() {
-    cout << "Inicializando CPU..." << endl;
+
+    // Inicializa o mutex e a condição
+    pthread_mutex_init(&mutexCond, nullptr);
+    pthread_cond_init(&cond, nullptr);
 
     for (int i = 0; i < NUM_NUCLEOS; i++) {
         int *reg = (int *)malloc(32 * sizeof(int)); // Registradores por núcleo
@@ -18,15 +21,33 @@ CPU::CPU() {
 
 CPU::~CPU() {
     
-    free(registradores);
+    // Libera os recursos de memória
+    for (auto& nucleo : nucleos) {
+        free(nucleo);
+    }
+
+    // Destrói o mutex e a condição
+    pthread_mutex_destroy(&mutexCond);
+    pthread_cond_destroy(&cond);
 
     nucleosLivres.clear();
     nucleosLivres.shrink_to_fit(); 
-
     nucleos.clear();
-    nucleos.shrink_to_fit(); 
     
 }
+
+void CPU::inicializarCpu() {
+    
+    cout << "CPU: Inicializando...\n";
+
+    // A thread de CPU vai "dormir" até ser acordada
+    pthread_mutex_lock(&mutexCond); // Bloqueia o mutex antes de aguardar
+    pthread_cond_wait(&cond, &mutexCond); // Dorme até ser acordada
+    pthread_mutex_unlock(&mutexCond); // Libera o mutex após acordar
+
+    cout << "CPU: Processo finalizado, continuando...\n";
+}
+
 
 /*
 void CPU::executar() {

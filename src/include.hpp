@@ -25,6 +25,9 @@ extern vector<vector<int>> disco;
 
 extern bool perifericos[NUM_PERIFERICOS];
 
+extern int processoFinalizado;
+
+
 struct Processo {
     int quantum;
     int timestamp;
@@ -32,11 +35,15 @@ struct Processo {
 };
 
 struct PCB {
-    int id;               // Identificador do processo
+    int id;               // Identificador do processo/thread
     int prioridade;       // Prioridade do processo
     int quantum;          // Quantum de tempo
     int *registradores;   // Registradores do processo
     string caminhoArquivo; // Caminho do arquivo .data
+    int base;               // Endereço base
+    int limite;             // Endereço limite
+    int linhasArquivo;      // Número de linhas no arquivo
+    string estado;     // Estado atual (e.g., Pronto, Em execução, Bloqueado)
 };
 
 extern queue<PCB> filaProcessos; // Fila de processos
