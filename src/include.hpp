@@ -18,6 +18,7 @@ using namespace std;
 
 extern int PC;
 extern int CLOCK;
+extern int tempoGasto;
 
 extern unordered_map<int, int> cache;
 extern vector<int> principal;

@@ -7,6 +7,7 @@ void WriteBack(int resultado, int linhaAtual, PaginaMemoria *pm) {
 
     if (linhaAtual > pm->pcb.linhasProcessadas){
         pm->pcb.quantum -= 1;
+        tempoGasto++;
         
         if(pm->pcb.quantum == 0){
             recalcularQuantum(pm);
@@ -27,6 +28,7 @@ void MemoryAccess(int resultado, int *registradores, int info1, int linhaAtual, 
 
     if (linhaAtual > pm->pcb.linhasProcessadas){
         pm->pcb.quantum -= 1;
+        tempoGasto++;
         
         if(pm->pcb.quantum == 0){
             recalcularQuantum(pm);
@@ -59,6 +61,7 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
 
             if (linhaAtual > pm->pcb.linhasProcessadas){
                 pm->pcb.quantum -= 1;
+                tempoGasto++;
                 
                 if(pm->pcb.quantum == 0){
                     recalcularQuantum(pm);
@@ -77,6 +80,7 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
 
         if (linhaAtual > pm->pcb.linhasProcessadas){
             pm->pcb.quantum -= 1;
+            tempoGasto++;
             
             if(pm->pcb.quantum == 0){
                 recalcularQuantum(pm);
@@ -107,6 +111,7 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
 
         if (linhaAtual > pm->pcb.linhasProcessadas){
             pm->pcb.quantum -= 1;
+            tempoGasto++;
             
             if(pm->pcb.quantum == 0){
                 recalcularQuantum(pm);
@@ -124,6 +129,7 @@ void InstructionDecode(char instrucao, int info1, int info2, int info3, string i
     CLOCK++; // Incremento de clock na etapa DECODE
     if (linhaAtual > pm->pcb.linhasProcessadas){
         pm->pcb.quantum -= 1;
+        tempoGasto++;
         
         if(pm->pcb.quantum == 0){
             recalcularQuantum(pm);
@@ -151,6 +157,7 @@ void InstructionFetch(int *registradores, string linha, int linhaAtual, PaginaMe
 
     if (linhaAtual > pm->pcb.linhasProcessadas){
         pm->pcb.quantum -= 1;
+        tempoGasto++;
         
         if(pm->pcb.quantum == 0){
             recalcularQuantum(pm);

@@ -14,7 +14,7 @@ void* executarProcesso(void* arg);
 
 void* executarCpu();
 
-void incrementarTimestamps(PaginaMemoria &pm);
+void atualizarTimestamps(std::vector<PaginaMemoria *> &filaPaginasMemoria, int quantumGasto, int idAtual);
 
 void recalcularQuantum (PaginaMemoria *pm);
 

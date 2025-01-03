@@ -1,6 +1,9 @@
 #include "functions.hpp"
 
-vector<PaginaMemoria> filaPaginasMemoria;
+// vector<PaginaMemoria> filaPaginasMemoria;
+
+vector<PaginaMemoria*> filaPaginasMemoria; // Usando ponteiros
+
 
 pthread_mutex_t filaMutex = PTHREAD_MUTEX_INITIALIZER; // Inicializando o mutex
 
@@ -15,6 +18,7 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
     ifstream arquivo(nomeArquivo);
     string linha;
     int linhaAtual = 1;
+    tempoGasto = 0;
 
     if (!arquivo.is_open()) {
         cout << "Erro ao abrir o arquivo!" << endl;
@@ -35,14 +39,17 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
             // Atualizar estado do processo
             pm->pcb.estado = "Finalizado";
 
+            /*
             // Atualizar timestamps
             pthread_mutex_lock(&filaMutex);
-            for (auto &pagina : filaPaginasMemoria) {
-                if (pagina.pcb.id != pm->pcb.id) { // Não atualiza o processo atual
-                    pagina.pcb.timestamp += pm->pcb.quantum; // Incrementa o timestamp
+            for (auto pagina : filaPaginasMemoria) {
+                if (pagina->pcb.id != pm->pcb.id) { // Não atualiza o processo atual
+                    pagina->pcb.timestamp += pm->pcb.quantum; // Incrementa o timestamp
                 }
             }
             pthread_mutex_unlock(&filaMutex);
+            */
+            
 
             imprimirDados(pm);
 
@@ -82,23 +89,34 @@ void* executarCpu() {
 
         PaginaMemoria* pm = nullptr;
 
-        int indicePm = cont % nArquivos;
-        cont++;
+        pthread_mutex_lock(&filaMutex);
+        if (filaPaginasMemoria.empty()) {
+            pthread_mutex_unlock(&filaMutex);
+            break; // Sai do loop se a fila estiver vazia
+        }
 
-        pm = &filaPaginasMemoria[indicePm];
+        int indicePm = cont % filaPaginasMemoria.size();
+        pm = filaPaginasMemoria[indicePm];
+        pthread_mutex_unlock(&filaMutex);
+            
 
         if (pm != nullptr) {
 
-            sleep(1);
-            
             // Sinaliza que o processo pode começar
             pthread_mutex_lock(&pm->mutex);
-            pm->pcb.estado = "Executando";
-            cout << "\nCPU esta ativando o processo " << pm->pcb.id << endl;
-            sleep(1);
-            pthread_cond_signal(&pm->cond); // Libera o processo
-            sleep(1);
-            pthread_mutex_unlock(&pm->mutex);
+            if (pm->pcb.estado != "Finalizado") {
+
+                pm->pcb.estado = "Executando";
+                cout << "\nCPU esta ativando o processo " << pm->pcb.id << endl;
+                sleep(1);
+                pthread_cond_signal(&pm->cond); // Libera o processo
+                sleep(1);
+                pthread_mutex_unlock(&pm->mutex);
+                sleep(1);
+            } else {
+                pthread_mutex_unlock(&pm->mutex);
+                sleep(1);
+            }
 
             if(filaPaginasMemoria.size() == 0){
                 break;
@@ -124,11 +142,13 @@ void* executarProcesso(void* arg) {
     pthread_cond_wait(&pm->cond, &pm->mutex);
 
     // Após liberação
-    cout << "Processo " << pm->pcb.id << " em execucao por " 
-         << pm->pcb.quantum << " unidades de tempo." << endl;
+    cout << "Processo " << pm->pcb.id << " em execucao por " << pm->pcb.quantum << " unidades de tempo." << endl;
 
-    // Simula execução
+    // Execução
     LerInstrucoesDoArquivo(pm->pcb.caminhoArquivo, pm->pcb.registradores, pm);
+    
+    // Atualizar timestamps
+    atualizarTimestamps(filaPaginasMemoria, tempoGasto, pm->pcb.id);
 
     /*
     // Simula a mudança de estado do processo
@@ -174,12 +194,13 @@ void carregarProcessos(const string &diretorio) {
             }
 
             // Adiciona a página de memória à fila
-            filaPaginasMemoria.push_back(*pm);
+            //filaPaginasMemoria.push_back(*pm);
+            filaPaginasMemoria.push_back(pm);
 
             cout << "\nCarregado processo " << processo.id 
                  << " do arquivo: " << processo.caminhoArquivo << endl;
 
-            sleep(5);
+            sleep(3);
         }
     }
 }
@@ -213,3 +234,15 @@ void imprimirDados (PaginaMemoria *pm){
     cout << "Timestamp: " << pm->pcb.timestamp << endl;
     cout << "Quantum final: " << pm->pcb.quantum << "\n\n";
 }
+
+// Atualizar timestamps
+void atualizarTimestamps(std::vector<PaginaMemoria *> &filaPaginasMemoria, int quantumGasto, int idAtual) {
+    pthread_mutex_lock(&filaMutex); // Protege a fila contra acesso simultâneo
+    for (auto *pagina : filaPaginasMemoria) { // Itera sobre os ponteiros
+        if (pagina->pcb.id != idAtual) { // Ignora o processo atual
+            pagina->pcb.timestamp += quantumGasto; // Atualiza o timestamp
+        }
+    }
+    pthread_mutex_unlock(&filaMutex);
+}
+    
