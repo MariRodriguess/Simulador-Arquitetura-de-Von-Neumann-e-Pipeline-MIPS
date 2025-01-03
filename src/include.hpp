@@ -27,27 +27,21 @@ extern bool perifericos[NUM_PERIFERICOS];
 
 extern int processoFinalizado;
 
-
-struct Processo {
-    int quantum;
-    int timestamp;
-    int id; // Identificador do processo
-};
-
 struct PCB {
     int id;               // Identificador do processo/thread
     int prioridade;       // Prioridade do processo
     int quantum;          // Quantum de tempo
+    int timestamp; 
     int *registradores;   // Registradores do processo
     string caminhoArquivo; // Caminho do arquivo .data
-    int base;               // Endereço base
-    int limite;             // Endereço limite
-    int linhasArquivo;      // Número de linhas no arquivo
+    int linhasArquivo;      // Número de linhas no arquivo original
+    int linhasProcessadas; // Número de linhas que já foram processadas
     string estado;     // Estado atual (e.g., Pronto, Em execução, Bloqueado)
+
+    PCB(){
+        linhasProcessadas = 0;
+        timestamp = 0;
+    }
 };
-
-extern queue<PCB> filaProcessos; // Fila de processos
-extern pthread_mutex_t filaLock; // Mutex para proteger o acesso à fila
-
 
 #endif

@@ -1,4 +1,3 @@
-#include "include.hpp"
 #include "ula.hpp"
 
 int ULA(int operando1, int operando2, char operacao) {

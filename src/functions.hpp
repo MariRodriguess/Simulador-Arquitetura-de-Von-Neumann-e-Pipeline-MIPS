@@ -1,13 +1,23 @@
 #ifndef FUNCTIONS_HPP
 #define FUNCTIONS_HPP
 
-#include "include.hpp"
+#include "unidadeControle.hpp"
 #include <filesystem> // Para manipulação de diretórios
 
-void carregarProcessos(const string &diretorio, queue<PCB> &filaProcessos);
+void carregarProcessos(const string &diretorio);
 
-void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores);
+void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, PaginaMemoria *pm);
 
 void LogSaida(const string &mensagem);
+
+void* executarProcesso(void* arg);
+
+void* executarCpu();
+
+void incrementarTimestamps(PaginaMemoria &pm);
+
+void recalcularQuantum (PaginaMemoria *pm);
+
+void imprimirDados (PaginaMemoria *pm);
 
 #endif

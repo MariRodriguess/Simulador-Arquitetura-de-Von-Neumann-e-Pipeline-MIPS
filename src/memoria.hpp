@@ -2,37 +2,32 @@
 #define MEMORIA_HPP
 
 #include "include.hpp"
-#include <thread>
+#include <iostream>
+#include <pthread.h>
 #include <vector>
 #include <functional>
 
 class Memoria {
-private:
-    std::vector<PaginaMemoria> paginas;  // Armazena as páginas de memória
 
-public:
-    Memoria();   // Construtor
-    ~Memoria();  // Destruidor
+    public:
+        Memoria();   // Construtor
+        ~Memoria();  // Destruidor
 
-    void adicionarPagina(int id, int base, int limite, int linhas, std::function<void()> func);
-    void iniciarProcessos();  // Inicia todos os processos nas páginas de memória
-
-    // Função auxiliar para exibir o estado da memória
-    void exibirEstado();
+        void inicializarMemoria();
+        pthread_mutex_t mutexCond;     // Mutex para sincronização de threads
+        pthread_cond_t cond;
 };
 
 struct PaginaMemoria {
     PCB pcb;               // PCB associado
-    thread processo;  // Thread vinculada ao processo
-    
-    PaginaMemoria(int id, int prioridade, int quantum, int base, int limite, int linhas, const std::string& caminhoArquivo, std::function<void()> func) 
-        : pcb{id, prioridade, quantum, nullptr, caminhoArquivo, base, limite, linhas, "Pronto"}, 
-          processo(func) {}
+    pthread_t th_processo;  // Thread vinculada ao processo
+    pthread_mutex_t mutex;     // Mutex para sincronização de threads
+    pthread_cond_t cond;           // Variável de condição para sincronização
 
-    void iniciar() {
-        pcb.estado = "Em execução";
-        if (processo.joinable()) processo.join();
-    }
+    PaginaMemoria();
 };
 
 #endif
+
+
+

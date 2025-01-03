@@ -1,7 +1,6 @@
 #include "unidadeControle.hpp"
-#include "pipeline.hpp"
 
-void UnidadeControle(int *registradores, string linha)
+void UnidadeControle(int *registradores, string linha, int linhaAtual, PaginaMemoria *pm)
 {
-    InstructionFetch(registradores, linha);
+    InstructionFetch(registradores, linha, linhaAtual, pm);
 }
