@@ -36,11 +36,13 @@ struct PCB {
     int *registradores;   // Registradores do processo
     string caminhoArquivo; // Caminho do arquivo .data
     int linhasArquivo;      // Número de linhas no arquivo original
-    int linhasProcessadas; // Número de linhas que já foram processadas
+    int linhasProcessadasAnt; // Número de linhas que já foram processadas
+    int linhasProcessadasAtual;
     string estado;     // Estado atual (e.g., Pronto, Em execução, Bloqueado)
 
     PCB(){
-        linhasProcessadas = 0;
+        linhasProcessadasAnt = 0;
+        linhasProcessadasAtual = 0;
         timestamp = 0;
     }
 };

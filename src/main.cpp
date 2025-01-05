@@ -10,7 +10,7 @@ pthread_mutex_t filaLock = PTHREAD_MUTEX_INITIALIZER;
 
 void bootloader(CPU *cpu, Memoria * memoria) {
     
-    cout << "Bootloader: Inicializacao iniciada...\n";
+    cout << "\nBootloader: Inicializacao iniciada...\n";
 
     // Criação das threads
     pthread_t th_cpu, th_mem;
@@ -37,7 +37,6 @@ void bootloader(CPU *cpu, Memoria * memoria) {
 }
 
 int main() {
-
     CPU *cpu = new CPU();
     Memoria *memoria = new Memoria();
 

@@ -4,7 +4,6 @@
 
 vector<PaginaMemoria*> filaPaginasMemoria; // Usando ponteiros
 
-
 pthread_mutex_t filaMutex = PTHREAD_MUTEX_INITIALIZER; // Inicializando o mutex
 
 int nArquivos = 0;
@@ -15,6 +14,7 @@ struct Args {
 
 
 void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, PaginaMemoria *pm) {
+    
     ifstream arquivo(nomeArquivo);
     string linha;
     int linhaAtual = 1;
@@ -29,27 +29,19 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
 
         UnidadeControle(registradores, linha, linhaAtual, pm);
 
-        pm->pcb.linhasProcessadas++;
         linhaAtual++;
 
-        if(pm->pcb.linhasProcessadas == pm->pcb.linhasArquivo){
+        if(pm->pcb.linhasProcessadasAtual == pm->pcb.linhasArquivo){
 
-            cout << "Processo " << pm->pcb.id << " encerrado!\n";
+            cout << "\nProcesso " << pm->pcb.id << " encerrado!\n";
 
             // Atualizar estado do processo
+            pthread_mutex_lock(&pm->mutex);
             pm->pcb.estado = "Finalizado";
-
-            /*
-            // Atualizar timestamps
-            pthread_mutex_lock(&filaMutex);
-            for (auto pagina : filaPaginasMemoria) {
-                if (pagina->pcb.id != pm->pcb.id) { // Não atualiza o processo atual
-                    pagina->pcb.timestamp += pm->pcb.quantum; // Incrementa o timestamp
-                }
-            }
-            pthread_mutex_unlock(&filaMutex);
-            */
+            pthread_mutex_unlock(&pm->mutex);
             
+            // Atualizar timestamps
+            atualizarTimestamps(filaPaginasMemoria, tempoGasto);
 
             imprimirDados(pm);
 
@@ -58,6 +50,16 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
             filaPaginasMemoria.erase(filaPaginasMemoria.begin());
             pthread_mutex_unlock(&filaMutex);
     
+        }
+        else if (pm->pcb.quantum == 0){
+            
+            // Atualizar timestamps
+            atualizarTimestamps(filaPaginasMemoria, tempoGasto);
+            pm->pcb.linhasProcessadasAnt = pm->pcb.linhasProcessadasAtual;
+            pm->pcb.linhasProcessadasAtual = 0;
+            pm->pcb.estado = "Pronto";
+            pm->jaFoiZeradoQuantum = true;
+            break;
         }
     }
 
@@ -96,24 +98,24 @@ void* executarCpu() {
         }
 
         int indicePm = cont % filaPaginasMemoria.size();
+        cont++;
         pm = filaPaginasMemoria[indicePm];
         pthread_mutex_unlock(&filaMutex);
             
 
         if (pm != nullptr) {
 
-            // Sinaliza que o processo pode começar
-            pthread_mutex_lock(&pm->mutex);
-            if (pm->pcb.estado != "Finalizado") {
+            if (pm->pcb.estado == "Pronto") {
 
-                pm->pcb.estado = "Executando";
-                cout << "\nCPU esta ativando o processo " << pm->pcb.id << endl;
+                // Sinaliza que o processo pode começar
+                pthread_mutex_lock(&pm->mutex);
+
+                // pm->pcb.estado = "Em execução";
+                cout << "\n ======= \nCPU esta ativando o processo " << pm->pcb.id << endl;
+
                 sleep(1);
                 pthread_cond_signal(&pm->cond); // Libera o processo
                 sleep(1);
-                pthread_mutex_unlock(&pm->mutex);
-                sleep(1);
-            } else {
                 pthread_mutex_unlock(&pm->mutex);
                 sleep(1);
             }
@@ -130,6 +132,7 @@ void* executarCpu() {
     return nullptr;
 }
 
+/*
 void* executarProcesso(void* arg) {
 
     sleep(2);
@@ -145,20 +148,63 @@ void* executarProcesso(void* arg) {
     cout << "Processo " << pm->pcb.id << " em execucao por " << pm->pcb.quantum << " unidades de tempo." << endl;
 
     // Execução
+    pm->pcb.estado = "Em execução";
     LerInstrucoesDoArquivo(pm->pcb.caminhoArquivo, pm->pcb.registradores, pm);
+    cout << "\n execucao" << endl;
+    cout << "Estado durante a saida: " << pm->pcb.estado << endl;
     
-    // Atualizar timestamps
-    atualizarTimestamps(filaPaginasMemoria, tempoGasto, pm->pcb.id);
-
-    /*
     // Simula a mudança de estado do processo
     pm->pcb.estado = "Finalizado";
     cout << "Processo " << pm->pcb.id << " finalizado." << endl;
-    */
+    
 
     pthread_mutex_unlock(&pm->mutex);
+    
     return nullptr;
 }
+*/
+
+void* executarProcesso(void* arg) {
+
+
+    sleep(2);
+    auto* pm = static_cast<PaginaMemoria*>(arg);
+
+    while (true) {
+
+        pthread_mutex_lock(&pm->mutex); // Bloqueia até a CPU sinalizar para iniciar a execução
+
+        // Sai do loop se o estado for "Finalizado"
+        if (pm->pcb.estado == "Finalizado") {
+            pthread_mutex_unlock(&pm->mutex);
+            break; // Finaliza a thread
+        }
+
+        // Aguarda liberação da CPU
+        cout << "Processo " << pm->pcb.id << " aguardando liberacao da CPU..." << endl;
+        pthread_cond_wait(&pm->cond, &pm->mutex);
+
+        // Após liberação
+        cout << "Processo " << pm->pcb.id << " em execucao por " << pm->pcb.quantum << " unidades de tempo.";
+
+        // Coloca a thread em execução
+        pm->pcb.estado = "Em execução";
+        pthread_mutex_unlock(&pm->mutex);
+        LerInstrucoesDoArquivo(pm->pcb.caminhoArquivo, pm->pcb.registradores, pm);
+        pthread_mutex_lock(&pm->mutex);
+
+        cout << "\nSaindo da execucao com o estado: " << pm->pcb.estado << endl;
+        
+        if (pm->pcb.estado == "Pronto"){
+            cout << "Com " << pm->pcb.linhasProcessadasAnt << " linha(s) processada(s)." << endl;
+            recalcularQuantum(pm);
+        }
+        pthread_mutex_unlock(&pm->mutex);
+    }
+
+    return nullptr;
+}
+
 
 void carregarProcessos(const string &diretorio) {
     
@@ -172,7 +218,8 @@ void carregarProcessos(const string &diretorio) {
             processo.id = idProcesso;
             idProcesso++;
             processo.prioridade = rand() % 10;
-            processo.quantum = (rand() % 31) + 20;  // Gera um número entre 20 e 50
+            // processo.quantum = (rand() % 31) + 20;  // Gera um número entre 20 e 50
+            processo.quantum = (rand() % 6) + 1; 
             processo.registradores = (int *)malloc(10 * sizeof(int)); // Alocando os registradores do processo
             processo.caminhoArquivo = entry.path().string();
             processo.estado = "Pronto";
@@ -197,8 +244,7 @@ void carregarProcessos(const string &diretorio) {
             //filaPaginasMemoria.push_back(*pm);
             filaPaginasMemoria.push_back(pm);
 
-            cout << "\nCarregado processo " << processo.id 
-                 << " do arquivo: " << processo.caminhoArquivo << endl;
+            cout << "\nCarregado processo " << processo.id << " do arquivo: " << processo.caminhoArquivo << endl;
 
             sleep(3);
         }
@@ -230,18 +276,17 @@ void recalcularQuantum (PaginaMemoria *pm){
 
 void imprimirDados (PaginaMemoria *pm){
     cout << "Dados finais: " << endl;
-    cout << "Linhas Processadas: " << pm->pcb.linhasProcessadas << endl;
+    cout << "Linhas Processadas: " << pm->pcb.linhasProcessadasAtual << endl;
     cout << "Timestamp: " << pm->pcb.timestamp << endl;
-    cout << "Quantum final: " << pm->pcb.quantum << "\n\n";
+    cout << "Quantum final: " << pm->pcb.quantum;
 }
 
 // Atualizar timestamps
-void atualizarTimestamps(std::vector<PaginaMemoria *> &filaPaginasMemoria, int quantumGasto, int idAtual) {
+void atualizarTimestamps(std::vector<PaginaMemoria *> &filaPaginasMemoria, int quantumGasto) {
+
     pthread_mutex_lock(&filaMutex); // Protege a fila contra acesso simultâneo
     for (auto *pagina : filaPaginasMemoria) { // Itera sobre os ponteiros
-        if (pagina->pcb.id != idAtual) { // Ignora o processo atual
-            pagina->pcb.timestamp += quantumGasto; // Atualiza o timestamp
-        }
+        pagina->pcb.timestamp += quantumGasto; // Atualiza o timestamp
     }
     pthread_mutex_unlock(&filaMutex);
 }
