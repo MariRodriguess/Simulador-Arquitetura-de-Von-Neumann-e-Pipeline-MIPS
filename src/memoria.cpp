@@ -5,7 +5,7 @@ Memoria::Memoria() {
 }
 
 Memoria::~Memoria() {
-    cout << "\n\n=========================";
+    cout << "\n=========================";
     cout << "\n\nMemoria: Liberando recursos...\n";
     // A thread de cada página é automaticamente limpa quando a memória é desalocada
 }

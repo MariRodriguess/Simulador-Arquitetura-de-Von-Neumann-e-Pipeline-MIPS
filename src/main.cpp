@@ -12,16 +12,6 @@ pthread_mutex_t filaLock = PTHREAD_MUTEX_INITIALIZER;
 void bootloader(/*vector<CPU*> &cpus,*/ Memoria *memoria) {
     cout << "\nBootloader: Inicializacao iniciada...\n";
 
-    // Criação das threads para as CPUs
-    /*vector<pthread_t> threads_cpus(cpus.size());
-    for (size_t i = 0; i < cpus.size(); ++i) {
-        pthread_create(&threads_cpus[i], nullptr, [](void* arg) -> void* {
-            CPU* cpuInstance = static_cast<CPU*>(arg);
-            cpuInstance->inicializarCpu();
-            return nullptr;
-        }, cpus[i]);
-    }*/
-
     // Criação da thread para a Memória
     pthread_t th_mem;
     pthread_create(&th_mem, nullptr, [](void* arg) -> void* {
@@ -32,10 +22,6 @@ void bootloader(/*vector<CPU*> &cpus,*/ Memoria *memoria) {
 
     cout << "Bootloader: Arquitetura inicializada com sucesso!\n";
 
-    // Aguarda as threads terminarem
-    /*for (auto &th : threads_cpus) {
-        pthread_join(th, nullptr);
-    }*/
    pthread_join(th_mem, nullptr);
 }
 
@@ -43,6 +29,17 @@ void bootloader(/*vector<CPU*> &cpus,*/ Memoria *memoria) {
 int main() {
     
     vector<CPU*> cpus(NUM_CPUS);
+
+    const string fileName = "log_output.txt";
+
+    //Limpeza do arquivo de log
+    ofstream file(fileName, ios::out | ios::trunc);
+
+    if (file.is_open()) {
+        file.close();
+    } else {
+        cerr << "Erro ao abrir o arquivo '" << fileName << "'.\n";
+    }
 
     // Inicializa as CPUs
     for (int i = 0; i < NUM_CPUS; ++i) {
@@ -58,6 +55,7 @@ int main() {
 
     carregarProcessos(diretorio);
 
+    cout << "\nIniciando execucao...\n";
     // Cria threads para cada CPU
     vector<pthread_t> threads_cpus(NUM_CPUS);
     for (int i = 0; i < NUM_CPUS; ++i) {
@@ -70,16 +68,23 @@ int main() {
         pthread_join(th, nullptr);
     }
 
+    cout << "\nExecucao finalizada!\n";
+
     // Libera memória
     for (auto* cpu : cpus) {
         delete cpu;
     }
     delete memoria;
 
+
     for(int i = 0; i < NUM_CPUS; i++){
         cout << "CLOCK " << i+1 << " = " << CLOCK[i] << " | ";
+        LogSaida("CLOCK " + to_string(i+1) + " = " + to_string(CLOCK[i]) + " | ");
     }
     cout << "\nPC = " << PC << endl;
+
+    LogSaida("PC = " + to_string(PC));
+    
     return 0;
 }
 

@@ -8,6 +8,9 @@
 ![Linguagem](https://img.shields.io/badge/Linguagem-C%2B%2B-blue)
 </div>
 
+## ❗ Detalhes do programa
+Após o carregamento dos processos, o quantum é forçadamente colocado com um valor baixo, para que a execução seja interrompida. Após dita interrupção, o processo volta para o final da fila e tem seu quantum recalculado para a faixa de valores padrão (20 a 50ms). 
+
 ## 👾Compilação e execução
 * Especificações da máquina em que o código foi rodado:
   * Processador Intel Core i7, 12th Gen;
