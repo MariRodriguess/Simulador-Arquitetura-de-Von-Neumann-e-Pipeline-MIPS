@@ -11,6 +11,27 @@
 ## ❗ Detalhes do programa
 Após o carregamento dos processos, o quantum é forçadamente colocado com um valor baixo, para que a execução seja interrompida. Após dita interrupção, o processo volta para o final da fila e tem seu quantum recalculado para a faixa de valores padrão (20 a 50ms). 
 
+### Modelo do input
+* Salvar na memória
+  * = | Registrador de destino | Valor
+  * = 0 150
+* Adição, subtração, divisão, multiplicação
+  * Operação (+, -, /, *) | Registrador de destino | Registrador com o primeiro número | Registrador com o segundo número
+  * / 3 0 1
+* Loop
+  * @ | Registrador inicial/destino | Registrador final | Número de iterações
+  * @ 0 3 10
+  * Somar conteúdos dos registradores 0 a 3 em 10 iterações, com resultado salvo no registrador 0.
+* Condicional
+  * ? | Primeiro valor | Segundo valor | (<, >, =, !)
+  * ? 7 4 >
+* Ler da memória
+  * & | Registrador de leitura
+  * & 0
+* Uso de periféricos
+  * $ | Periférico desejado
+  * $ 1
+
 ## 👾Compilação e execução
 * Especificações da máquina em que o código foi rodado:
   * Processador Intel Core i7, 12th Gen;

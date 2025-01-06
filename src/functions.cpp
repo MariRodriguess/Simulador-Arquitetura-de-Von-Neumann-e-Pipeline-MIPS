@@ -30,6 +30,7 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
         linhaAtual++;
         if(pm->pcb.estado == "Bloqueado"){
             cout << "\nProcesso " << pm->pcb.id << " bloqueado! - Periférico em uso\n";
+            LogSaida("\nProcesso " + to_string(pm->pcb.id) + " bloqueado! - Periférico em uso\n");
             
             // Atualizar timestamps
             atualizarTimestamps(filaPaginasMemoria, tempoGasto[pm->pcb.idCpuAtual - 1],pm);
