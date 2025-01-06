@@ -18,9 +18,9 @@ class CPU {
         int *registradores;           // Array de registradores compartilhados
         vector<int *> nucleos;        // Registradores dos núcleos
         vector<bool> nucleosLivres;   // Estado dos núcleos (livres ou ocupados)
-        
 
     public:
+        int id;
         CPU();
         ~CPU();
         pthread_mutex_t mutexCond;     // Mutex para sincronização de threads

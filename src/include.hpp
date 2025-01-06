@@ -11,14 +11,16 @@
 #include <queue>
 #include <pthread.h> // Inclusão para suporte a threads
 #include <mutex>
+#include <semaphore.h>
 
 #define NUM_PERIFERICOS 5
+#define NUM_CPUS 2
 
 using namespace std;
 
 extern int PC;
-extern int CLOCK;
-extern int tempoGasto;
+extern int CLOCK[NUM_CPUS];
+extern int tempoGasto[NUM_CPUS]; 
 
 extern unordered_map<int, int> cache;
 extern vector<int> principal;
@@ -40,6 +42,9 @@ struct PCB {
     int linhasProcessadasAtual;
     string estado;     // Estado atual (e.g., Pronto, Em execução, Bloqueado)
     vector<int> recursos;
+    sem_t semaforo; // Semáforo para sincronização
+    int idCpuAtual = -1;
+    int tempoGasto = 0;
     PCB(){
         linhasProcessadasAnt = 0;
         linhasProcessadasAtual = 0;
