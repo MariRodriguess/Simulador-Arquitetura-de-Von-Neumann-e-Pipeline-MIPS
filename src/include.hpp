@@ -39,7 +39,7 @@ struct PCB {
     int linhasProcessadasAnt; // Número de linhas que já foram processadas
     int linhasProcessadasAtual;
     string estado;     // Estado atual (e.g., Pronto, Em execução, Bloqueado)
-
+    vector<int> recursos;
     PCB(){
         linhasProcessadasAnt = 0;
         linhasProcessadasAtual = 0;

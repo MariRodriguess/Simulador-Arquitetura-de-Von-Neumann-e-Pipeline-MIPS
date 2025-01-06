@@ -42,3 +42,329 @@
 [Sat Jan 04 23:33:47 2025] CLOCK: 16, PC: 5, ETAPA: EXECUTE, Instrucao: -
 [Sat Jan 04 23:33:47 2025] CLOCK: 17, PC: 5, ETAPA: MEMORY_ACCESS, Resultado: 90
 [Sat Jan 04 23:33:47 2025] CLOCK: 18, PC: 5, ETAPA: WRITEBACK, Escrevendo: 90 na memoria.
+[Mon Jan  6 07:05:41 2025] CLOCK: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 3
+[Mon Jan  6 07:05:41 2025] CLOCK: 2, PC: 0, ETAPA: DECODE 
+[Mon Jan  6 07:05:41 2025] CLOCK: 2, PC: 0, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:05:41 2025] CLOCK: 3, PC: 1, ETAPA: FETCH, Instrucao: = 1 2 
+[Mon Jan  6 07:05:44 2025] CLOCK: 5, PC: 2, ETAPA: FETCH, Instrucao: = 0 10
+[Mon Jan  6 07:05:47 2025] CLOCK: 7, PC: 3, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:05:50 2025] CLOCK: 9, PC: 4, ETAPA: FETCH, Instrucao: = 0 3
+[Mon Jan  6 07:05:50 2025] CLOCK: 10, PC: 4, ETAPA: DECODE 
+[Mon Jan  6 07:05:50 2025] CLOCK: 10, PC: 4, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:05:50 2025] CLOCK: 11, PC: 5, ETAPA: FETCH, Instrucao: = 1 2 
+[Mon Jan  6 07:05:50 2025] CLOCK: 12, PC: 5, ETAPA: DECODE 
+[Mon Jan  6 07:05:50 2025] CLOCK: 12, PC: 5, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:05:50 2025] CLOCK: 13, PC: 6, ETAPA: FETCH, Instrucao: + 3 1 0
+[Mon Jan  6 07:05:50 2025] CLOCK: 14, PC: 6, ETAPA: DECODE 
+[Mon Jan  6 07:05:50 2025] CLOCK: 15, PC: 6, ETAPA: EXECUTE, Instrucao: +
+[Mon Jan  6 07:05:50 2025] CLOCK: 16, PC: 6, ETAPA: MEMORY_ACCESS, Resultado: 5
+[Mon Jan  6 07:05:50 2025] CLOCK: 17, PC: 6, ETAPA: WRITEBACK, Escrevendo: 5 na memoria.
+[Mon Jan  6 07:05:53 2025] CLOCK: 18, PC: 7, ETAPA: FETCH, Instrucao: = 0 10
+[Mon Jan  6 07:05:53 2025] CLOCK: 19, PC: 7, ETAPA: DECODE 
+[Mon Jan  6 07:05:53 2025] CLOCK: 19, PC: 7, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:05:53 2025] CLOCK: 20, PC: 8, ETAPA: FETCH, Instrucao: = 1 100
+[Mon Jan  6 07:05:53 2025] CLOCK: 21, PC: 8, ETAPA: DECODE 
+[Mon Jan  6 07:05:53 2025] CLOCK: 21, PC: 8, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:05:53 2025] CLOCK: 22, PC: 9, ETAPA: FETCH, Instrucao: - 3 1 0
+[Mon Jan  6 07:05:53 2025] CLOCK: 23, PC: 9, ETAPA: DECODE 
+[Mon Jan  6 07:05:53 2025] CLOCK: 24, PC: 9, ETAPA: EXECUTE, Instrucao: -
+[Mon Jan  6 07:05:53 2025] CLOCK: 25, PC: 9, ETAPA: MEMORY_ACCESS, Resultado: 90
+[Mon Jan  6 07:05:53 2025] CLOCK: 26, PC: 9, ETAPA: WRITEBACK, Escrevendo: 90 na memoria.
+[Mon Jan  6 07:05:56 2025] CLOCK: 27, PC: 10, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:05:56 2025] CLOCK: 28, PC: 10, ETAPA: DECODE 
+[Mon Jan  6 07:05:56 2025] CLOCK: 28, PC: 10, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:05:56 2025] CLOCK: 29, PC: 11, ETAPA: FETCH, Instrucao: $ 0
+[Mon Jan  6 07:05:56 2025] CLOCK: 30, PC: 11, ETAPA: DECODE 
+[Mon Jan  6 07:05:56 2025] CLOCK: 31, PC: 11, ETAPA: EXECUTE, Instrucao: $
+[Mon Jan  6 07:08:28 2025] CLOCK: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 3
+[Mon Jan  6 07:08:28 2025] CLOCK: 2, PC: 0, ETAPA: DECODE 
+[Mon Jan  6 07:08:28 2025] CLOCK: 2, PC: 0, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:08:28 2025] CLOCK: 3, PC: 1, ETAPA: FETCH, Instrucao: = 1 2 
+[Mon Jan  6 07:08:31 2025] CLOCK: 5, PC: 2, ETAPA: FETCH, Instrucao: = 0 10
+[Mon Jan  6 07:08:34 2025] CLOCK: 7, PC: 3, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:08:37 2025] CLOCK: 9, PC: 4, ETAPA: FETCH, Instrucao: = 0 3
+[Mon Jan  6 07:08:37 2025] CLOCK: 10, PC: 4, ETAPA: DECODE 
+[Mon Jan  6 07:08:37 2025] CLOCK: 10, PC: 4, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:08:37 2025] CLOCK: 11, PC: 5, ETAPA: FETCH, Instrucao: = 1 2 
+[Mon Jan  6 07:08:37 2025] CLOCK: 12, PC: 5, ETAPA: DECODE 
+[Mon Jan  6 07:08:37 2025] CLOCK: 12, PC: 5, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:08:37 2025] CLOCK: 13, PC: 6, ETAPA: FETCH, Instrucao: + 3 1 0
+[Mon Jan  6 07:08:37 2025] CLOCK: 14, PC: 6, ETAPA: DECODE 
+[Mon Jan  6 07:08:37 2025] CLOCK: 15, PC: 6, ETAPA: EXECUTE, Instrucao: +
+[Mon Jan  6 07:08:37 2025] CLOCK: 16, PC: 6, ETAPA: MEMORY_ACCESS, Resultado: 5
+[Mon Jan  6 07:08:37 2025] CLOCK: 17, PC: 6, ETAPA: WRITEBACK, Escrevendo: 5 na memoria.
+[Mon Jan  6 07:08:40 2025] CLOCK: 18, PC: 7, ETAPA: FETCH, Instrucao: = 0 10
+[Mon Jan  6 07:08:40 2025] CLOCK: 19, PC: 7, ETAPA: DECODE 
+[Mon Jan  6 07:08:40 2025] CLOCK: 19, PC: 7, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:08:40 2025] CLOCK: 20, PC: 8, ETAPA: FETCH, Instrucao: = 1 100
+[Mon Jan  6 07:08:40 2025] CLOCK: 21, PC: 8, ETAPA: DECODE 
+[Mon Jan  6 07:08:40 2025] CLOCK: 21, PC: 8, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:08:40 2025] CLOCK: 22, PC: 9, ETAPA: FETCH, Instrucao: - 3 1 0
+[Mon Jan  6 07:08:40 2025] CLOCK: 23, PC: 9, ETAPA: DECODE 
+[Mon Jan  6 07:08:40 2025] CLOCK: 24, PC: 9, ETAPA: EXECUTE, Instrucao: -
+[Mon Jan  6 07:08:40 2025] CLOCK: 25, PC: 9, ETAPA: MEMORY_ACCESS, Resultado: 90
+[Mon Jan  6 07:08:40 2025] CLOCK: 26, PC: 9, ETAPA: WRITEBACK, Escrevendo: 90 na memoria.
+[Mon Jan  6 07:08:43 2025] CLOCK: 27, PC: 10, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:08:43 2025] CLOCK: 28, PC: 10, ETAPA: DECODE 
+[Mon Jan  6 07:08:43 2025] CLOCK: 28, PC: 10, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:08:43 2025] CLOCK: 29, PC: 11, ETAPA: FETCH, Instrucao: $ 0
+[Mon Jan  6 07:08:43 2025] CLOCK: 30, PC: 11, ETAPA: DECODE 
+[Mon Jan  6 07:08:46 2025] CLOCK: 31, PC: 12, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:08:46 2025] CLOCK: 32, PC: 12, ETAPA: DECODE 
+[Mon Jan  6 07:08:46 2025] CLOCK: 32, PC: 12, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:08:46 2025] CLOCK: 33, PC: 13, ETAPA: FETCH, Instrucao: $ 0
+[Mon Jan  6 07:08:46 2025] CLOCK: 34, PC: 13, ETAPA: DECODE 
+[Mon Jan  6 07:13:37 2025] CLOCK: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 3
+[Mon Jan  6 07:13:37 2025] CLOCK: 2, PC: 0, ETAPA: DECODE 
+[Mon Jan  6 07:13:37 2025] CLOCK: 2, PC: 0, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:13:37 2025] CLOCK: 3, PC: 1, ETAPA: FETCH, Instrucao: = 1 2 
+[Mon Jan  6 07:13:40 2025] CLOCK: 5, PC: 2, ETAPA: FETCH, Instrucao: = 0 10
+[Mon Jan  6 07:13:43 2025] CLOCK: 7, PC: 3, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:13:46 2025] CLOCK: 9, PC: 4, ETAPA: FETCH, Instrucao: = 0 3
+[Mon Jan  6 07:13:46 2025] CLOCK: 10, PC: 4, ETAPA: DECODE 
+[Mon Jan  6 07:13:46 2025] CLOCK: 10, PC: 4, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:13:46 2025] CLOCK: 11, PC: 5, ETAPA: FETCH, Instrucao: = 1 2 
+[Mon Jan  6 07:13:46 2025] CLOCK: 12, PC: 5, ETAPA: DECODE 
+[Mon Jan  6 07:13:46 2025] CLOCK: 12, PC: 5, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:13:46 2025] CLOCK: 13, PC: 6, ETAPA: FETCH, Instrucao: + 3 1 0
+[Mon Jan  6 07:13:46 2025] CLOCK: 14, PC: 6, ETAPA: DECODE 
+[Mon Jan  6 07:13:46 2025] CLOCK: 15, PC: 6, ETAPA: EXECUTE, Instrucao: +
+[Mon Jan  6 07:13:46 2025] CLOCK: 16, PC: 6, ETAPA: MEMORY_ACCESS, Resultado: 5
+[Mon Jan  6 07:13:46 2025] CLOCK: 17, PC: 6, ETAPA: WRITEBACK, Escrevendo: 5 na memoria.
+[Mon Jan  6 07:13:49 2025] CLOCK: 18, PC: 7, ETAPA: FETCH, Instrucao: = 0 10
+[Mon Jan  6 07:13:49 2025] CLOCK: 19, PC: 7, ETAPA: DECODE 
+[Mon Jan  6 07:13:49 2025] CLOCK: 19, PC: 7, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:13:49 2025] CLOCK: 20, PC: 8, ETAPA: FETCH, Instrucao: = 1 100
+[Mon Jan  6 07:13:49 2025] CLOCK: 21, PC: 8, ETAPA: DECODE 
+[Mon Jan  6 07:13:49 2025] CLOCK: 21, PC: 8, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:13:49 2025] CLOCK: 22, PC: 9, ETAPA: FETCH, Instrucao: - 3 1 0
+[Mon Jan  6 07:13:49 2025] CLOCK: 23, PC: 9, ETAPA: DECODE 
+[Mon Jan  6 07:13:49 2025] CLOCK: 24, PC: 9, ETAPA: EXECUTE, Instrucao: -
+[Mon Jan  6 07:13:49 2025] CLOCK: 25, PC: 9, ETAPA: MEMORY_ACCESS, Resultado: 90
+[Mon Jan  6 07:13:49 2025] CLOCK: 26, PC: 9, ETAPA: WRITEBACK, Escrevendo: 90 na memoria.
+[Mon Jan  6 07:13:52 2025] CLOCK: 27, PC: 10, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:13:52 2025] CLOCK: 28, PC: 10, ETAPA: DECODE 
+[Mon Jan  6 07:13:52 2025] CLOCK: 28, PC: 10, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:13:52 2025] CLOCK: 29, PC: 11, ETAPA: FETCH, Instrucao: $ 0
+[Mon Jan  6 07:13:52 2025] CLOCK: 30, PC: 11, ETAPA: DECODE 
+[Mon Jan  6 07:13:52 2025] CLOCK: 31, PC: 11, ETAPA: EXECUTE, Instrucao: $
+[Mon Jan  6 07:27:19 2025] CLOCK: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 3
+[Mon Jan  6 07:27:19 2025] CLOCK: 2, PC: 0, ETAPA: DECODE 
+[Mon Jan  6 07:27:19 2025] CLOCK: 2, PC: 0, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:27:19 2025] CLOCK: 3, PC: 1, ETAPA: FETCH, Instrucao: = 1 2 
+[Mon Jan  6 07:27:22 2025] CLOCK: 5, PC: 2, ETAPA: FETCH, Instrucao: = 0 10
+[Mon Jan  6 07:27:25 2025] CLOCK: 7, PC: 3, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:27:28 2025] CLOCK: 9, PC: 4, ETAPA: FETCH, Instrucao: = 0 3
+[Mon Jan  6 07:27:28 2025] CLOCK: 10, PC: 4, ETAPA: DECODE 
+[Mon Jan  6 07:27:28 2025] CLOCK: 10, PC: 4, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:27:28 2025] CLOCK: 11, PC: 5, ETAPA: FETCH, Instrucao: = 1 2 
+[Mon Jan  6 07:27:28 2025] CLOCK: 12, PC: 5, ETAPA: DECODE 
+[Mon Jan  6 07:27:28 2025] CLOCK: 12, PC: 5, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:27:28 2025] CLOCK: 13, PC: 6, ETAPA: FETCH, Instrucao: + 3 1 0
+[Mon Jan  6 07:27:28 2025] CLOCK: 14, PC: 6, ETAPA: DECODE 
+[Mon Jan  6 07:27:28 2025] CLOCK: 15, PC: 6, ETAPA: EXECUTE, Instrucao: +
+[Mon Jan  6 07:27:28 2025] CLOCK: 16, PC: 6, ETAPA: MEMORY_ACCESS, Resultado: 5
+[Mon Jan  6 07:27:28 2025] CLOCK: 17, PC: 6, ETAPA: WRITEBACK, Escrevendo: 5 na memoria.
+[Mon Jan  6 07:27:31 2025] CLOCK: 18, PC: 7, ETAPA: FETCH, Instrucao: = 0 10
+[Mon Jan  6 07:27:31 2025] CLOCK: 19, PC: 7, ETAPA: DECODE 
+[Mon Jan  6 07:27:31 2025] CLOCK: 19, PC: 7, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:27:31 2025] CLOCK: 20, PC: 8, ETAPA: FETCH, Instrucao: = 1 100
+[Mon Jan  6 07:27:31 2025] CLOCK: 21, PC: 8, ETAPA: DECODE 
+[Mon Jan  6 07:27:31 2025] CLOCK: 21, PC: 8, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:27:31 2025] CLOCK: 22, PC: 9, ETAPA: FETCH, Instrucao: - 3 1 0
+[Mon Jan  6 07:27:31 2025] CLOCK: 23, PC: 9, ETAPA: DECODE 
+[Mon Jan  6 07:27:31 2025] CLOCK: 24, PC: 9, ETAPA: EXECUTE, Instrucao: -
+[Mon Jan  6 07:27:31 2025] CLOCK: 25, PC: 9, ETAPA: MEMORY_ACCESS, Resultado: 90
+[Mon Jan  6 07:27:31 2025] CLOCK: 26, PC: 9, ETAPA: WRITEBACK, Escrevendo: 90 na memoria.
+[Mon Jan  6 07:27:34 2025] CLOCK: 27, PC: 10, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:27:34 2025] CLOCK: 28, PC: 10, ETAPA: DECODE 
+[Mon Jan  6 07:27:34 2025] CLOCK: 28, PC: 10, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:27:34 2025] CLOCK: 29, PC: 11, ETAPA: FETCH, Instrucao: $ 0
+[Mon Jan  6 07:27:34 2025] CLOCK: 30, PC: 11, ETAPA: DECODE 
+[Mon Jan  6 07:27:34 2025] CLOCK: 31, PC: 11, ETAPA: EXECUTE, Instrucao: $
+[Mon Jan  6 07:28:01 2025] CLOCK: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 3
+[Mon Jan  6 07:28:01 2025] CLOCK: 2, PC: 0, ETAPA: DECODE 
+[Mon Jan  6 07:28:01 2025] CLOCK: 2, PC: 0, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:28:01 2025] CLOCK: 3, PC: 1, ETAPA: FETCH, Instrucao: = 1 2 
+[Mon Jan  6 07:28:04 2025] CLOCK: 5, PC: 2, ETAPA: FETCH, Instrucao: = 0 10
+[Mon Jan  6 07:28:07 2025] CLOCK: 7, PC: 3, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:28:10 2025] CLOCK: 9, PC: 4, ETAPA: FETCH, Instrucao: = 0 3
+[Mon Jan  6 07:28:10 2025] CLOCK: 10, PC: 4, ETAPA: DECODE 
+[Mon Jan  6 07:28:10 2025] CLOCK: 10, PC: 4, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:28:10 2025] CLOCK: 11, PC: 5, ETAPA: FETCH, Instrucao: = 1 2 
+[Mon Jan  6 07:28:10 2025] CLOCK: 12, PC: 5, ETAPA: DECODE 
+[Mon Jan  6 07:28:10 2025] CLOCK: 12, PC: 5, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:28:10 2025] CLOCK: 13, PC: 6, ETAPA: FETCH, Instrucao: + 3 1 0
+[Mon Jan  6 07:28:10 2025] CLOCK: 14, PC: 6, ETAPA: DECODE 
+[Mon Jan  6 07:28:10 2025] CLOCK: 15, PC: 6, ETAPA: EXECUTE, Instrucao: +
+[Mon Jan  6 07:28:10 2025] CLOCK: 16, PC: 6, ETAPA: MEMORY_ACCESS, Resultado: 5
+[Mon Jan  6 07:28:10 2025] CLOCK: 17, PC: 6, ETAPA: WRITEBACK, Escrevendo: 5 na memoria.
+[Mon Jan  6 07:28:13 2025] CLOCK: 18, PC: 7, ETAPA: FETCH, Instrucao: = 0 10
+[Mon Jan  6 07:28:13 2025] CLOCK: 19, PC: 7, ETAPA: DECODE 
+[Mon Jan  6 07:28:13 2025] CLOCK: 19, PC: 7, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:28:13 2025] CLOCK: 20, PC: 8, ETAPA: FETCH, Instrucao: = 1 100
+[Mon Jan  6 07:28:13 2025] CLOCK: 21, PC: 8, ETAPA: DECODE 
+[Mon Jan  6 07:28:13 2025] CLOCK: 21, PC: 8, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:28:13 2025] CLOCK: 22, PC: 9, ETAPA: FETCH, Instrucao: - 3 1 0
+[Mon Jan  6 07:28:13 2025] CLOCK: 23, PC: 9, ETAPA: DECODE 
+[Mon Jan  6 07:28:13 2025] CLOCK: 24, PC: 9, ETAPA: EXECUTE, Instrucao: -
+[Mon Jan  6 07:28:13 2025] CLOCK: 25, PC: 9, ETAPA: MEMORY_ACCESS, Resultado: 90
+[Mon Jan  6 07:28:13 2025] CLOCK: 26, PC: 9, ETAPA: WRITEBACK, Escrevendo: 90 na memoria.
+[Mon Jan  6 07:28:16 2025] CLOCK: 27, PC: 10, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:28:16 2025] CLOCK: 28, PC: 10, ETAPA: DECODE 
+[Mon Jan  6 07:28:16 2025] CLOCK: 28, PC: 10, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:28:16 2025] CLOCK: 29, PC: 11, ETAPA: FETCH, Instrucao: $ 0
+[Mon Jan  6 07:28:16 2025] CLOCK: 30, PC: 11, ETAPA: DECODE 
+[Mon Jan  6 07:28:19 2025] CLOCK: 31, PC: 12, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:28:19 2025] CLOCK: 32, PC: 12, ETAPA: DECODE 
+[Mon Jan  6 07:28:19 2025] CLOCK: 32, PC: 12, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:28:19 2025] CLOCK: 33, PC: 13, ETAPA: FETCH, Instrucao: $ 0
+[Mon Jan  6 07:28:19 2025] CLOCK: 34, PC: 13, ETAPA: DECODE 
+[Mon Jan  6 07:28:22 2025] CLOCK: 35, PC: 14, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:28:22 2025] CLOCK: 36, PC: 14, ETAPA: DECODE 
+[Mon Jan  6 07:28:22 2025] CLOCK: 36, PC: 14, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:28:22 2025] CLOCK: 37, PC: 15, ETAPA: FETCH, Instrucao: $ 0
+[Mon Jan  6 07:28:22 2025] CLOCK: 38, PC: 15, ETAPA: DECODE 
+[Mon Jan  6 07:30:31 2025] CLOCK: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 3
+[Mon Jan  6 07:30:31 2025] CLOCK: 2, PC: 0, ETAPA: DECODE 
+[Mon Jan  6 07:30:31 2025] CLOCK: 2, PC: 0, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:30:31 2025] CLOCK: 3, PC: 1, ETAPA: FETCH, Instrucao: = 1 2 
+[Mon Jan  6 07:30:34 2025] CLOCK: 5, PC: 2, ETAPA: FETCH, Instrucao: = 0 10
+[Mon Jan  6 07:30:37 2025] CLOCK: 7, PC: 3, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:30:40 2025] CLOCK: 9, PC: 4, ETAPA: FETCH, Instrucao: = 0 3
+[Mon Jan  6 07:30:40 2025] CLOCK: 10, PC: 4, ETAPA: DECODE 
+[Mon Jan  6 07:30:40 2025] CLOCK: 10, PC: 4, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:30:40 2025] CLOCK: 11, PC: 5, ETAPA: FETCH, Instrucao: = 1 2 
+[Mon Jan  6 07:30:40 2025] CLOCK: 12, PC: 5, ETAPA: DECODE 
+[Mon Jan  6 07:30:40 2025] CLOCK: 12, PC: 5, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:30:40 2025] CLOCK: 13, PC: 6, ETAPA: FETCH, Instrucao: + 3 1 0
+[Mon Jan  6 07:30:40 2025] CLOCK: 14, PC: 6, ETAPA: DECODE 
+[Mon Jan  6 07:30:40 2025] CLOCK: 15, PC: 6, ETAPA: EXECUTE, Instrucao: +
+[Mon Jan  6 07:30:40 2025] CLOCK: 16, PC: 6, ETAPA: MEMORY_ACCESS, Resultado: 5
+[Mon Jan  6 07:30:40 2025] CLOCK: 17, PC: 6, ETAPA: WRITEBACK, Escrevendo: 5 na memoria.
+[Mon Jan  6 07:30:43 2025] CLOCK: 18, PC: 7, ETAPA: FETCH, Instrucao: = 0 10
+[Mon Jan  6 07:30:43 2025] CLOCK: 19, PC: 7, ETAPA: DECODE 
+[Mon Jan  6 07:30:43 2025] CLOCK: 19, PC: 7, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:30:43 2025] CLOCK: 20, PC: 8, ETAPA: FETCH, Instrucao: = 1 100
+[Mon Jan  6 07:30:43 2025] CLOCK: 21, PC: 8, ETAPA: DECODE 
+[Mon Jan  6 07:30:43 2025] CLOCK: 21, PC: 8, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:30:43 2025] CLOCK: 22, PC: 9, ETAPA: FETCH, Instrucao: - 3 1 0
+[Mon Jan  6 07:30:43 2025] CLOCK: 23, PC: 9, ETAPA: DECODE 
+[Mon Jan  6 07:30:43 2025] CLOCK: 24, PC: 9, ETAPA: EXECUTE, Instrucao: -
+[Mon Jan  6 07:30:43 2025] CLOCK: 25, PC: 9, ETAPA: MEMORY_ACCESS, Resultado: 90
+[Mon Jan  6 07:30:43 2025] CLOCK: 26, PC: 9, ETAPA: WRITEBACK, Escrevendo: 90 na memoria.
+[Mon Jan  6 07:30:46 2025] CLOCK: 27, PC: 10, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:30:46 2025] CLOCK: 28, PC: 10, ETAPA: DECODE 
+[Mon Jan  6 07:30:46 2025] CLOCK: 28, PC: 10, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:30:46 2025] CLOCK: 29, PC: 11, ETAPA: FETCH, Instrucao: $ 0
+[Mon Jan  6 07:30:46 2025] CLOCK: 30, PC: 11, ETAPA: DECODE 
+[Mon Jan  6 07:30:49 2025] CLOCK: 31, PC: 12, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:30:49 2025] CLOCK: 32, PC: 12, ETAPA: DECODE 
+[Mon Jan  6 07:30:49 2025] CLOCK: 32, PC: 12, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:30:49 2025] CLOCK: 33, PC: 13, ETAPA: FETCH, Instrucao: $ 0
+[Mon Jan  6 07:30:49 2025] CLOCK: 34, PC: 13, ETAPA: DECODE 
+[Mon Jan  6 07:30:52 2025] CLOCK: 35, PC: 14, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:30:52 2025] CLOCK: 36, PC: 14, ETAPA: DECODE 
+[Mon Jan  6 07:30:52 2025] CLOCK: 36, PC: 14, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:30:52 2025] CLOCK: 37, PC: 15, ETAPA: FETCH, Instrucao: $ 0
+[Mon Jan  6 07:30:52 2025] CLOCK: 38, PC: 15, ETAPA: DECODE 
+[Mon Jan  6 07:33:54 2025] CLOCK: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 3
+[Mon Jan  6 07:33:54 2025] CLOCK: 2, PC: 0, ETAPA: DECODE 
+[Mon Jan  6 07:33:54 2025] CLOCK: 2, PC: 0, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:33:54 2025] CLOCK: 3, PC: 1, ETAPA: FETCH, Instrucao: = 1 2 
+[Mon Jan  6 07:33:57 2025] CLOCK: 5, PC: 2, ETAPA: FETCH, Instrucao: = 0 10
+[Mon Jan  6 07:34:00 2025] CLOCK: 7, PC: 3, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:34:03 2025] CLOCK: 9, PC: 4, ETAPA: FETCH, Instrucao: = 0 3
+[Mon Jan  6 07:34:03 2025] CLOCK: 10, PC: 4, ETAPA: DECODE 
+[Mon Jan  6 07:34:03 2025] CLOCK: 10, PC: 4, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:34:03 2025] CLOCK: 11, PC: 5, ETAPA: FETCH, Instrucao: = 1 2 
+[Mon Jan  6 07:34:03 2025] CLOCK: 12, PC: 5, ETAPA: DECODE 
+[Mon Jan  6 07:34:03 2025] CLOCK: 12, PC: 5, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:34:03 2025] CLOCK: 13, PC: 6, ETAPA: FETCH, Instrucao: + 3 1 0
+[Mon Jan  6 07:34:03 2025] CLOCK: 14, PC: 6, ETAPA: DECODE 
+[Mon Jan  6 07:34:03 2025] CLOCK: 15, PC: 6, ETAPA: EXECUTE, Instrucao: +
+[Mon Jan  6 07:34:03 2025] CLOCK: 16, PC: 6, ETAPA: MEMORY_ACCESS, Resultado: 5
+[Mon Jan  6 07:34:03 2025] CLOCK: 17, PC: 6, ETAPA: WRITEBACK, Escrevendo: 5 na memoria.
+[Mon Jan  6 07:34:06 2025] CLOCK: 18, PC: 7, ETAPA: FETCH, Instrucao: = 0 10
+[Mon Jan  6 07:34:06 2025] CLOCK: 19, PC: 7, ETAPA: DECODE 
+[Mon Jan  6 07:34:06 2025] CLOCK: 19, PC: 7, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:34:06 2025] CLOCK: 20, PC: 8, ETAPA: FETCH, Instrucao: = 1 100
+[Mon Jan  6 07:34:06 2025] CLOCK: 21, PC: 8, ETAPA: DECODE 
+[Mon Jan  6 07:34:06 2025] CLOCK: 21, PC: 8, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:34:06 2025] CLOCK: 22, PC: 9, ETAPA: FETCH, Instrucao: - 3 1 0
+[Mon Jan  6 07:34:06 2025] CLOCK: 23, PC: 9, ETAPA: DECODE 
+[Mon Jan  6 07:34:06 2025] CLOCK: 24, PC: 9, ETAPA: EXECUTE, Instrucao: -
+[Mon Jan  6 07:34:06 2025] CLOCK: 25, PC: 9, ETAPA: MEMORY_ACCESS, Resultado: 90
+[Mon Jan  6 07:34:06 2025] CLOCK: 26, PC: 9, ETAPA: WRITEBACK, Escrevendo: 90 na memoria.
+[Mon Jan  6 07:34:09 2025] CLOCK: 27, PC: 10, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:34:09 2025] CLOCK: 28, PC: 10, ETAPA: DECODE 
+[Mon Jan  6 07:34:09 2025] CLOCK: 28, PC: 10, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:34:09 2025] CLOCK: 29, PC: 11, ETAPA: FETCH, Instrucao: $ 0
+[Mon Jan  6 07:34:09 2025] CLOCK: 30, PC: 11, ETAPA: DECODE 
+[Mon Jan  6 07:34:09 2025] CLOCK: 31, PC: 11, ETAPA: EXECUTE, Instrucao: $
+[Mon Jan  6 07:36:11 2025] CLOCK: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 3
+[Mon Jan  6 07:36:11 2025] CLOCK: 2, PC: 0, ETAPA: DECODE 
+[Mon Jan  6 07:36:11 2025] CLOCK: 2, PC: 0, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:36:11 2025] CLOCK: 3, PC: 1, ETAPA: FETCH, Instrucao: = 1 2 
+[Mon Jan  6 07:36:14 2025] CLOCK: 5, PC: 2, ETAPA: FETCH, Instrucao: = 0 10
+[Mon Jan  6 07:36:17 2025] CLOCK: 7, PC: 3, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:36:23 2025] CLOCK: 10, PC: 4, ETAPA: FETCH, Instrucao: = 0 3
+[Mon Jan  6 07:36:23 2025] CLOCK: 11, PC: 4, ETAPA: DECODE 
+[Mon Jan  6 07:36:23 2025] CLOCK: 11, PC: 4, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:36:23 2025] CLOCK: 12, PC: 5, ETAPA: FETCH, Instrucao: = 1 2 
+[Mon Jan  6 07:36:23 2025] CLOCK: 13, PC: 5, ETAPA: DECODE 
+[Mon Jan  6 07:36:23 2025] CLOCK: 13, PC: 5, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:36:23 2025] CLOCK: 14, PC: 6, ETAPA: FETCH, Instrucao: + 3 1 0
+[Mon Jan  6 07:36:23 2025] CLOCK: 15, PC: 6, ETAPA: DECODE 
+[Mon Jan  6 07:36:23 2025] CLOCK: 16, PC: 6, ETAPA: EXECUTE, Instrucao: +
+[Mon Jan  6 07:36:23 2025] CLOCK: 17, PC: 6, ETAPA: MEMORY_ACCESS, Resultado: 5
+[Mon Jan  6 07:36:23 2025] CLOCK: 18, PC: 6, ETAPA: WRITEBACK, Escrevendo: 5 na memoria.
+[Mon Jan  6 07:36:26 2025] CLOCK: 19, PC: 7, ETAPA: FETCH, Instrucao: = 2 8
+[Mon Jan  6 07:36:26 2025] CLOCK: 20, PC: 7, ETAPA: DECODE 
+[Mon Jan  6 07:36:26 2025] CLOCK: 20, PC: 7, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:36:26 2025] CLOCK: 21, PC: 8, ETAPA: FETCH, Instrucao: $ 0
+[Mon Jan  6 07:36:26 2025] CLOCK: 22, PC: 8, ETAPA: DECODE 
+[Mon Jan  6 07:36:26 2025] CLOCK: 23, PC: 8, ETAPA: EXECUTE, Instrucao: $
+[Mon Jan  6 07:36:29 2025] CLOCK: 24, PC: 9, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:36:29 2025] CLOCK: 25, PC: 9, ETAPA: DECODE 
+[Mon Jan  6 07:36:29 2025] CLOCK: 25, PC: 9, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:36:29 2025] CLOCK: 26, PC: 10, ETAPA: FETCH, Instrucao: $ 0
+[Mon Jan  6 07:36:29 2025] CLOCK: 27, PC: 10, ETAPA: DECODE 
+[Mon Jan  6 07:36:29 2025] CLOCK: 28, PC: 10, ETAPA: EXECUTE, Instrucao: $
+[Mon Jan  6 07:37:32 2025] CLOCK: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 3
+[Mon Jan  6 07:37:32 2025] CLOCK: 2, PC: 0, ETAPA: DECODE 
+[Mon Jan  6 07:37:32 2025] CLOCK: 2, PC: 0, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:37:32 2025] CLOCK: 3, PC: 1, ETAPA: FETCH, Instrucao: = 1 2 
+[Mon Jan  6 07:37:35 2025] CLOCK: 5, PC: 2, ETAPA: FETCH, Instrucao: = 0 10
+[Mon Jan  6 07:37:38 2025] CLOCK: 7, PC: 3, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:37:41 2025] CLOCK: 9, PC: 4, ETAPA: FETCH, Instrucao: = 0 3
+[Mon Jan  6 07:37:41 2025] CLOCK: 10, PC: 4, ETAPA: DECODE 
+[Mon Jan  6 07:37:41 2025] CLOCK: 10, PC: 4, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:37:41 2025] CLOCK: 11, PC: 5, ETAPA: FETCH, Instrucao: = 1 2 
+[Mon Jan  6 07:37:41 2025] CLOCK: 12, PC: 5, ETAPA: DECODE 
+[Mon Jan  6 07:37:41 2025] CLOCK: 12, PC: 5, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:37:41 2025] CLOCK: 13, PC: 6, ETAPA: FETCH, Instrucao: + 3 1 0
+[Mon Jan  6 07:37:41 2025] CLOCK: 14, PC: 6, ETAPA: DECODE 
+[Mon Jan  6 07:37:41 2025] CLOCK: 15, PC: 6, ETAPA: EXECUTE, Instrucao: +
+[Mon Jan  6 07:37:41 2025] CLOCK: 16, PC: 6, ETAPA: MEMORY_ACCESS, Resultado: 5
+[Mon Jan  6 07:37:41 2025] CLOCK: 17, PC: 6, ETAPA: WRITEBACK, Escrevendo: 5 na memoria.
+[Mon Jan  6 07:37:44 2025] CLOCK: 18, PC: 7, ETAPA: FETCH, Instrucao: = 0 10
+[Mon Jan  6 07:37:44 2025] CLOCK: 19, PC: 7, ETAPA: DECODE 
+[Mon Jan  6 07:37:44 2025] CLOCK: 19, PC: 7, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:37:44 2025] CLOCK: 20, PC: 8, ETAPA: FETCH, Instrucao: = 1 100
+[Mon Jan  6 07:37:44 2025] CLOCK: 21, PC: 8, ETAPA: DECODE 
+[Mon Jan  6 07:37:44 2025] CLOCK: 21, PC: 8, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:37:44 2025] CLOCK: 22, PC: 9, ETAPA: FETCH, Instrucao: - 3 1 0
+[Mon Jan  6 07:37:44 2025] CLOCK: 23, PC: 9, ETAPA: DECODE 
+[Mon Jan  6 07:37:44 2025] CLOCK: 24, PC: 9, ETAPA: EXECUTE, Instrucao: -
+[Mon Jan  6 07:37:44 2025] CLOCK: 25, PC: 9, ETAPA: MEMORY_ACCESS, Resultado: 90
+[Mon Jan  6 07:37:44 2025] CLOCK: 26, PC: 9, ETAPA: WRITEBACK, Escrevendo: 90 na memoria.
+[Mon Jan  6 07:37:44 2025] CLOCK: 27, PC: 10, ETAPA: FETCH, Instrucao: $ 0
+[Mon Jan  6 07:37:44 2025] CLOCK: 28, PC: 10, ETAPA: DECODE 
+[Mon Jan  6 07:37:44 2025] CLOCK: 29, PC: 10, ETAPA: EXECUTE, Instrucao: $
+[Mon Jan  6 07:37:47 2025] CLOCK: 30, PC: 11, ETAPA: FETCH, Instrucao: = 0 1
+[Mon Jan  6 07:37:47 2025] CLOCK: 31, PC: 11, ETAPA: DECODE 
+[Mon Jan  6 07:37:47 2025] CLOCK: 31, PC: 11, ETAPA: EXECUTE, Instrucao: =
+[Mon Jan  6 07:37:47 2025] CLOCK: 32, PC: 12, ETAPA: FETCH, Instrucao: $ 0
+[Mon Jan  6 07:37:47 2025] CLOCK: 33, PC: 12, ETAPA: DECODE 
+[Mon Jan  6 07:37:47 2025] CLOCK: 34, PC: 12, ETAPA: EXECUTE, Instrucao: $

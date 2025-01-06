@@ -4,7 +4,7 @@
 int PC = 0;
 int CLOCK = 0;
 int tempoGasto = 0; 
-bool perifericos[NUM_PERIFERICOS] = {false};
+bool perifericos[NUM_PERIFERICOS] = {true};
 vector<int> principal;
 pthread_mutex_t filaLock = PTHREAD_MUTEX_INITIALIZER;
 

@@ -91,7 +91,7 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
         LogSaida("CLOCK: " + to_string(CLOCK) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao);
         MemoryAccess(soma, registradores, info1, linhaAtual, pm);
 
-    } else if ((instrucao != '&') && (instrucao != '@') && (instrucao != '?')) {
+    } else if ((instrucao != '&') && (instrucao != '@') && (instrucao != '?') && (instrucao != '$')) {
 
         int resultado = ULA(registradores[info2], registradores[info3], instrucao);
         CLOCK++; // CLOCK incrementado antes de chamar a próxima etapa
@@ -140,6 +140,43 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
             }
         }
         
+    }
+    else if (instrucao == '$'){
+        if(perifericos[info1]){//liberado
+            perifericos[info1] = false;
+            pm->pcb.recursos.push_back(info1);
+
+            cout << "\nAcesso ao periférico $ " << info1 << endl;
+
+            CLOCK++; // Incremento de clock na comparação
+
+            LogSaida("CLOCK: " + to_string(CLOCK) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao);
+
+            // Para que considere operaçoes com "$" como processadas também
+            pm->pcb.linhasProcessadasAtual++;
+
+            if (linhaAtual > pm->pcb.linhasProcessadasAnt){
+                pm->pcb.quantum -= 1;
+                tempoGasto++;
+                
+                if(pm->pcb.quantum == 0){
+                    return;
+                }
+            }
+        }
+        else{
+            pm->pcb.estado = "Bloqueado";
+            cout << "\nPeriférico $ " << info1 << " está bloqueado!\n";
+
+            //Liberar recursos associados - Exceto periférico inacessível
+            for(int i = 0; i < (int)pm->pcb.recursos.size(); i++){
+                if(i != info1){
+                    perifericos[pm->pcb.recursos[i]] = true;
+                    pm->pcb.recursos.erase(pm->pcb.recursos.begin() + i);
+                }
+            }
+            return;
+        }
     }
 }
 

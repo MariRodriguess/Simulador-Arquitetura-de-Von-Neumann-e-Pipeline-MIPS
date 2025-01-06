@@ -30,8 +30,18 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
         UnidadeControle(registradores, linha, linhaAtual, pm);
 
         linhaAtual++;
+        if(pm->pcb.estado == "Bloqueado"){
+            cout << "\nProcesso " << pm->pcb.id << " bloqueado! - Periférico em uso\n";
+            
+            // Atualizar timestamps
+            atualizarTimestamps(filaPaginasMemoria, tempoGasto);
+            pm->pcb.linhasProcessadasAnt = pm->pcb.linhasProcessadasAtual;
+            pm->pcb.linhasProcessadasAtual = 0;
+            pm->pcb.estado = "Bloqueado";
+            break;
+        }
 
-        if(pm->pcb.linhasProcessadasAtual == pm->pcb.linhasArquivo){
+        else if(pm->pcb.linhasProcessadasAtual == pm->pcb.linhasArquivo){
 
             cout << "\nProcesso " << pm->pcb.id << " encerrado!\n";
 
@@ -44,6 +54,12 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
             atualizarTimestamps(filaPaginasMemoria, tempoGasto);
 
             imprimirDados(pm);
+
+            //Liberar recursos associados
+            for(int i = 0; i < (int)pm->pcb.recursos.size(); i++){
+                perifericos[pm->pcb.recursos[i]] = true;
+                pm->pcb.recursos.erase(pm->pcb.recursos.begin() + i);
+            }
 
             // Remover o processo finalizado da fila
             pthread_mutex_lock(&filaMutex);
@@ -59,6 +75,12 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
             pm->pcb.linhasProcessadasAtual = 0;
             pm->pcb.estado = "Pronto";
             pm->jaFoiZeradoQuantum = true;
+
+            //Liberar recursos associados
+            for(int i = 0; i < (int)pm->pcb.recursos.size(); i++){
+                perifericos[pm->pcb.recursos[i]] = true;
+                pm->pcb.recursos.erase(pm->pcb.recursos.begin() + i);
+            }
             break;
         }
     }
@@ -119,6 +141,19 @@ void* executarCpu() {
                 pthread_mutex_unlock(&pm->mutex);
                 sleep(1);
             }
+            else if(pm->pcb.estado == "Bloqueado"){
+                // Sinaliza que o processo pode começar
+                pthread_mutex_lock(&pm->mutex);
+
+                // pm->pcb.estado = "Em execução";
+                cout << "\n ======= \nCPU esta tentando ativar o processo " << pm->pcb.id << ", previamente bloqueado.\n";
+
+                sleep(1);
+                pthread_cond_signal(&pm->cond); // Libera o processo
+                sleep(1);
+                pthread_mutex_unlock(&pm->mutex);
+                sleep(1);
+            }
 
             if(filaPaginasMemoria.size() == 0){
                 break;
@@ -131,38 +166,6 @@ void* executarCpu() {
     }
     return nullptr;
 }
-
-/*
-void* executarProcesso(void* arg) {
-
-    sleep(2);
-    auto* pm = static_cast<PaginaMemoria*>(arg);
-
-    pthread_mutex_lock(&pm->mutex); // Bloqueia até a CPU sinalizar para iniciar a execução
-    cout << "Processo " << pm->pcb.id << " aguardando liberacao da CPU..." << endl;
-
-    // Espera até receber o sinal da CPU
-    pthread_cond_wait(&pm->cond, &pm->mutex);
-
-    // Após liberação
-    cout << "Processo " << pm->pcb.id << " em execucao por " << pm->pcb.quantum << " unidades de tempo." << endl;
-
-    // Execução
-    pm->pcb.estado = "Em execução";
-    LerInstrucoesDoArquivo(pm->pcb.caminhoArquivo, pm->pcb.registradores, pm);
-    cout << "\n execucao" << endl;
-    cout << "Estado durante a saida: " << pm->pcb.estado << endl;
-    
-    // Simula a mudança de estado do processo
-    pm->pcb.estado = "Finalizado";
-    cout << "Processo " << pm->pcb.id << " finalizado." << endl;
-    
-
-    pthread_mutex_unlock(&pm->mutex);
-    
-    return nullptr;
-}
-*/
 
 void* executarProcesso(void* arg) {
 
@@ -196,7 +199,11 @@ void* executarProcesso(void* arg) {
         cout << "\nSaindo da execucao com o estado: " << pm->pcb.estado << endl;
         
         if (pm->pcb.estado == "Pronto"){
-            cout << "Com " << pm->pcb.linhasProcessadasAnt << " linha(s) processada(s)." << endl;
+            cout << "Com " << pm->pcb.linhasProcessadasAnt << " linha(s) processada(s) até o momento." << endl;
+            recalcularQuantum(pm);
+        }
+        else if(pm->pcb.estado == "Bloqueado"){
+            cout << "Processo bloqueado após acesso de periférico ocupado.\n";
             recalcularQuantum(pm);
         }
         pthread_mutex_unlock(&pm->mutex);
