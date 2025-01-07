@@ -26,6 +26,8 @@ extern unordered_map<int, int> cache;
 extern vector<int> principal;
 extern vector<vector<int>> disco;
 
+extern pthread_mutex_t mtx;
+
 extern bool perifericos[NUM_PERIFERICOS];
 
 extern int processoFinalizado;
