@@ -141,7 +141,7 @@ void* executarProcesso(void* arg) {
             recalcularQuantum(pm);
         }
         else if(pm->pcb.estado == "Bloqueado"){
-            cout << "Processo bloqueado após acesso de periferico ocupado.\n";
+            cout << "\nProcesso bloqueado após acesso de periferico ocupado.\n";
             recalcularQuantum(pm);
         }
         pthread_mutex_unlock(&pm->mutex);

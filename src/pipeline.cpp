@@ -1,5 +1,7 @@
 #include "pipeline.hpp"
 
+pthread_mutex_t mtx = PTHREAD_MUTEX_INITIALIZER;
+
 void WriteBack(int resultado, int linhaAtual, PaginaMemoria *pm) {
     principal.push_back(resultado);
     CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa WRITEBACK
@@ -83,7 +85,7 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
         LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao);
         MemoryAccess(soma, registradores, info1, linhaAtual, pm);
 
-    } else if ((instrucao != '&') && (instrucao != '@') && (instrucao != '?')) {
+    } else if ((instrucao != '&') && (instrucao != '@') && (instrucao != '?') && (instrucao != '$')) {
 
         int resultado = ULA(registradores[info2], registradores[info3], instrucao);
         CLOCK[pm->pcb.idCpuAtual - 1]++; // CLOCK incrementado antes de chamar a próxima etapa
@@ -132,6 +134,49 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
             }
         }
         
+    }else if (instrucao == '$'){
+
+        pthread_mutex_lock(&mtx);
+        
+        if(perifericos[info1]){ //liberado
+
+            perifericos[info1] = false;
+            pthread_mutex_unlock(&mtx);
+            pm->pcb.recursos.push_back(info1);
+
+            cout << "\nAcesso ao periferico $ " << info1 << endl;
+
+            CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na comparação
+
+            LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao);
+
+            // Para que considere operaçoes com "$" como processadas também
+            pm->pcb.linhasProcessadasAtual++;
+
+            if (linhaAtual > pm->pcb.linhasProcessadasAnt){
+                pm->pcb.quantum -= 1;
+                tempoGasto[pm->pcb.idCpuAtual]++;
+                
+                if(pm->pcb.quantum == 0){
+                    return;
+                }
+            }
+        }
+        else{
+            pthread_mutex_unlock(&mtx);
+            pm->pcb.estado = "Bloqueado";
+            cout << "\nPeriferico $ " << info1 << " esta bloqueado!\n";
+
+            //Liberar recursos associados - Exceto periférico inacessível
+            for(int i = 0; i < (int)pm->pcb.recursos.size(); i++){
+                // if(i != info1){
+                    perifericos[pm->pcb.recursos[i]] = true;
+                    pm->pcb.recursos.erase(pm->pcb.recursos.begin() + i);
+                // }
+            }
+
+            return;
+        }
     }
 }
 

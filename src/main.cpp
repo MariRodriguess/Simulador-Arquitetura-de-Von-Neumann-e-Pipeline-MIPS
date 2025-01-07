@@ -32,6 +32,11 @@ int main() {
 
     const string fileName = "log_output.txt";
 
+    // Começando os periféricos como true
+    for (int i = 0; i < NUM_PERIFERICOS; ++i) {
+        perifericos[i] = true;
+    }
+
     //Limpeza do arquivo de log
     ofstream file(fileName, ios::out | ios::trunc);
 

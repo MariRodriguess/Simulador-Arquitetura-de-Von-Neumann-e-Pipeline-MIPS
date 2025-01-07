@@ -49,15 +49,13 @@ Processo 3 -> CLOCK 2: 13, PC: 10, ETAPA: EXECUTE, Instrucao: =
 Processo 3 -> CLOCK 2: 14, PC: 11, ETAPA: FETCH, Instrucao: $ 0
 Processo 3 -> CLOCK 2: 15, PC: 11, ETAPA: DECODE 
 Processo 3 -> CLOCK 2: 16, PC: 11, ETAPA: EXECUTE, Instrucao: $
-Processo 3 -> CLOCK 2: 17, PC: 11, ETAPA: MEMORY_ACCESS, Resultado: 0
-Processo 3 -> CLOCK 2: 18, PC: 11, ETAPA: WRITEBACK, Escrevendo: 0 na memoria.
 
 Processo 3 encerrado!
 Dados finais: 
 Linhas Processadas: 2
 Timestamp: 15
-Quantum final: 29
+Quantum final: 31
 
 CLOCK 1 = 15 | 
-CLOCK 2 = 18 | 
+CLOCK 2 = 16 | 
 PC = 12
