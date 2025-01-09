@@ -172,7 +172,7 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
                 // if(i != info1){
                     perifericos[pm->pcb.recursos[i]] = true;
                     pm->pcb.recursos.erase(pm->pcb.recursos.begin() + i);
-                // }
+                //}
             }
 
             return;

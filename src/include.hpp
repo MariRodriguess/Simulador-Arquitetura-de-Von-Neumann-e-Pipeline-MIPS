@@ -46,11 +46,13 @@ struct PCB {
     vector<int> recursos;
     sem_t semaforo; // Semáforo para sincronização
     int idCpuAtual = -1;
-    int tempoGasto = 0;
+    int numBilhetes = 0;
+    bool recebeuRecurso = false;
     PCB(){
+        timestamp = 0;
         linhasProcessadasAnt = 0;
         linhasProcessadasAtual = 0;
-        timestamp = 0;
+        quantum = 0;
     }
 };
 
