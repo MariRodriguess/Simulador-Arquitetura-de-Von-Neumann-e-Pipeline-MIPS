@@ -137,15 +137,12 @@ void* executarProcesso(void* arg) {
         LerInstrucoesDoArquivo(pm->pcb.caminhoArquivo, pm->pcb.registradores, pm);
         pthread_mutex_lock(&pm->mutex);
         
-        cout << "\nTeste1\n";
         if (pm->pcb.estado == "Pronto"){
-            cout << "\nTeste2\n";
             recalcularQuantum(pm);
             pm->pcb.recebeuRecurso = true; // Marcar processo como atendido
             incrementarBilhetesNaoAtendidos(filaPaginasMemoria); // Aumentar as chances para processos não atendidos a cada execução
         }
         else if(pm->pcb.estado == "Bloqueado"){
-            cout << "\nTeste3\n";
             cout << "\nProcesso bloqueado após acesso de periferico ocupado.\n";
             recalcularQuantum(pm);
             pm->pcb.recebeuRecurso = true; // Marcar processo como atendido
@@ -177,7 +174,8 @@ void* executarCpu_FCFS(void* arg) {
 
         int indicePm = cont % filaPaginasMemoria.size();
         cont++;
-        pm = filaPaginasMemoria[indicePm];
+        pm = filaPaginasMemoria[indicePm]; 
+        pm->pcb.quantum = 2147483647; // Para que o processo não sofra preempção
        
         pthread_mutex_unlock(&filaMutex);
 
@@ -274,8 +272,8 @@ void carregarProcessos(const string& diretorio) {
             PCB processo;
             processo.id = idProcesso++;
             processo.prioridade = rand() % 10;
-            // processo.quantum = (rand() % 6) + 1;
-            processo.quantum = (rand() % 31) + 20;  // Gera um número entre 20 e 50
+            processo.quantum = (rand() % 6) + 1;
+            // processo.quantum = (rand() % 31) + 20;  // Gera um número entre 20 e 50
             processo.registradores = (int*)malloc(10 * sizeof(int));
             processo.caminhoArquivo = entry.path().string();
             processo.estado = "Pronto";
@@ -331,12 +329,22 @@ void recalcularQuantum (PaginaMemoria *pm){
 }
 
 void imprimirDados (PaginaMemoria *pm){
-    LogSaida("\nProcesso " + to_string(pm->pcb.id + 1) + " encerrado!" + 
+
+    if (!FCFS){
+        LogSaida("\nProcesso " + to_string(pm->pcb.id + 1) + " encerrado!" + 
             "\nDados finais: \nLinhas Processadas: " + to_string(pm->pcb.linhasProcessadasAtual) +  
             "\nPrioridade: " + to_string(pm->pcb.prioridade) + 
             "\nNúmeros de bilhetes: " + to_string(pm->pcb.numBilhetes) + 
             "\nTimestamp: " + to_string(pm->pcb.timestamp) + 
             "\nQuantum final: " + to_string(pm->pcb.quantum) + "\n");
+    }else{
+        LogSaida("\nProcesso " + to_string(pm->pcb.id + 1) + " encerrado!" + 
+            "\nDados finais: \nLinhas Processadas: " + to_string(pm->pcb.linhasProcessadasAtual) +  
+            "\nPrioridade: " + to_string(pm->pcb.prioridade) + 
+            "\nNúmeros de bilhetes: " + to_string(pm->pcb.numBilhetes) + 
+            "\nTimestamp: " + to_string(pm->pcb.timestamp) + "\n");
+    }
+    
 }
 
 void atualizarTimestamps(vector<PaginaMemoria *> &filaPaginasMemoria, int quantumGasto, PaginaMemoria * pm) {
@@ -352,7 +360,6 @@ void atualizarTimestamps(vector<PaginaMemoria *> &filaPaginasMemoria, int quantu
 
 void incrementarBilhetesNaoAtendidos(vector<PaginaMemoria *> &filaPaginasMemoria) {
 
-    cout << "\n===Opa===\n";
     pthread_mutex_lock(&filaMutex);
     for (auto& pagina : filaPaginasMemoria) {
         if (!pagina->pcb.recebeuRecurso) {

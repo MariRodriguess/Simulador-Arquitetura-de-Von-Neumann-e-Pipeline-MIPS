@@ -21,6 +21,7 @@ using namespace std;
 extern int PC;
 extern int CLOCK[NUM_CPUS];
 extern int tempoGasto[NUM_CPUS]; 
+extern volatile bool FCFS;
 
 extern unordered_map<int, int> cache;
 extern vector<int> principal;

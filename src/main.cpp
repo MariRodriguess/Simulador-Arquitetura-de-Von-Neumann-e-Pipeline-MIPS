@@ -5,6 +5,7 @@ int PC = 0;
 int CLOCK[NUM_CPUS] = {0};
 int tempoGasto[NUM_CPUS] = {0}; 
 bool perifericos[NUM_PERIFERICOS] = {true};
+volatile bool FCFS=true;
 vector<int> principal;
 pthread_mutex_t filaLock = PTHREAD_MUTEX_INITIALIZER;
 
@@ -44,16 +45,7 @@ void main_FCFS(){
 
     Memoria* memoria = new Memoria();
 
-    const string fileName = "log_output.txt";
-
-    //Limpeza do arquivo de log
-    ofstream file(fileName, ios::out | ios::trunc);
-
-    if (file.is_open()) {
-        file.close();
-    } else {
-        cerr << "Erro ao abrir o arquivo '" << fileName << "'.\n";
-    }
+    FCFS=true;
 
     // Inicializa as CPUs
     for (int i = 0; i < NUM_CPUS; ++i) {
@@ -101,20 +93,11 @@ void main_FCFS(){
 
 void main_Loteria(){
 
+    FCFS=false;
+
     vector<CPU*> cpus(NUM_CPUS);
 
     Memoria* memoria = new Memoria();
-
-    const string fileName = "log_output.txt";
-
-    //Limpeza do arquivo de log
-    ofstream file(fileName, ios::out | ios::trunc);
-
-    if (file.is_open()) {
-        file.close();
-    } else {
-        cerr << "Erro ao abrir o arquivo '" << fileName << "'.\n";
-    }
 
     // Inicializa as CPUs
     for (int i = 0; i < NUM_CPUS; ++i) {
@@ -126,7 +109,7 @@ void main_Loteria(){
 
     string diretorio = "data"; // Pasta contendo os arquivos .data
 
-    LogSaida("--- POLÍTICA DE ESCALONAMENTO: FCFS\n=================================================================================================");
+    LogSaida("\n\n--- POLÍTICA DE ESCALONAMENTO: Loteria com Prioridade\n=================================================================================================");
 
     carregarProcessos(diretorio);
 
@@ -161,9 +144,20 @@ void main_Loteria(){
 }
 
 int main() {
+
+    const string fileName = "log_output.txt";
+
+    //Limpeza do arquivo de log
+    ofstream file(fileName, ios::out | ios::trunc);
+
+    if (file.is_open()) {
+        file.close();
+    } else {
+        cerr << "Erro ao abrir o arquivo '" << fileName << "'.\n";
+    }
     
-    //main_FCFS();
-    //limpeza();
+    main_FCFS();
+    limpeza();
 
     main_Loteria();
     limpeza();
