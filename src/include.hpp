@@ -23,7 +23,7 @@ extern int PC;
 extern int CLOCK[NUM_CPUS];
 extern int tempoGasto[NUM_CPUS]; 
 extern volatile bool FCFS;
-
+extern volatile bool SRTN;
 extern unordered_map<int, int> cache;
 extern vector<int> principal;
 extern vector<vector<int>> disco;
@@ -51,6 +51,7 @@ struct PCB {
     int numBilhetes = 0;
     bool recebeuRecurso = false;
     int quantumNecessario = 0;
+    int quantumOriginal;
 
     PCB(){
         timestamp = 0;

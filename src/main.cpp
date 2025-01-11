@@ -6,6 +6,8 @@ int CLOCK[NUM_CPUS] = {0};
 int tempoGasto[NUM_CPUS] = {0}; 
 bool perifericos[NUM_PERIFERICOS] = {true};
 volatile bool FCFS=true;
+volatile bool SRTN=true;
+
 vector<int> principal;
 pthread_mutex_t filaLock = PTHREAD_MUTEX_INITIALIZER;
 
@@ -194,6 +196,58 @@ void main_SJF(){
     LogSaida("PC = " + to_string(PC));
 }
 
+void main_SRTN(){
+    vector<CPU*> cpus(NUM_CPUS);
+
+    Memoria* memoria = new Memoria();
+
+    FCFS=false;
+    SRTN=true;
+
+    // Inicializa as CPUs
+    for (int i = 0; i < NUM_CPUS; ++i) {
+        cpus[i] = new CPU();
+        cpus[i]->id = i + 1; // Identificação da CPU
+    }
+
+    bootloader(memoria);
+
+    string diretorio = "data"; // Pasta contendo os arquivos .data
+
+    LogSaida("\n\n--- POLÍTICA DE ESCALONAMENTO: SRTN\n=================================================================================================");
+
+    carregarProcessos(diretorio);
+
+    cout << "\nIniciando execucao...\n";
+    // Cria threads para cada CPU
+    vector<pthread_t> threads_cpus(NUM_CPUS);
+    for (int i = 0; i < NUM_CPUS; ++i) {
+        pthread_create(&threads_cpus[i], nullptr, executarCpu_SRTN, cpus[i]);
+        sleep(2);
+    }
+
+    // Aguarda as threads das CPUs terminarem
+    for (auto &th : threads_cpus) {
+        pthread_join(th, nullptr);
+    }
+
+    cout << "\nExecucao finalizada!\n";
+
+    // Libera memória
+    for (auto* cpu : cpus) {
+        delete cpu;
+    }
+    delete memoria;
+
+    for(int i = 0; i < NUM_CPUS; i++){
+        cout << "CLOCK " << i+1 << " = " << CLOCK[i] << " | ";
+        LogSaida("CLOCK " + to_string(i+1) + " = " + to_string(CLOCK[i]) + " | ");
+    }
+    cout << "\nPC = " << PC << endl;
+
+    LogSaida("PC = " + to_string(PC));
+}
+
 int main() {
 
     const string fileName = "log_output.txt";
@@ -207,15 +261,17 @@ int main() {
         cerr << "Erro ao abrir o arquivo '" << fileName << "'.\n";
     }
     
-    main_FCFS();
+    /*main_FCFS();
     limpeza();
 
     main_Loteria();
     limpeza();
 
     main_SJF();
+    limpeza();*/
+
+    main_SRTN();
     limpeza();
     
     return 0;
 }
-

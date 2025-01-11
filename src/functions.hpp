@@ -18,6 +18,8 @@ void* executarCpu_Loteria(void* arg);
 
 void* executarCpu_SJF(void* arg);
 
+void* executarCpu_SRTN(void* arg);
+
 void atualizarTimestamps(vector<PaginaMemoria *> &filaPaginasMemoria, int quantumGasto, PaginaMemoria * pm);
 
 void recalcularQuantum (PaginaMemoria *pm);
@@ -25,5 +27,7 @@ void recalcularQuantum (PaginaMemoria *pm);
 void imprimirDados (PaginaMemoria *pm);
 
 void incrementarBilhetesNaoAtendidos(vector<PaginaMemoria *> &filaPaginasMemoria);
+
+void ordenarFila_SRTN();
 
 #endif
