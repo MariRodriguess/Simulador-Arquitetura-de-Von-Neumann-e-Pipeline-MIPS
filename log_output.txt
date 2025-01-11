@@ -14,123 +14,212 @@ Processo 1 -> CLOCK 1: 9, PC: 3, ETAPA: DECODE
 Processo 1 -> CLOCK 1: 10, PC: 3, ETAPA: EXECUTE, Instrucao: +
 Processo 1 -> CLOCK 1: 11, PC: 3, ETAPA: MEMORY_ACCESS, Resultado: 5
 Processo 1 -> CLOCK 1: 12, PC: 3, ETAPA: WRITEBACK, Escrevendo: 5 na memoria.
+Processo 1 -> CLOCK 1: 13, PC: 4, ETAPA: FETCH, Instrucao: + 3 1 1
+Processo 1 -> CLOCK 1: 14, PC: 4, ETAPA: DECODE 
+Processo 1 -> CLOCK 1: 15, PC: 4, ETAPA: EXECUTE, Instrucao: +
+Processo 1 -> CLOCK 1: 16, PC: 4, ETAPA: MEMORY_ACCESS, Resultado: 4
+Processo 1 -> CLOCK 1: 17, PC: 4, ETAPA: WRITEBACK, Escrevendo: 4 na memoria.
 
 Processo 1 encerrado!
 Dados finais: 
-Linhas Processadas: 4
-Prioridade: 1
-Números de bilhetes: 2
-Timestamp: 12
+Linhas Processadas: 5
+Prioridade: 3
+Números de bilhetes: 6
+Quantum necessário: 17
+Timestamp: 17
 
-Processo 2 -> CLOCK 2: 1, PC: 4, ETAPA: FETCH, Instrucao: = 0 10
-Processo 2 -> CLOCK 2: 2, PC: 4, ETAPA: DECODE 
-Processo 2 -> CLOCK 2: 2, PC: 4, ETAPA: EXECUTE, Instrucao: =
-Processo 2 -> CLOCK 2: 3, PC: 5, ETAPA: FETCH, Instrucao: = 1 100
-Processo 2 -> CLOCK 2: 4, PC: 5, ETAPA: DECODE 
-Processo 2 -> CLOCK 2: 4, PC: 5, ETAPA: EXECUTE, Instrucao: =
-Processo 2 -> CLOCK 2: 5, PC: 6, ETAPA: FETCH, Instrucao: $ 0
-Processo 2 -> CLOCK 2: 6, PC: 6, ETAPA: DECODE 
-Processo 2 -> CLOCK 2: 7, PC: 6, ETAPA: EXECUTE, Instrucao: $
-Processo 2 -> CLOCK 2: 8, PC: 7, ETAPA: FETCH, Instrucao: - 3 1 0
-Processo 2 -> CLOCK 2: 9, PC: 7, ETAPA: DECODE 
-Processo 2 -> CLOCK 2: 10, PC: 7, ETAPA: EXECUTE, Instrucao: -
-Processo 2 -> CLOCK 2: 11, PC: 7, ETAPA: MEMORY_ACCESS, Resultado: 90
-Processo 2 -> CLOCK 2: 12, PC: 7, ETAPA: WRITEBACK, Escrevendo: 90 na memoria.
+Processo 2 -> CLOCK 2: 1, PC: 5, ETAPA: FETCH, Instrucao: = 0 10
+Processo 2 -> CLOCK 2: 2, PC: 5, ETAPA: DECODE 
+Processo 2 -> CLOCK 2: 2, PC: 5, ETAPA: EXECUTE, Instrucao: =
+Processo 2 -> CLOCK 2: 3, PC: 6, ETAPA: FETCH, Instrucao: = 1 100
+Processo 2 -> CLOCK 2: 4, PC: 6, ETAPA: DECODE 
+Processo 2 -> CLOCK 2: 4, PC: 6, ETAPA: EXECUTE, Instrucao: =
+Processo 2 -> CLOCK 2: 5, PC: 7, ETAPA: FETCH, Instrucao: $ 0
+Processo 2 -> CLOCK 2: 6, PC: 7, ETAPA: DECODE 
+Processo 2 -> CLOCK 2: 7, PC: 7, ETAPA: EXECUTE, Instrucao: $
+Processo 2 -> CLOCK 2: 8, PC: 8, ETAPA: FETCH, Instrucao: - 3 1 0
+Processo 2 -> CLOCK 2: 9, PC: 8, ETAPA: DECODE 
+Processo 2 -> CLOCK 2: 10, PC: 8, ETAPA: EXECUTE, Instrucao: -
+Processo 2 -> CLOCK 2: 11, PC: 8, ETAPA: MEMORY_ACCESS, Resultado: 90
+Processo 2 -> CLOCK 2: 12, PC: 8, ETAPA: WRITEBACK, Escrevendo: 90 na memoria.
 
 Processo 2 encerrado!
 Dados finais: 
 Linhas Processadas: 4
-Prioridade: 4
-Números de bilhetes: 9
-Timestamp: 12
+Prioridade: 7
+Números de bilhetes: 15
+Quantum necessário: 12
+Timestamp: 17
 
-Processo 3 -> CLOCK 1: 13, PC: 8, ETAPA: FETCH, Instrucao: = 1 9
-Processo 3 -> CLOCK 1: 14, PC: 8, ETAPA: DECODE 
-Processo 3 -> CLOCK 1: 14, PC: 8, ETAPA: EXECUTE, Instrucao: =
-Processo 3 -> CLOCK 1: 15, PC: 9, ETAPA: FETCH, Instrucao: $ 0
-Processo 3 -> CLOCK 1: 16, PC: 9, ETAPA: DECODE 
-Processo 3 -> CLOCK 1: 17, PC: 9, ETAPA: EXECUTE, Instrucao: $
+Processo 3 -> CLOCK 1: 18, PC: 9, ETAPA: FETCH, Instrucao: = 1 9
+Processo 3 -> CLOCK 1: 19, PC: 9, ETAPA: DECODE 
+Processo 3 -> CLOCK 1: 19, PC: 9, ETAPA: EXECUTE, Instrucao: =
+Processo 3 -> CLOCK 1: 20, PC: 10, ETAPA: FETCH, Instrucao: $ 0
+Processo 3 -> CLOCK 1: 21, PC: 10, ETAPA: DECODE 
+Processo 3 -> CLOCK 1: 22, PC: 10, ETAPA: EXECUTE, Instrucao: $
 
 Processo 3 encerrado!
 Dados finais: 
 Linhas Processadas: 2
-Prioridade: 9
-Números de bilhetes: 20
-Timestamp: 17
+Prioridade: 3
+Números de bilhetes: 8
+Quantum necessário: 5
+Timestamp: 22
 
-CLOCK 1 = 17 | 
+CLOCK 1 = 22 | 
 CLOCK 2 = 12 | 
-PC = 10
+PC = 11
 
 
 --- POLÍTICA DE ESCALONAMENTO: Loteria com Prioridade
 =================================================================================================
-Processo 1 -> Quantum esgotado!
-Processo 2 -> CLOCK 2: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 10
-Processo 2 -> CLOCK 2: 2, PC: 0, ETAPA: DECODE 
-Processo 2 -> CLOCK 2: 2, PC: 0, ETAPA: EXECUTE, Instrucao: =
+Processo 2 -> CLOCK 1: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 10
 Processo 2 -> Quantum esgotado!
-Processo 3 -> CLOCK 1: 2, PC: 1, ETAPA: FETCH, Instrucao: = 1 9
-Processo 3 -> CLOCK 1: 3, PC: 1, ETAPA: DECODE 
-Processo 3 -> CLOCK 1: 3, PC: 1, ETAPA: EXECUTE, Instrucao: =
-Processo 3 -> CLOCK 1: 4, PC: 2, ETAPA: FETCH, Instrucao: $ 0
-Processo 3 -> CLOCK 1: 5, PC: 2, ETAPA: DECODE 
-Processo 3 -> CLOCK 1: 6, PC: 2, ETAPA: EXECUTE, Instrucao: $
-
-Processo 3 encerrado!
-Dados finais: 
-Linhas Processadas: 2
-Prioridade: 5
-Números de bilhetes: 12
-Timestamp: 6
-Quantum final: 0
-
-Processo 1 -> CLOCK 2: 3, PC: 3, ETAPA: FETCH, Instrucao: = 0 3
-Processo 1 -> CLOCK 2: 4, PC: 3, ETAPA: DECODE 
-Processo 1 -> CLOCK 2: 4, PC: 3, ETAPA: EXECUTE, Instrucao: =
-Processo 1 -> CLOCK 2: 5, PC: 4, ETAPA: FETCH, Instrucao: $ 0
-Processo 1 -> CLOCK 2: 6, PC: 4, ETAPA: DECODE 
-Processo 1 -> CLOCK 2: 7, PC: 4, ETAPA: EXECUTE, Instrucao: $
-Processo 1 -> CLOCK 2: 8, PC: 5, ETAPA: FETCH, Instrucao: = 1 2 
-Processo 1 -> CLOCK 2: 9, PC: 5, ETAPA: DECODE 
-Processo 1 -> CLOCK 2: 9, PC: 5, ETAPA: EXECUTE, Instrucao: =
-Processo 1 -> CLOCK 2: 10, PC: 6, ETAPA: FETCH, Instrucao: + 3 1 0
-Processo 1 -> CLOCK 2: 11, PC: 6, ETAPA: DECODE 
-Processo 1 -> CLOCK 2: 12, PC: 6, ETAPA: EXECUTE, Instrucao: +
-Processo 1 -> CLOCK 2: 13, PC: 6, ETAPA: MEMORY_ACCESS, Resultado: 5
-Processo 1 -> CLOCK 2: 14, PC: 6, ETAPA: WRITEBACK, Escrevendo: 5 na memoria.
-
-Processo 1 encerrado!
-Dados finais: 
-Linhas Processadas: 4
-Prioridade: 8
-Números de bilhetes: 16
-Timestamp: 0
-Quantum final: 16
-
-Processo 2 -> CLOCK 1: 7, PC: 7, ETAPA: FETCH, Instrucao: = 0 10
-Processo 2 -> CLOCK 1: 8, PC: 7, ETAPA: DECODE 
-Processo 2 -> CLOCK 1: 8, PC: 7, ETAPA: EXECUTE, Instrucao: =
-Processo 2 -> CLOCK 1: 9, PC: 8, ETAPA: FETCH, Instrucao: = 1 100
-Processo 2 -> CLOCK 1: 10, PC: 8, ETAPA: DECODE 
-Processo 2 -> CLOCK 1: 10, PC: 8, ETAPA: EXECUTE, Instrucao: =
-Processo 2 -> CLOCK 1: 11, PC: 9, ETAPA: FETCH, Instrucao: $ 0
-Processo 2 -> CLOCK 1: 12, PC: 9, ETAPA: DECODE 
-Processo 2 -> CLOCK 1: 13, PC: 9, ETAPA: EXECUTE, Instrucao: $
-Processo 2 -> CLOCK 1: 14, PC: 10, ETAPA: FETCH, Instrucao: - 3 1 0
-Processo 2 -> CLOCK 1: 15, PC: 10, ETAPA: DECODE 
-Processo 2 -> CLOCK 1: 16, PC: 10, ETAPA: EXECUTE, Instrucao: -
-Processo 2 -> CLOCK 1: 17, PC: 10, ETAPA: MEMORY_ACCESS, Resultado: 90
-Processo 2 -> CLOCK 1: 18, PC: 10, ETAPA: WRITEBACK, Escrevendo: 90 na memoria.
+Processo 3 -> CLOCK 2: 1, PC: 1, ETAPA: FETCH, Instrucao: = 1 9
+Processo 3 -> Quantum esgotado!
+Processo 1 -> Quantum esgotado!
+Processo 2 -> CLOCK 2: 3, PC: 2, ETAPA: FETCH, Instrucao: = 0 10
+Processo 2 -> CLOCK 2: 4, PC: 2, ETAPA: DECODE 
+Processo 2 -> CLOCK 2: 4, PC: 2, ETAPA: EXECUTE, Instrucao: =
+Processo 2 -> CLOCK 2: 5, PC: 3, ETAPA: FETCH, Instrucao: = 1 100
+Processo 2 -> CLOCK 2: 6, PC: 3, ETAPA: DECODE 
+Processo 2 -> CLOCK 2: 6, PC: 3, ETAPA: EXECUTE, Instrucao: =
+Processo 2 -> CLOCK 2: 7, PC: 4, ETAPA: FETCH, Instrucao: $ 0
+Processo 2 -> CLOCK 2: 8, PC: 4, ETAPA: DECODE 
+Processo 2 -> CLOCK 2: 9, PC: 4, ETAPA: EXECUTE, Instrucao: $
+Processo 2 -> CLOCK 2: 10, PC: 5, ETAPA: FETCH, Instrucao: - 3 1 0
+Processo 2 -> CLOCK 2: 11, PC: 5, ETAPA: DECODE 
+Processo 2 -> CLOCK 2: 12, PC: 5, ETAPA: EXECUTE, Instrucao: -
+Processo 2 -> CLOCK 2: 13, PC: 5, ETAPA: MEMORY_ACCESS, Resultado: 90
+Processo 2 -> CLOCK 2: 14, PC: 5, ETAPA: WRITEBACK, Escrevendo: 90 na memoria.
 
 Processo 2 encerrado!
 Dados finais: 
 Linhas Processadas: 4
+Prioridade: 9
+Números de bilhetes: 18
+Timestamp: 3
+Quantum necessário: 12
+Quantum final: 13
+
+Processo 3 -> CLOCK 1: 4, PC: 6, ETAPA: FETCH, Instrucao: = 1 9
+Processo 3 -> CLOCK 1: 5, PC: 6, ETAPA: DECODE 
+Processo 3 -> CLOCK 1: 5, PC: 6, ETAPA: EXECUTE, Instrucao: =
+Processo 3 -> CLOCK 1: 6, PC: 7, ETAPA: FETCH, Instrucao: $ 0
+Processo 3 -> CLOCK 1: 7, PC: 7, ETAPA: DECODE 
+Processo 3 -> CLOCK 1: 8, PC: 7, ETAPA: EXECUTE, Instrucao: $
+
+Processo 3 encerrado!
+Dados finais: 
+Linhas Processadas: 2
 Prioridade: 2
 Números de bilhetes: 5
-Timestamp: 0
-Quantum final: 19
+Timestamp: 8
+Quantum necessário: 5
+Quantum final: 42
 
-CLOCK 1 = 18 | 
-CLOCK 2 = 14 | 
+Processo 1 -> CLOCK 2: 15, PC: 8, ETAPA: FETCH, Instrucao: = 0 3
+Processo 1 -> CLOCK 2: 16, PC: 8, ETAPA: DECODE 
+Processo 1 -> CLOCK 2: 16, PC: 8, ETAPA: EXECUTE, Instrucao: =
+Processo 1 -> CLOCK 2: 17, PC: 9, ETAPA: FETCH, Instrucao: $ 0
+Processo 1 -> CLOCK 2: 18, PC: 9, ETAPA: DECODE 
+Processo 1 -> CLOCK 2: 19, PC: 9, ETAPA: EXECUTE, Instrucao: $
+Processo 1 -> CLOCK 2: 20, PC: 10, ETAPA: FETCH, Instrucao: = 1 2 
+Processo 1 -> CLOCK 2: 21, PC: 10, ETAPA: DECODE 
+Processo 1 -> CLOCK 2: 21, PC: 10, ETAPA: EXECUTE, Instrucao: =
+Processo 1 -> CLOCK 2: 22, PC: 11, ETAPA: FETCH, Instrucao: + 3 1 0
+Processo 1 -> CLOCK 2: 23, PC: 11, ETAPA: DECODE 
+Processo 1 -> CLOCK 2: 24, PC: 11, ETAPA: EXECUTE, Instrucao: +
+Processo 1 -> CLOCK 2: 25, PC: 11, ETAPA: MEMORY_ACCESS, Resultado: 5
+Processo 1 -> CLOCK 2: 26, PC: 11, ETAPA: WRITEBACK, Escrevendo: 5 na memoria.
+Processo 1 -> CLOCK 2: 27, PC: 12, ETAPA: FETCH, Instrucao: + 3 1 1
+Processo 1 -> CLOCK 2: 28, PC: 12, ETAPA: DECODE 
+Processo 1 -> CLOCK 2: 29, PC: 12, ETAPA: EXECUTE, Instrucao: +
+Processo 1 -> CLOCK 2: 30, PC: 12, ETAPA: MEMORY_ACCESS, Resultado: 4
+Processo 1 -> CLOCK 2: 31, PC: 12, ETAPA: WRITEBACK, Escrevendo: 4 na memoria.
+
+Processo 1 encerrado!
+Dados finais: 
+Linhas Processadas: 5
+Prioridade: 6
+Números de bilhetes: 14
+Timestamp: 0
+Quantum necessário: 17
+Quantum final: 29
+
+CLOCK 1 = 8 | 
+CLOCK 2 = 31 | 
+PC = 13
+
+
+--- POLÍTICA DE ESCALONAMENTO: SJF
+=================================================================================================
+Processo 3 -> CLOCK 1: 1, PC: 0, ETAPA: FETCH, Instrucao: = 1 9
+Processo 3 -> CLOCK 1: 2, PC: 0, ETAPA: DECODE 
+Processo 3 -> CLOCK 1: 2, PC: 0, ETAPA: EXECUTE, Instrucao: =
+Processo 3 -> CLOCK 1: 3, PC: 1, ETAPA: FETCH, Instrucao: $ 0
+Processo 3 -> CLOCK 1: 4, PC: 1, ETAPA: DECODE 
+Processo 3 -> CLOCK 1: 5, PC: 1, ETAPA: EXECUTE, Instrucao: $
+
+Processo 3 encerrado!
+Dados finais: 
+Linhas Processadas: 2
+Prioridade: 4
+Números de bilhetes: 8
+Quantum necessário: 5
+Timestamp: 5
+
+Processo 2 -> CLOCK 2: 1, PC: 2, ETAPA: FETCH, Instrucao: = 0 10
+Processo 2 -> CLOCK 2: 2, PC: 2, ETAPA: DECODE 
+Processo 2 -> CLOCK 2: 2, PC: 2, ETAPA: EXECUTE, Instrucao: =
+Processo 2 -> CLOCK 2: 3, PC: 3, ETAPA: FETCH, Instrucao: = 1 100
+Processo 2 -> CLOCK 2: 4, PC: 3, ETAPA: DECODE 
+Processo 2 -> CLOCK 2: 4, PC: 3, ETAPA: EXECUTE, Instrucao: =
+Processo 2 -> CLOCK 2: 5, PC: 4, ETAPA: FETCH, Instrucao: $ 0
+Processo 2 -> CLOCK 2: 6, PC: 4, ETAPA: DECODE 
+Processo 2 -> CLOCK 2: 7, PC: 4, ETAPA: EXECUTE, Instrucao: $
+Processo 2 -> CLOCK 2: 8, PC: 5, ETAPA: FETCH, Instrucao: - 3 1 0
+Processo 2 -> CLOCK 2: 9, PC: 5, ETAPA: DECODE 
+Processo 2 -> CLOCK 2: 10, PC: 5, ETAPA: EXECUTE, Instrucao: -
+Processo 2 -> CLOCK 2: 11, PC: 5, ETAPA: MEMORY_ACCESS, Resultado: 90
+Processo 2 -> CLOCK 2: 12, PC: 5, ETAPA: WRITEBACK, Escrevendo: 90 na memoria.
+
+Processo 2 encerrado!
+Dados finais: 
+Linhas Processadas: 4
+Prioridade: 8
+Números de bilhetes: 17
+Quantum necessário: 12
+Timestamp: 10
+
+Processo 1 -> CLOCK 2: 13, PC: 6, ETAPA: FETCH, Instrucao: = 0 3
+Processo 1 -> CLOCK 2: 14, PC: 6, ETAPA: DECODE 
+Processo 1 -> CLOCK 2: 14, PC: 6, ETAPA: EXECUTE, Instrucao: =
+Processo 1 -> CLOCK 2: 15, PC: 7, ETAPA: FETCH, Instrucao: $ 0
+Processo 1 -> CLOCK 2: 16, PC: 7, ETAPA: DECODE 
+Processo 1 -> CLOCK 2: 17, PC: 7, ETAPA: EXECUTE, Instrucao: $
+Processo 1 -> CLOCK 2: 18, PC: 8, ETAPA: FETCH, Instrucao: = 1 2 
+Processo 1 -> CLOCK 2: 19, PC: 8, ETAPA: DECODE 
+Processo 1 -> CLOCK 2: 19, PC: 8, ETAPA: EXECUTE, Instrucao: =
+Processo 1 -> CLOCK 2: 20, PC: 9, ETAPA: FETCH, Instrucao: + 3 1 0
+Processo 1 -> CLOCK 2: 21, PC: 9, ETAPA: DECODE 
+Processo 1 -> CLOCK 2: 22, PC: 9, ETAPA: EXECUTE, Instrucao: +
+Processo 1 -> CLOCK 2: 23, PC: 9, ETAPA: MEMORY_ACCESS, Resultado: 5
+Processo 1 -> CLOCK 2: 24, PC: 9, ETAPA: WRITEBACK, Escrevendo: 5 na memoria.
+Processo 1 -> CLOCK 2: 25, PC: 10, ETAPA: FETCH, Instrucao: + 3 1 1
+Processo 1 -> CLOCK 2: 26, PC: 10, ETAPA: DECODE 
+Processo 1 -> CLOCK 2: 27, PC: 10, ETAPA: EXECUTE, Instrucao: +
+Processo 1 -> CLOCK 2: 28, PC: 10, ETAPA: MEMORY_ACCESS, Resultado: 4
+Processo 1 -> CLOCK 2: 29, PC: 10, ETAPA: WRITEBACK, Escrevendo: 4 na memoria.
+
+Processo 1 encerrado!
+Dados finais: 
+Linhas Processadas: 5
+Prioridade: 5
+Números de bilhetes: 12
+Quantum necessário: 17
+Timestamp: 15
+
+CLOCK 1 = 5 | 
+CLOCK 2 = 29 | 
 PC = 11

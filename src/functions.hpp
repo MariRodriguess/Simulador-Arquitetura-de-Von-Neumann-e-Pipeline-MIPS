@@ -16,6 +16,8 @@ void* executarCpu_FCFS(void* arg);
 
 void* executarCpu_Loteria(void* arg);
 
+void* executarCpu_SJF(void* arg);
+
 void atualizarTimestamps(vector<PaginaMemoria *> &filaPaginasMemoria, int quantumGasto, PaginaMemoria * pm);
 
 void recalcularQuantum (PaginaMemoria *pm);

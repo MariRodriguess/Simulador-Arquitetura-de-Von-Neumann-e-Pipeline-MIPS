@@ -143,6 +143,57 @@ void main_Loteria(){
     LogSaida("PC = " + to_string(PC));
 }
 
+void main_SJF(){
+    vector<CPU*> cpus(NUM_CPUS);
+
+    Memoria* memoria = new Memoria();
+
+    FCFS=true;
+
+    // Inicializa as CPUs
+    for (int i = 0; i < NUM_CPUS; ++i) {
+        cpus[i] = new CPU();
+        cpus[i]->id = i + 1; // Identificação da CPU
+    }
+
+    bootloader(memoria);
+
+    string diretorio = "data"; // Pasta contendo os arquivos .data
+
+    LogSaida("\n\n--- POLÍTICA DE ESCALONAMENTO: SJF\n=================================================================================================");
+
+    carregarProcessos(diretorio);
+
+    cout << "\nIniciando execucao...\n";
+    // Cria threads para cada CPU
+    vector<pthread_t> threads_cpus(NUM_CPUS);
+    for (int i = 0; i < NUM_CPUS; ++i) {
+        pthread_create(&threads_cpus[i], nullptr, executarCpu_SJF, cpus[i]);
+        sleep(2);
+    }
+
+    // Aguarda as threads das CPUs terminarem
+    for (auto &th : threads_cpus) {
+        pthread_join(th, nullptr);
+    }
+
+    cout << "\nExecucao finalizada!\n";
+
+    // Libera memória
+    for (auto* cpu : cpus) {
+        delete cpu;
+    }
+    delete memoria;
+
+    for(int i = 0; i < NUM_CPUS; i++){
+        cout << "CLOCK " << i+1 << " = " << CLOCK[i] << " | ";
+        LogSaida("CLOCK " + to_string(i+1) + " = " + to_string(CLOCK[i]) + " | ");
+    }
+    cout << "\nPC = " << PC << endl;
+
+    LogSaida("PC = " + to_string(PC));
+}
+
 int main() {
 
     const string fileName = "log_output.txt";
@@ -160,6 +211,9 @@ int main() {
     limpeza();
 
     main_Loteria();
+    limpeza();
+
+    main_SJF();
     limpeza();
     
     return 0;

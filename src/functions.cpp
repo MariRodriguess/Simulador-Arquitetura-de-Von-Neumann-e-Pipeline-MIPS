@@ -10,6 +10,8 @@ struct Args {
     PaginaMemoria* pm;// Ponteiro para a fila
 };
 
+unordered_map<char, int> mapaInstrucoes = {{'=',2}, {'+', 5}, {'-', 5}, {'*', 5}, {'/', 5}, {'$',3}, {'?', 3}};
+
 
 void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, PaginaMemoria *pm) {
     
@@ -94,22 +96,28 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
     arquivo.close();
 }
 
-int nLinhas(const string &nomeArquivo){
+pair<int,int> nLinhas(const string &nomeArquivo){
     ifstream arquivo(nomeArquivo);
     string linha;
-    int cont = 0;
+    int cont = 0, quantumNecessario = 0;
 
     if (!arquivo.is_open()) {
         cout << "Erro ao abrir o arquivo!" << endl;
-        return 0;
+        return make_pair(0,0);
     }
 
     while (getline(arquivo, linha)) {
+        if(linha.front() != '@'){
+            quantumNecessario += mapaInstrucoes[linha.front()];
+        }
+        else{
+            quantumNecessario = quantumNecessario + mapaInstrucoes[linha.front()] + mapaInstrucoes[linha.back()];
+        }
         cont++;
     }
 
     arquivo.close();
-    return cont;
+    return make_pair(cont,quantumNecessario);
 }
 
 void* executarProcesso(void* arg) {
@@ -262,6 +270,56 @@ void* executarCpu_Loteria(void* arg) {
     return nullptr;
 }
 
+bool compararPaginas_SJF(const PaginaMemoria* a, const PaginaMemoria* b) {
+    return a->pcb.quantumNecessario < b->pcb.quantumNecessario;
+}
+
+void ordenarFila_SJF() {
+    sort(filaPaginasMemoria.begin(), filaPaginasMemoria.end(), compararPaginas_SJF);
+}
+
+void* executarCpu_SJF(void* arg){
+    CPU* cpu = static_cast<CPU*>(arg); // CPU específica
+
+    ordenarFila_SJF();
+
+    while (true) {
+
+        PaginaMemoria* pm = nullptr;
+
+        // Tenta pegar um processo da fila
+        pthread_mutex_lock(&filaMutex);
+
+        if (filaPaginasMemoria.empty()) {
+            pthread_mutex_unlock(&filaMutex);
+            break; // Sai do loop se a fila estiver vazia
+        }
+
+        pm = filaPaginasMemoria.front(); 
+        pm->pcb.quantum = 2147483647; // Para que o processo não sofra preempção
+       
+        pthread_mutex_unlock(&filaMutex);
+
+        if (pm != nullptr) {
+            if ((pm->pcb.estado == "Pronto" || pm->pcb.estado == "Bloqueado") && pm->pcb.idCpuAtual == -1){
+                // Executa o processo
+                pm->pcb.idCpuAtual = cpu->id;
+
+                sleep(1);
+                pthread_mutex_lock(&pm->mutex);
+                sleep(1);
+                pthread_cond_signal(&pm->cond); // Libera o processo para execução
+                sleep(1);
+                pthread_mutex_unlock(&pm->mutex);
+            }
+        } else {
+            sleep(1); // Espera por novos processos
+        }
+        
+    }
+    return nullptr;
+}
+
 void carregarProcessos(const string& diretorio) {
     namespace fs = filesystem;
     int idProcesso = 0;
@@ -277,7 +335,9 @@ void carregarProcessos(const string& diretorio) {
             processo.registradores = (int*)malloc(10 * sizeof(int));
             processo.caminhoArquivo = entry.path().string();
             processo.estado = "Pronto";
-            processo.linhasArquivo = nLinhas(processo.caminhoArquivo);
+            auto resultado = nLinhas(processo.caminhoArquivo);
+            processo.linhasArquivo = resultado.first;
+            processo.quantumNecessario = resultado.second;
             processo.idCpuAtual = -1;
             processo.numBilhetes = processo.prioridade * 2;
             processo.recebeuRecurso = false;
@@ -336,12 +396,14 @@ void imprimirDados (PaginaMemoria *pm){
             "\nPrioridade: " + to_string(pm->pcb.prioridade) + 
             "\nNúmeros de bilhetes: " + to_string(pm->pcb.numBilhetes) + 
             "\nTimestamp: " + to_string(pm->pcb.timestamp) + 
+            "\nQuantum necessário: " + to_string(pm->pcb.quantumNecessario) +
             "\nQuantum final: " + to_string(pm->pcb.quantum) + "\n");
     }else{
         LogSaida("\nProcesso " + to_string(pm->pcb.id + 1) + " encerrado!" + 
             "\nDados finais: \nLinhas Processadas: " + to_string(pm->pcb.linhasProcessadasAtual) +  
             "\nPrioridade: " + to_string(pm->pcb.prioridade) + 
             "\nNúmeros de bilhetes: " + to_string(pm->pcb.numBilhetes) + 
+            "\nQuantum necessário: " + to_string(pm->pcb.quantumNecessario) +
             "\nTimestamp: " + to_string(pm->pcb.timestamp) + "\n");
     }
     

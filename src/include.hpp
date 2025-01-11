@@ -12,6 +12,7 @@
 #include <pthread.h> // Inclusão para suporte a threads
 #include <mutex>
 #include <semaphore.h>
+#include <algorithm>
 
 #define NUM_PERIFERICOS 5
 #define NUM_CPUS 2
@@ -49,11 +50,14 @@ struct PCB {
     int idCpuAtual = -1;
     int numBilhetes = 0;
     bool recebeuRecurso = false;
+    int quantumNecessario = 0;
+
     PCB(){
         timestamp = 0;
         linhasProcessadasAnt = 0;
         linhasProcessadasAtual = 0;
         quantum = 0;
+        quantumNecessario = 0;
     }
 };
 
