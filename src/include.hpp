@@ -25,6 +25,7 @@ extern int tempoGasto[NUM_CPUS];
 extern volatile bool FCFS;
 extern volatile bool SRTN;
 extern volatile bool Loteria;
+extern volatile bool SJF;
 extern unordered_map<int, int> cache;
 extern vector<int> principal;
 extern vector<vector<int>> disco;

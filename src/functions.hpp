@@ -30,4 +30,6 @@ void incrementarBilhetesNaoAtendidos(vector<PaginaMemoria *> &filaPaginasMemoria
 
 void ordenarFila_SRTN();
 
+void ordenarFila_SJF();
+
 #endif

@@ -17,7 +17,7 @@ void WriteBack(int resultado, int linhaAtual, PaginaMemoria *pm) {
     }
 
     pm->pcb.linhasProcessadasAtual++;
-    //LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: WRITEBACK, Escrevendo: " + to_string(resultado) + " na memoria. (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
+    LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: WRITEBACK, Escrevendo: " + to_string(resultado) + " na memoria. (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
 }
 
 
@@ -38,7 +38,7 @@ void MemoryAccess(int resultado, int *registradores, int info1, int linhaAtual, 
     }
     
 
-    //LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: MEMORY_ACCESS, Resultado: " + to_string(resultado) + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
+    LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: MEMORY_ACCESS, Resultado: " + to_string(resultado) + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
 
     WriteBack(resultado, linhaAtual, pm);
 }
@@ -50,7 +50,7 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
     if (instrucao == '=') {
 
         registradores[info1] = info2;
-        //LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao  + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
+        LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao  + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
 
         pm->pcb.linhasProcessadasAtual++;
 
@@ -91,7 +91,7 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
             }
 
         }
-        //LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
+        LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
         MemoryAccess(soma, registradores, info1, linhaAtual, pm);
 
     } else if ((instrucao != '&') && (instrucao != '@') && (instrucao != '?') && (instrucao != '$')) {
@@ -109,7 +109,7 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
             }
         }
 
-        //LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
+        LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
         MemoryAccess(resultado, registradores, info1, linhaAtual, pm);
 
     } else if (instrucao == '?') {
@@ -130,7 +130,7 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
         }
         // CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na comparação
 
-        //LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
+        LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
 
         // Para que considere operaçoes com "?" como processadas também
         pm->pcb.linhasProcessadasAtual++;
@@ -159,7 +159,7 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
 
             // CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na comparação
 
-            //LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao+ " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
+            LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao+ " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
 
             // Para que considere operaçoes com "$" como processadas também
             pm->pcb.linhasProcessadasAtual++;
@@ -205,7 +205,7 @@ void InstructionDecode(char instrucao, int info1, int info2, int info3, string i
         }
     }
     
-    //LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: DECODE " + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
+    LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: DECODE " + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
     Execute(instrucao, info1, info2, info3, info4, registradores, linhaAtual, pm);
 }
 
@@ -234,7 +234,7 @@ void InstructionFetch(int *registradores, string linha, int linhaAtual, PaginaMe
         }
     }
     
-    //LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: FETCH, Instrucao: " + linha + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
+    LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: FETCH, Instrucao: " + linha + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
 
     InstructionDecode(instrucao, info1, info2, info3, info4, registradores, linhaAtual, pm);
     PC++;

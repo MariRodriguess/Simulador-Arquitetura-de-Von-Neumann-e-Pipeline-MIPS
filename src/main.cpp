@@ -5,9 +5,10 @@ int PC = 0;
 int CLOCK[NUM_CPUS] = {0};
 int tempoGasto[NUM_CPUS] = {0}; 
 bool perifericos[NUM_PERIFERICOS] = {true};
-volatile bool FCFS=true;
-volatile bool SRTN=true;
-volatile bool Loteria=true;
+volatile bool FCFS=false;
+volatile bool SRTN=false;
+volatile bool Loteria=false;
+volatile bool SJF=false;
 
 
 vector<int> principal;
@@ -51,6 +52,7 @@ void main_FCFS(){
 
     FCFS=true;
     SRTN=false;
+    SJF=false;
     Loteria=false;
 
     // Inicializa as CPUs
@@ -101,6 +103,7 @@ void main_Loteria(){
 
     FCFS=false;
     SRTN=false;
+    SJF=false;
     Loteria=true;
 
     vector<CPU*> cpus(NUM_CPUS);
@@ -157,6 +160,7 @@ void main_SJF(){
     Memoria* memoria = new Memoria();
 
     FCFS=true;
+    SJF=true;
     SRTN=false;
     Loteria=false;
 
@@ -212,6 +216,7 @@ void main_SRTN(){
 
     FCFS=false;
     SRTN=true;
+    SJF=false;
     Loteria=false;
 
     // Inicializa as CPUs
@@ -277,12 +282,12 @@ int main() {
     limpeza();
     */
 
-    //main_SJF();
-    //limpeza();
+    main_SJF();
+    limpeza();
 
-    limpeza();
+    /*limpeza();
     main_SRTN();
-    limpeza();
+    limpeza();*/
     
     return 0;
 }
