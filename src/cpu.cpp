@@ -8,6 +8,8 @@ CPU::CPU() {
     pthread_mutex_init(&mutexCond, nullptr);
     pthread_cond_init(&cond, nullptr);
 
+    ocupada = false;
+
     for (int i = 0; i < NUM_NUCLEOS; i++) {
         int *reg = (int *)malloc(10 * sizeof(int)); // Registradores por núcleo
         for (int j = 0; j < 10; j++) {

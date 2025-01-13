@@ -4,11 +4,12 @@ pthread_mutex_t mtx = PTHREAD_MUTEX_INITIALIZER;
 
 void WriteBack(int resultado, int linhaAtual, PaginaMemoria *pm) {
     principal.push_back(resultado);
-    CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa WRITEBACK
+    // CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa WRITEBACK
 
     if (linhaAtual > pm->pcb.linhasProcessadasAnt){
         pm->pcb.quantum -= 1;
-        tempoGasto[pm->pcb.idCpuAtual-1]++;
+        //tempoGasto[pm->pcb.idCpuAtual-1]++;
+        CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa WRITEBACK
         
         if(pm->pcb.quantum == 0){
             return;
@@ -16,7 +17,7 @@ void WriteBack(int resultado, int linhaAtual, PaginaMemoria *pm) {
     }
 
     pm->pcb.linhasProcessadasAtual++;
-    LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: WRITEBACK, Escrevendo: " + to_string(resultado) + " na memoria. (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
+    //LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: WRITEBACK, Escrevendo: " + to_string(resultado) + " na memoria. (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
 }
 
 
@@ -24,11 +25,12 @@ void MemoryAccess(int resultado, int *registradores, int info1, int linhaAtual, 
 
     registradores[info1] = resultado;
 
-    CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa MEMORY_ACCESS
+    // CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa MEMORY_ACCESS
 
     if (linhaAtual > pm->pcb.linhasProcessadasAnt){
         pm->pcb.quantum -= 1; 
-        tempoGasto[pm->pcb.idCpuAtual-1]++;
+        //tempoGasto[pm->pcb.idCpuAtual-1]++;
+        CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa MEMORY_ACCESS
         
         if(pm->pcb.quantum == 0){
             return;
@@ -36,7 +38,7 @@ void MemoryAccess(int resultado, int *registradores, int info1, int linhaAtual, 
     }
     
 
-    LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: MEMORY_ACCESS, Resultado: " + to_string(resultado) + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
+    //LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: MEMORY_ACCESS, Resultado: " + to_string(resultado) + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
 
     WriteBack(resultado, linhaAtual, pm);
 }
@@ -48,7 +50,7 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
     if (instrucao == '=') {
 
         registradores[info1] = info2;
-        LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao  + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
+        //LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao  + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
 
         pm->pcb.linhasProcessadasAtual++;
 
@@ -60,7 +62,7 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
         // Para que considere operaçoes com "=" como processadas também
         if (linhaAtual > pm->pcb.linhasProcessadasAnt){
             //pm->pcb.quantum -= 1;
-            //tempoGasto[pm->pcb.idCpuAtual-1]++;
+            ////tempoGasto[pm->pcb.idCpuAtual-1]++;
             
             if(pm->pcb.quantum == 0){
                 return;
@@ -76,11 +78,12 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
             if (registradorAtual > info2) {
                 registradorAtual = info1;
             }
-            CLOCK[pm->pcb.idCpuAtual - 1]++; // CLOCK incrementado durante loop de somas
+            // CLOCK[pm->pcb.idCpuAtual - 1]++; // CLOCK incrementado durante loop de somas
 
             if (linhaAtual > pm->pcb.linhasProcessadasAnt){
                 pm->pcb.quantum -= 1;
-                tempoGasto[pm->pcb.idCpuAtual-1]++;
+                //tempoGasto[pm->pcb.idCpuAtual-1]++;
+                CLOCK[pm->pcb.idCpuAtual - 1]++; // CLOCK incrementado durante loop de somas
                 
                 if(pm->pcb.quantum == 0){
                     return;
@@ -88,24 +91,25 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
             }
 
         }
-        LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
+        //LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
         MemoryAccess(soma, registradores, info1, linhaAtual, pm);
 
     } else if ((instrucao != '&') && (instrucao != '@') && (instrucao != '?') && (instrucao != '$')) {
 
         int resultado = ULA(registradores[info2], registradores[info3], instrucao);
-        CLOCK[pm->pcb.idCpuAtual - 1]++; // CLOCK incrementado antes de chamar a próxima etapa
+        // CLOCK[pm->pcb.idCpuAtual - 1]++; // CLOCK incrementado antes de chamar a próxima etapa
 
         if (linhaAtual > pm->pcb.linhasProcessadasAnt){
             pm->pcb.quantum -= 1;
-            tempoGasto[pm->pcb.idCpuAtual-1]++;
+            //tempoGasto[pm->pcb.idCpuAtual-1]++;
+            CLOCK[pm->pcb.idCpuAtual - 1]++; // CLOCK incrementado antes de chamar a próxima etapa
 
             if(pm->pcb.quantum == 0){
                 return;
             }
         }
 
-        LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
+        //LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
         MemoryAccess(resultado, registradores, info1, linhaAtual, pm);
 
     } else if (instrucao == '?') {
@@ -124,16 +128,17 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
         else if (info4 == "!") {
             cout << (registradores[info1] != registradores[info2] ? "True" : "False") << endl;
         }
-        CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na comparação
+        // CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na comparação
 
-        LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
+        //LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
 
         // Para que considere operaçoes com "?" como processadas também
         pm->pcb.linhasProcessadasAtual++;
 
         if (linhaAtual > pm->pcb.linhasProcessadasAnt){
             pm->pcb.quantum -= 1;
-            tempoGasto[pm->pcb.idCpuAtual-1]++;
+            //tempoGasto[pm->pcb.idCpuAtual-1]++;
+            CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na comparação
             
             if(pm->pcb.quantum == 0){
                 return;
@@ -152,16 +157,17 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
 
             cout << "\nAcesso ao periferico $ " << info1 << endl;
 
-            CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na comparação
+            // CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na comparação
 
-            LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao+ " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
+            //LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: EXECUTE, Instrucao: " + instrucao+ " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
 
             // Para que considere operaçoes com "$" como processadas também
             pm->pcb.linhasProcessadasAtual++;
 
             if (linhaAtual > pm->pcb.linhasProcessadasAnt){
                 pm->pcb.quantum -= 1;
-                tempoGasto[pm->pcb.idCpuAtual-1]++;
+                //tempoGasto[pm->pcb.idCpuAtual-1]++;
+                CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na comparação
                 
                 if(pm->pcb.quantum == 0){
                     return;
@@ -188,17 +194,18 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
 
 void InstructionDecode(char instrucao, int info1, int info2, int info3, string info4, int *registradores, int linhaAtual, PaginaMemoria *pm) {
 
-    CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa DECODE
+    // CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa DECODE
     if (linhaAtual > pm->pcb.linhasProcessadasAnt){
         pm->pcb.quantum -= 1; 
-        tempoGasto[pm->pcb.idCpuAtual-1]++;
+        //tempoGasto[pm->pcb.idCpuAtual-1]++;
+        CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa DECODE
         
         if(pm->pcb.quantum == 0){
             return;
         }
     }
     
-    LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: DECODE " + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
+    //LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: DECODE " + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
     Execute(instrucao, info1, info2, info3, info4, registradores, linhaAtual, pm);
 }
 
@@ -215,18 +222,19 @@ void InstructionFetch(int *registradores, string linha, int linhaAtual, PaginaMe
     if ((instrucao != '=') && (instrucao != '?')) ss >> info3;
     if (instrucao == '?') ss >> info4;
 
-    CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa FETCH
+    // CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa FETCH
 
     if (linhaAtual > pm->pcb.linhasProcessadasAnt){
         pm->pcb.quantum -= 1; 
-        tempoGasto[pm->pcb.idCpuAtual-1]++;
+        //tempoGasto[pm->pcb.idCpuAtual-1]++;
+        CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa FETCH
         
         if(pm->pcb.quantum == 0){
             return;
         }
     }
     
-    LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: FETCH, Instrucao: " + linha + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
+    //LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> " + "CLOCK "+ to_string(pm->pcb.idCpuAtual) +": " + to_string(CLOCK[pm->pcb.idCpuAtual - 1]) + ", PC: " + to_string(PC) + ", ETAPA: FETCH, Instrucao: " + linha + " (CPU " + to_string(pm->pcb.idCpuAtual) + ")");
 
     InstructionDecode(instrucao, info1, info2, info3, info4, registradores, linhaAtual, pm);
     PC++;

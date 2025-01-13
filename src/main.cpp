@@ -205,6 +205,7 @@ void main_SJF(){
 }
 
 void main_SRTN(){
+
     vector<CPU*> cpus(NUM_CPUS);
 
     Memoria* memoria = new Memoria();
@@ -279,6 +280,7 @@ int main() {
     //main_SJF();
     //limpeza();
 
+    limpeza();
     main_SRTN();
     limpeza();
     

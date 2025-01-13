@@ -10,6 +10,7 @@ struct Args {
     PaginaMemoria* pm;// Ponteiro para a fila
 };
 
+
 unordered_map<char, int> mapaInstrucoes = {{'=',2}, {'+', 5}, {'-', 5}, {'*', 5}, {'/', 5}, {'$',3}, {'?', 3}};
 
 
@@ -18,7 +19,7 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
     ifstream arquivo(nomeArquivo);
     string linha;
     int linhaAtual = 1;
-    // tempoGasto[pm->pcb.idCpuAtual - 1] = 0;
+    tempoGasto[pm->pcb.idCpuAtual - 1] = CLOCK[pm->pcb.idCpuAtual - 1];
 
     if (!arquivo.is_open()) {
         cout << "Erro ao abrir o arquivo!" << endl;
@@ -26,8 +27,6 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
     }
 
     while (getline(arquivo, linha)) {
-
-        tempoGasto[pm->pcb.idCpuAtual - 1] = 0;
 
         UnidadeControle(registradores, linha, linhaAtual, pm);
 
@@ -52,10 +51,12 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
             pm->pcb.estado = "Finalizado";
             
             // Atualizar timestamps
-            atualizarTimestamps(filaPaginasMemoria, tempoGasto[pm->pcb.idCpuAtual - 1],pm);
+            atualizarTimestamps(filaPaginasMemoria, tempoGasto[pm->pcb.idCpuAtual - 1], pm);
             sleep(0.5);
 
+            pthread_mutex_lock(&filaMutex);
             imprimirDados(pm);
+            pthread_mutex_unlock(&filaMutex);
 
             //Liberar recursos associados
             for(int i = 0; i < (int)pm->pcb.recursos.size(); i++){
@@ -100,7 +101,7 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
             LogSaida("Processo " + to_string(pm->pcb.id+1) + " -> Quantum esgotado!");
             
             // Atualizar timestamps
-            atualizarTimestamps(filaPaginasMemoria, tempoGasto[pm->pcb.idCpuAtual - 1],pm);
+            atualizarTimestamps(filaPaginasMemoria, tempoGasto[pm->pcb.idCpuAtual - 1], pm);
             sleep(0.5);
             break;
         }
@@ -134,10 +135,7 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
                     }
                 }
             }
-        }
-        atualizarTimestamps(filaPaginasMemoria, tempoGasto[pm->pcb.idCpuAtual - 1],pm);
-        sleep(0.5);
-        
+        }     
     }
 
     arquivo.close();
@@ -170,6 +168,7 @@ pair<int,int> nLinhas(const string &nomeArquivo){
 void* executarProcesso(void* arg) {
 
     sleep(2);
+
     auto* pm = static_cast<PaginaMemoria*>(arg);
 
     while (true) {
@@ -184,12 +183,14 @@ void* executarProcesso(void* arg) {
 
         // Aguarda liberação da CPU
         cout << "Processo " << pm->pcb.id + 1 << " aguardando liberacao da CPU..." << " Idpu: " << pm->pcb.idCpuAtual << endl;
-    
+
         pthread_cond_wait(&pm->cond, &pm->mutex);
 
         // Coloca a thread em execução
         pm->pcb.estado = "Executando";
         pthread_mutex_unlock(&pm->mutex);
+        // cout << "Processo " << pm->pcb.id + 1 << " indo rodar com a CPU " << pm->pcb.idCpuAtual << "(" << cpu->id << ")" << endl;
+        cout << "Processo " << pm->pcb.id + 1 << " indo rodar com a CPU " << pm->pcb.idCpuAtual << endl;
         LerInstrucoesDoArquivo(pm->pcb.caminhoArquivo, pm->pcb.registradores, pm);
         pthread_mutex_lock(&pm->mutex);
         
@@ -201,7 +202,7 @@ void* executarProcesso(void* arg) {
                 incrementarBilhetesNaoAtendidos(filaPaginasMemoria); // Aumentar as chances para processos não atendidos a cada execução
             }
             pm->pcb.idCpuAtual = -1;
-            sleep(0.5);
+            sleep(0.6);
             
         }
         else if(pm->pcb.estado == "Bloqueado"){
@@ -213,13 +214,14 @@ void* executarProcesso(void* arg) {
                 incrementarBilhetesNaoAtendidos(filaPaginasMemoria); // Aumentar as chances para processos não atendidos a cada execução
             }
             pm->pcb.idCpuAtual = -1;
-            sleep(0.5);
+            sleep(0.6);
         }
         else if (pm->pcb.estado == "Finalizado"){
             if(Loteria){
                 incrementarBilhetesNaoAtendidos(filaPaginasMemoria); // Aumentar as chances para processos não atendidos a cada execução
             }
         }
+        
         pthread_mutex_unlock(&pm->mutex);
     }
     return nullptr;
@@ -454,30 +456,39 @@ void* executarCpu_SRTN(void* arg){
 
     while (true) {
 
-        sleep(0.5);
+        sleep(0.6);
 
         PaginaMemoria* pm = nullptr;
 
         // Tenta pegar um processo da fila
         pthread_mutex_lock(&filaMutex);
 
+        /*if (cpu->ocupada) { // CPU já está ocupada
+            pthread_mutex_unlock(&filaMutex);
+            sleep(0.6);
+            continue;
+        }
+        */
+
         if (filaPaginasMemoria.empty()) {
             pthread_mutex_unlock(&filaMutex);
             break; // Sai do loop se a fila estiver vazia
-        }else{
-            ordenarFila_SRTN();
-            sleep(0.6);
-            for (auto pagina : filaPaginasMemoria) { 
-                if (pagina->pcb.idCpuAtual == -1){
-                    pm = pagina;
-                    pm->pcb.idCpuAtual = cpu->id;
-                    cout << "\n1. Cpu " << cpu->id << " pegou o Processo " << pm->pcb.id+1 << endl;
-                    sleep(0.5);
-                    break;
-                }
-            }
-            //pm = filaPaginasMemoria.front();
         }
+        
+        ordenarFila_SRTN();
+        sleep(0.6);
+        for (auto pagina : filaPaginasMemoria) { 
+            // cout << "\nCpu " << cpu->id << " analisando Processo " << pagina->pcb.id+1 << " com IdCPU " << pagina->pcb.idCpuAtual << " e Quantum " << pagina->pcb.quantum;
+            if (pagina->pcb.idCpuAtual == -1){
+                pm = pagina;
+                pm->pcb.idCpuAtual = cpu->id;
+                //cout << "\n1. Cpu " << cpu->id << " pegou o Processo " << pm->pcb.id+1 << endl;
+                sleep(0.5);
+                break;
+            }
+        }
+        //pm = filaPaginasMemoria.front();
+        
         
         pthread_mutex_unlock(&filaMutex);
 
@@ -485,7 +496,7 @@ void* executarCpu_SRTN(void* arg){
             if ((pm->pcb.estado == "Pronto" || pm->pcb.estado == "Bloqueado") && pm->pcb.idCpuAtual == cpu->id){
                 // Executa o processo
                 //pm->pcb.idCpuAtual = cpu->id;
-                cout << "\n2. Cpu " << cpu->id << " pegou o Processo " << pm->pcb.id+1 << endl;
+                //cout << "\n2. Cpu " << cpu->id << " pegou o Processo " << pm->pcb.id+1 << endl;
 
                 sleep(0.6);
                 pthread_mutex_lock(&pm->mutex);
@@ -524,6 +535,7 @@ void carregarProcessos(const string& diretorio) {
             processo.idCpuAtual = -1;
             processo.numBilhetes = processo.prioridade * 2;
             processo.recebeuRecurso = false;
+            processo.timestamp = 0;
 
             // Inicializa o semáforo
             sem_init(&processo.semaforo, 0, 1);
@@ -567,6 +579,7 @@ void LogSaida(const string &mensagem) {
 
 void recalcularQuantum (PaginaMemoria *pm){
     
+    sleep(0.5);
     pm->pcb.quantum = (rand() % 31) + 20;  // Gera um número entre 20 e 50 (inclusive)
     //pm->pcb.quantum = (rand() % 6) + 1;
 }
@@ -593,6 +606,7 @@ void imprimirDados (PaginaMemoria *pm){
     
 }
 
+/*
 void atualizarTimestamps(vector<PaginaMemoria *> &filaPaginasMemoria, int quantumGasto, PaginaMemoria * pm) {
 
     pthread_mutex_lock(&filaMutex); // Protege a fila contra acesso simultâneo
@@ -602,6 +616,22 @@ void atualizarTimestamps(vector<PaginaMemoria *> &filaPaginasMemoria, int quantu
         }
 
         //cout << "\nProcessoAtual: " << pm->pcb.id+1 << " - IdCpuAtual: " << pm->pcb.idCpuAtual << " - QuantumGasto: " << quantumGasto << " - TimestampAtual: " << pm->pcb.timestamp <<
+        //" - ProcessoAtualizando: " << pagina->pcb.id+1 << " - IdCpuAtualizando: " << pagina->pcb.idCpuAtual << " - QuantumAtualizando: " << pagina->pcb.timestamp;
+    
+    }
+    pthread_mutex_unlock(&filaMutex);
+}
+*/
+
+void atualizarTimestamps(vector<PaginaMemoria *> &filaPaginasMemoria, int quantumGasto, PaginaMemoria * pm) {
+
+    pthread_mutex_lock(&filaMutex); // Protege a fila contra acesso simultâneo
+    for (auto *pagina : filaPaginasMemoria) { 
+        if((pm->pcb.idCpuAtual == pagina->pcb.idCpuAtual) || (pagina->pcb.idCpuAtual == -1)){
+            pagina->pcb.timestamp += (CLOCK[pm->pcb.idCpuAtual-1] - quantumGasto); // Atualiza o timestamp
+        }
+
+        //cout << "\nProcessoAtual: " << pm->pcb.id+1 << " - IdCpuAtual: " << pm->pcb.idCpuAtual << " - Adicionando: " << (CLOCK[pm->pcb.idCpuAtual-1] - quantumGasto) << "(" << CLOCK[pm->pcb.idCpuAtual-1] << "-" << quantumGasto <<  ") - TimestampAtual: " << pm->pcb.timestamp <<
         //" - ProcessoAtualizando: " << pagina->pcb.id+1 << " - IdCpuAtualizando: " << pagina->pcb.idCpuAtual << " - QuantumAtualizando: " << pagina->pcb.timestamp;
     
     }
