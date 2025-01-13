@@ -7,6 +7,8 @@ int tempoGasto[NUM_CPUS] = {0};
 bool perifericos[NUM_PERIFERICOS] = {true};
 volatile bool FCFS=true;
 volatile bool SRTN=true;
+volatile bool Loteria=true;
+
 
 vector<int> principal;
 pthread_mutex_t filaLock = PTHREAD_MUTEX_INITIALIZER;
@@ -48,6 +50,8 @@ void main_FCFS(){
     Memoria* memoria = new Memoria();
 
     FCFS=true;
+    SRTN=false;
+    Loteria=false;
 
     // Inicializa as CPUs
     for (int i = 0; i < NUM_CPUS; ++i) {
@@ -68,7 +72,7 @@ void main_FCFS(){
     vector<pthread_t> threads_cpus(NUM_CPUS);
     for (int i = 0; i < NUM_CPUS; ++i) {
         pthread_create(&threads_cpus[i], nullptr, executarCpu_FCFS, cpus[i]);
-        sleep(2);
+        //sleep(1);
     }
 
     // Aguarda as threads das CPUs terminarem
@@ -96,6 +100,8 @@ void main_FCFS(){
 void main_Loteria(){
 
     FCFS=false;
+    SRTN=false;
+    Loteria=true;
 
     vector<CPU*> cpus(NUM_CPUS);
 
@@ -120,7 +126,7 @@ void main_Loteria(){
     vector<pthread_t> threads_cpus(NUM_CPUS);
     for (int i = 0; i < NUM_CPUS; ++i) {
         pthread_create(&threads_cpus[i], nullptr, executarCpu_Loteria, cpus[i]);
-        sleep(2);
+        //sleep(1);
     }
 
     // Aguarda as threads das CPUs terminarem
@@ -151,6 +157,8 @@ void main_SJF(){
     Memoria* memoria = new Memoria();
 
     FCFS=true;
+    SRTN=false;
+    Loteria=false;
 
     // Inicializa as CPUs
     for (int i = 0; i < NUM_CPUS; ++i) {
@@ -171,7 +179,7 @@ void main_SJF(){
     vector<pthread_t> threads_cpus(NUM_CPUS);
     for (int i = 0; i < NUM_CPUS; ++i) {
         pthread_create(&threads_cpus[i], nullptr, executarCpu_SJF, cpus[i]);
-        sleep(2);
+        //sleep(1);
     }
 
     // Aguarda as threads das CPUs terminarem
@@ -203,6 +211,7 @@ void main_SRTN(){
 
     FCFS=false;
     SRTN=true;
+    Loteria=false;
 
     // Inicializa as CPUs
     for (int i = 0; i < NUM_CPUS; ++i) {
@@ -223,7 +232,6 @@ void main_SRTN(){
     vector<pthread_t> threads_cpus(NUM_CPUS);
     for (int i = 0; i < NUM_CPUS; ++i) {
         pthread_create(&threads_cpus[i], nullptr, executarCpu_SRTN, cpus[i]);
-        sleep(2);
     }
 
     // Aguarda as threads das CPUs terminarem
@@ -266,9 +274,10 @@ int main() {
 
     main_Loteria();
     limpeza();
+    */
 
-    main_SJF();
-    limpeza();*/
+    //main_SJF();
+    //limpeza();
 
     main_SRTN();
     limpeza();
