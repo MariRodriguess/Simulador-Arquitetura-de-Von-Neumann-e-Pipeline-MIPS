@@ -59,6 +59,7 @@ void main_FCFS(){
     for (int i = 0; i < NUM_CPUS; ++i) {
         cpus[i] = new CPU();
         cpus[i]->id = i + 1; // Identificação da CPU
+        cpus[i]->ocupada = false;
     }
 
     bootloader(memoria);
@@ -66,10 +67,11 @@ void main_FCFS(){
     string diretorio = "data"; // Pasta contendo os arquivos .data
 
     LogSaida("--- POLÍTICA DE ESCALONAMENTO: FCFS\n=================================================================================================");
+    cout << "\n\n===== POLITICA DE ESCALONAMENTO: FCFS =====\n";
 
     carregarProcessos(diretorio);
 
-    cout << "\nIniciando execucao...\n";
+    cout << "\n\n==Iniciando execucao...==\n\n\n";
     // Cria threads para cada CPU
     vector<pthread_t> threads_cpus(NUM_CPUS);
     for (int i = 0; i < NUM_CPUS; ++i) {
@@ -82,7 +84,7 @@ void main_FCFS(){
         pthread_join(th, nullptr);
     }
 
-    cout << "\nExecucao finalizada!\n";
+    cout << "\n\n==Execucao finalizada!\n\n";
 
     // Libera memória
     for (auto* cpu : cpus) {
@@ -114,6 +116,7 @@ void main_Loteria(){
     for (int i = 0; i < NUM_CPUS; ++i) {
         cpus[i] = new CPU();
         cpus[i]->id = i + 1; // Identificação da CPU
+        cpus[i]->ocupada = false;
     }
 
     bootloader(memoria);
@@ -121,10 +124,11 @@ void main_Loteria(){
     string diretorio = "data"; // Pasta contendo os arquivos .data
 
     LogSaida("\n\n--- POLÍTICA DE ESCALONAMENTO: Loteria com Prioridade\n=================================================================================================");
+    cout << "\n\n==== POLITICA DE ESCALONAMENTO: Loteria com Prioridade ====\n";
 
     carregarProcessos(diretorio);
 
-    cout << "\nIniciando execucao...\n";
+    cout << "\n\n==Iniciando execucao...==\n\n\n";
     // Cria threads para cada CPU
     vector<pthread_t> threads_cpus(NUM_CPUS);
     for (int i = 0; i < NUM_CPUS; ++i) {
@@ -137,7 +141,7 @@ void main_Loteria(){
         pthread_join(th, nullptr);
     }
 
-    cout << "\nExecucao finalizada!\n";
+    cout << "\n\n==Execucao finalizada!==\n";
 
     // Libera memória
     for (auto* cpu : cpus) {
@@ -168,6 +172,7 @@ void main_SJF(){
     for (int i = 0; i < NUM_CPUS; ++i) {
         cpus[i] = new CPU();
         cpus[i]->id = i + 1; // Identificação da CPU
+        cpus[i]->ocupada = false;
     }
 
     bootloader(memoria);
@@ -175,10 +180,11 @@ void main_SJF(){
     string diretorio = "data"; // Pasta contendo os arquivos .data
 
     LogSaida("\n\n--- POLÍTICA DE ESCALONAMENTO: SJF\n=================================================================================================");
+    cout << "\n\n===== POLITICA DE ESCALONAMENTO: SJF =====\n";
 
     carregarProcessos(diretorio);
 
-    cout << "\nIniciando execucao...\n";
+    cout << "\n\n==Iniciando execucao...==\n\n\n";
     // Cria threads para cada CPU
     vector<pthread_t> threads_cpus(NUM_CPUS);
     for (int i = 0; i < NUM_CPUS; ++i) {
@@ -191,7 +197,7 @@ void main_SJF(){
         pthread_join(th, nullptr);
     }
 
-    cout << "\nExecucao finalizada!\n";
+    cout << "\n\n==Execucao finalizada!==\n";
 
     // Libera memória
     for (auto* cpu : cpus) {
@@ -223,6 +229,7 @@ void main_SRTN(){
     for (int i = 0; i < NUM_CPUS; ++i) {
         cpus[i] = new CPU();
         cpus[i]->id = i + 1; // Identificação da CPU
+        cpus[i]->ocupada = false;
     }
 
     bootloader(memoria);
@@ -230,10 +237,11 @@ void main_SRTN(){
     string diretorio = "data"; // Pasta contendo os arquivos .data
 
     LogSaida("\n\n--- POLÍTICA DE ESCALONAMENTO: SRTN\n=================================================================================================");
+    cout << "\n\n===== POLITICA DE ESCALONAMENTO: SRTN =====\n";
 
     carregarProcessos(diretorio);
 
-    cout << "\nIniciando execucao...\n";
+    cout << "\n\n==Iniciando execucao...==\n\n\n";
     // Cria threads para cada CPU
     vector<pthread_t> threads_cpus(NUM_CPUS);
     for (int i = 0; i < NUM_CPUS; ++i) {
@@ -245,7 +253,7 @@ void main_SRTN(){
         pthread_join(th, nullptr);
     }
 
-    cout << "\nExecucao finalizada!\n";
+    cout << "\n\n==Execucao finalizada!==\n";
 
     // Libera memória
     for (auto* cpu : cpus) {
@@ -275,19 +283,19 @@ int main() {
         cerr << "Erro ao abrir o arquivo '" << fileName << "'.\n";
     }
     
-    /*main_FCFS();
+    limpeza();
+    main_FCFS();
     limpeza();
 
     main_Loteria();
     limpeza();
-    */
-
+    
     main_SJF();
     limpeza();
 
-    /*limpeza();
     main_SRTN();
-    limpeza();*/
+    limpeza();
+    
     
     return 0;
 }

@@ -7,8 +7,8 @@ void WriteBack(int resultado, int linhaAtual, PaginaMemoria *pm) {
     // CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa WRITEBACK
 
     if (linhaAtual > pm->pcb.linhasProcessadasAnt){
+
         pm->pcb.quantum -= 1;
-        //tempoGasto[pm->pcb.idCpuAtual-1]++;
         CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa WRITEBACK
         
         if(pm->pcb.quantum == 0){
@@ -28,8 +28,8 @@ void MemoryAccess(int resultado, int *registradores, int info1, int linhaAtual, 
     // CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa MEMORY_ACCESS
 
     if (linhaAtual > pm->pcb.linhasProcessadasAnt){
+
         pm->pcb.quantum -= 1; 
-        //tempoGasto[pm->pcb.idCpuAtual-1]++;
         CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa MEMORY_ACCESS
         
         if(pm->pcb.quantum == 0){
@@ -58,18 +58,6 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
             return;
         } 
 
-        /*
-        // Para que considere operaçoes com "=" como processadas também
-        if (linhaAtual > pm->pcb.linhasProcessadasAnt){
-            //pm->pcb.quantum -= 1;
-            ////tempoGasto[pm->pcb.idCpuAtual-1]++;
-            
-            if(pm->pcb.quantum == 0){
-                return;
-            }
-        }  
-        */
-
     } else if (instrucao == '@') {
 
         for (int i = 0; i < info3; i++) {
@@ -81,8 +69,9 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
             // CLOCK[pm->pcb.idCpuAtual - 1]++; // CLOCK incrementado durante loop de somas
 
             if (linhaAtual > pm->pcb.linhasProcessadasAnt){
+
                 pm->pcb.quantum -= 1;
-                //tempoGasto[pm->pcb.idCpuAtual-1]++;
+    
                 CLOCK[pm->pcb.idCpuAtual - 1]++; // CLOCK incrementado durante loop de somas
                 
                 if(pm->pcb.quantum == 0){
@@ -100,8 +89,9 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
         // CLOCK[pm->pcb.idCpuAtual - 1]++; // CLOCK incrementado antes de chamar a próxima etapa
 
         if (linhaAtual > pm->pcb.linhasProcessadasAnt){
+
             pm->pcb.quantum -= 1;
-            //tempoGasto[pm->pcb.idCpuAtual-1]++;
+
             CLOCK[pm->pcb.idCpuAtual - 1]++; // CLOCK incrementado antes de chamar a próxima etapa
 
             if(pm->pcb.quantum == 0){
@@ -136,8 +126,9 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
         pm->pcb.linhasProcessadasAtual++;
 
         if (linhaAtual > pm->pcb.linhasProcessadasAnt){
+
             pm->pcb.quantum -= 1;
-            //tempoGasto[pm->pcb.idCpuAtual-1]++;
+
             CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na comparação
             
             if(pm->pcb.quantum == 0){
@@ -165,8 +156,9 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
             pm->pcb.linhasProcessadasAtual++;
 
             if (linhaAtual > pm->pcb.linhasProcessadasAnt){
+
                 pm->pcb.quantum -= 1;
-                //tempoGasto[pm->pcb.idCpuAtual-1]++;
+    
                 CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na comparação
                 
                 if(pm->pcb.quantum == 0){
@@ -175,16 +167,15 @@ void Execute(char instrucao, int info1, int info2, int info3, string info4, int 
             }
         }
         else{
+
             pthread_mutex_unlock(&mtx);
             pm->pcb.estado = "Bloqueado";
             cout << "\nPeriferico $ " << info1 << " esta bloqueado!\n";
 
             //Liberar recursos associados - Exceto periférico inacessível
             for(int i = 0; i < (int)pm->pcb.recursos.size(); i++){
-                // if(i != info1){
-                    perifericos[pm->pcb.recursos[i]] = true;
-                    pm->pcb.recursos.erase(pm->pcb.recursos.begin() + i);
-                //}
+                perifericos[pm->pcb.recursos[i]] = true;
+                pm->pcb.recursos.erase(pm->pcb.recursos.begin() + i);
             }
 
             return;
@@ -196,8 +187,8 @@ void InstructionDecode(char instrucao, int info1, int info2, int info3, string i
 
     // CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa DECODE
     if (linhaAtual > pm->pcb.linhasProcessadasAnt){
+
         pm->pcb.quantum -= 1; 
-        //tempoGasto[pm->pcb.idCpuAtual-1]++;
         CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa DECODE
         
         if(pm->pcb.quantum == 0){
@@ -225,8 +216,8 @@ void InstructionFetch(int *registradores, string linha, int linhaAtual, PaginaMe
     // CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa FETCH
 
     if (linhaAtual > pm->pcb.linhasProcessadasAnt){
+
         pm->pcb.quantum -= 1; 
-        //tempoGasto[pm->pcb.idCpuAtual-1]++;
         CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa FETCH
         
         if(pm->pcb.quantum == 0){
