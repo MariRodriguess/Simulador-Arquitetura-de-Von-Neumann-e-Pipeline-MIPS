@@ -12,6 +12,7 @@
 #include <pthread.h> // Inclusão para suporte a threads
 #include <mutex>
 #include <semaphore.h>
+#include <algorithm>
 
 #define NUM_PERIFERICOS 5
 #define NUM_CPUS 2
@@ -21,7 +22,11 @@ using namespace std;
 extern int PC;
 extern int CLOCK[NUM_CPUS];
 extern int tempoGasto[NUM_CPUS]; 
-
+extern int contProcessos[NUM_CPUS];
+extern volatile bool FCFS;
+extern volatile bool RoundRobin;
+extern volatile bool Loteria;
+extern volatile bool SJF;
 extern unordered_map<int, int> cache;
 extern vector<int> principal;
 extern vector<vector<int>> disco;
@@ -46,11 +51,17 @@ struct PCB {
     vector<int> recursos;
     sem_t semaforo; // Semáforo para sincronização
     int idCpuAtual = -1;
-    int tempoGasto = 0;
+    int numBilhetes = 0;
+    bool recebeuRecurso = false;
+    int quantumNecessario = 0;
+    int quantumOriginal;
+
     PCB(){
+        timestamp = 0;
         linhasProcessadasAnt = 0;
         linhasProcessadasAtual = 0;
-        timestamp = 0;
+        quantum = 0;
+        quantumNecessario = 0;
     }
 };
 

@@ -4,9 +4,7 @@ pthread_mutex_t lockPipeline = PTHREAD_MUTEX_INITIALIZER; // Inicializando o mut
 
 CPU::CPU() {
 
-    // Inicializa o mutex e a condição
-    pthread_mutex_init(&mutexCond, nullptr);
-    pthread_cond_init(&cond, nullptr);
+    ocupada = false;
 
     for (int i = 0; i < NUM_NUCLEOS; i++) {
         int *reg = (int *)malloc(10 * sizeof(int)); // Registradores por núcleo
@@ -24,10 +22,6 @@ CPU::~CPU() {
     for (auto& nucleo : nucleos) {
         free(nucleo);
     }
-
-    // Destrói o mutex e a condição
-    pthread_mutex_destroy(&mutexCond);
-    pthread_cond_destroy(&cond);
 
     nucleosLivres.clear();
     nucleosLivres.shrink_to_fit(); 

@@ -18,6 +18,7 @@ void Memoria::inicializarMemoria() {
 }
 
 PaginaMemoria::PaginaMemoria() {
+    
     pthread_mutex_init(&mutex, nullptr);
     pthread_cond_init(&cond, nullptr);
 }
