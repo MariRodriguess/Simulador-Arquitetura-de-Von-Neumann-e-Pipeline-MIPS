@@ -24,9 +24,6 @@ class CPU {
         bool ocupada;
         CPU();
         ~CPU();
-        pthread_mutex_t mutexCond;     // Mutex para sincronização de threads
-        pthread_cond_t cond;           // Variável de condição para sincronização
-
         void inicializarCpu();
         void exibirEstado();
 };

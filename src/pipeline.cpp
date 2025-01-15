@@ -3,6 +3,7 @@
 pthread_mutex_t mtx = PTHREAD_MUTEX_INITIALIZER;
 
 void WriteBack(int resultado, int linhaAtual, PaginaMemoria *pm) {
+    
     principal.push_back(resultado);
     // CLOCK[pm->pcb.idCpuAtual - 1]++; // Incremento de clock na etapa WRITEBACK
 

@@ -1,4 +1,4 @@
-<h1 align="center" font-size="200em"><b>Simulador da Arquitetura de Von Neumann e Pipeline MIPS</b></h1>
+<h1 align="center" font-size="200em"><b>Simulador da Arquitetura Multicore de Von Neumann com Pipeline MIPS e Escalonadores</b></h1>
 
 <div align = "center" >
 <!-- imagem -->
@@ -8,10 +8,33 @@
 ![Linguagem](https://img.shields.io/badge/Linguagem-C%2B%2B-blue)
 </div>
 
-## ❗ Detalhes do programa
-Após o carregamento dos processos, o quantum é forçadamente colocado com um valor baixo, para que a execução seja interrompida. Após dita interrupção, o processo volta para o final da fila e tem seu quantum recalculado para a faixa de valores padrão (20 a 50ms). 
 
-### Modelo do input
+## 📋Execução dos Escalonadores
+
+Este programa implementa um menu interativo que permite ao usuário escolher qual tipo de escalonador de processos deseja executar. Ele oferece suporte aos seguintes algoritmos de escalonamento:
+
+1. **FCFS (First Come First Serve)** - Primeiro a Chegar, Primeiro a Ser Atendido.
+2. **SJF (Shortest Job First)** - Menor Trabalho Primeiro.
+3. **Loteria** - Escolhe processos aleatoriamente baseado em bilhetes de loteria.
+4. **Round Robin** - Cada processo recebe uma fatia de tempo para execução em ordem circular.
+5. **Todos os Algoritmos** - Executa todos os escalonadores em sequência, permitindo comparações entre os métodos.
+
+---
+
+## 🖥️Interação com o Menu
+Ao iniciar o programa, você verá o seguinte menu:
+
+![alt text](image.png)
+
+- Digite o número correspondente ao escalonador que deseja executar e pressione **Enter**.
+
+- O programa exibirá mensagens informando o progresso e os resultados do escalonamento escolhido.
+
+- O acompanhamento da execução do processo pode ser feito pelo arquivo de saída gerado, nomeado como **log_output.txt**.
+
+
+## 📝Modelo do input (Processo a ser Executado)
+
 * Salvar na memória
   * = | Registrador de destino | Valor
   * = 0 150
@@ -32,6 +55,7 @@ Após o carregamento dos processos, o quantum é forçadamente colocado com um v
   * $ | Periférico desejado
   * $ 1
 
+
 ## 👾Compilação e execução
 * Especificações da máquina em que o código foi rodado:
   * Processador Intel Core i7, 12th Gen;
@@ -44,7 +68,7 @@ Após o carregamento dos processos, o quantum é forçadamente colocado com um v
   |  `make run`            | Executa o programa da pasta build após a realização da compilação                                 |
 
 
-## Contato
+## 📞Contato
 
 <div>
  <br><p align="justify"> Julia Rezende</p>

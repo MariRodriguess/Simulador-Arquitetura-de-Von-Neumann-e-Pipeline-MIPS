@@ -4,15 +4,16 @@
 int PC = 0;
 int CLOCK[NUM_CPUS] = {0};
 int tempoGasto[NUM_CPUS] = {0}; 
+int contProcessos[NUM_CPUS] = {0}; 
 bool perifericos[NUM_PERIFERICOS] = {true};
 volatile bool FCFS=false;
-volatile bool SRTN=false;
+volatile bool RoundRobin=false;
 volatile bool Loteria=false;
 volatile bool SJF=false;
 
+pthread_mutex_t filaLock = PTHREAD_MUTEX_INITIALIZER;
 
 vector<int> principal;
-pthread_mutex_t filaLock = PTHREAD_MUTEX_INITIALIZER;
 
 void bootloader(Memoria *memoria) {
     cout << "\nBootloader: Inicializacao iniciada...\n";
@@ -35,6 +36,7 @@ void limpeza(){
     for(int i = 0; i < NUM_CPUS; i++){
         CLOCK[i] = 0;
         tempoGasto[i] = 0;
+        contProcessos[i] = 0;
     }   
 
     // Colocando os periféricos como true
@@ -51,9 +53,9 @@ void main_FCFS(){
     Memoria* memoria = new Memoria();
 
     FCFS=true;
-    SRTN=false;
-    SJF=false;
     Loteria=false;
+    SJF=false;
+    RoundRobin=false;
 
     // Inicializa as CPUs
     for (int i = 0; i < NUM_CPUS; ++i) {
@@ -84,7 +86,8 @@ void main_FCFS(){
         pthread_join(th, nullptr);
     }
 
-    cout << "\n\n==Execucao finalizada!\n\n";
+    cout << "\n\n==Execucao finalizada!==\n";
+    cout << "\nAcompanhe a execucao dos processos no arquivo de output: 'log_output.txt' :)\n";
 
     // Libera memória
     for (auto* cpu : cpus) {
@@ -104,9 +107,9 @@ void main_FCFS(){
 void main_Loteria(){
 
     FCFS=false;
-    SRTN=false;
-    SJF=false;
     Loteria=true;
+    SJF=false;
+    RoundRobin=false;
 
     vector<CPU*> cpus(NUM_CPUS);
 
@@ -123,8 +126,8 @@ void main_Loteria(){
 
     string diretorio = "data"; // Pasta contendo os arquivos .data
 
-    LogSaida("\n\n--- POLÍTICA DE ESCALONAMENTO: Loteria com Prioridade\n=================================================================================================");
-    cout << "\n\n==== POLITICA DE ESCALONAMENTO: Loteria com Prioridade ====\n";
+    LogSaida("\n\n--- POLÍTICA DE ESCALONAMENTO: Loteria\n=================================================================================================");
+    cout << "\n\n==== POLITICA DE ESCALONAMENTO: Loteria ====\n";
 
     carregarProcessos(diretorio);
 
@@ -142,6 +145,7 @@ void main_Loteria(){
     }
 
     cout << "\n\n==Execucao finalizada!==\n";
+    cout << "\nAcompanhe a execucao dos processos no arquivo de output: 'log_output.txt' :)\n";
 
     // Libera memória
     for (auto* cpu : cpus) {
@@ -165,8 +169,8 @@ void main_SJF(){
 
     FCFS=true;
     SJF=true;
-    SRTN=false;
     Loteria=false;
+    RoundRobin=false;
 
     // Inicializa as CPUs
     for (int i = 0; i < NUM_CPUS; ++i) {
@@ -198,6 +202,7 @@ void main_SJF(){
     }
 
     cout << "\n\n==Execucao finalizada!==\n";
+    cout << "\nAcompanhe a execucao dos processos no arquivo de output: 'log_output.txt' :)\n";
 
     // Libera memória
     for (auto* cpu : cpus) {
@@ -214,16 +219,15 @@ void main_SJF(){
     LogSaida("PC = " + to_string(PC));
 }
 
-void main_SRTN(){
-
+void main_RoundRobin() {
     vector<CPU*> cpus(NUM_CPUS);
 
     Memoria* memoria = new Memoria();
 
     FCFS=false;
-    SRTN=true;
     SJF=false;
     Loteria=false;
+    RoundRobin=true;
 
     // Inicializa as CPUs
     for (int i = 0; i < NUM_CPUS; ++i) {
@@ -236,24 +240,26 @@ void main_SRTN(){
 
     string diretorio = "data"; // Pasta contendo os arquivos .data
 
-    LogSaida("\n\n--- POLÍTICA DE ESCALONAMENTO: SRTN\n=================================================================================================");
-    cout << "\n\n===== POLITICA DE ESCALONAMENTO: SRTN =====\n";
+    LogSaida("\n\n--- POLÍTICA DE ESCALONAMENTO: Round Robin\n=================================================================================================");
+    cout << "\n\n===== POLITICA DE ESCALONAMENTO: Round Robin =====\n";
 
     carregarProcessos(diretorio);
 
     cout << "\n\n==Iniciando execucao...==\n\n\n";
+
     // Cria threads para cada CPU
     vector<pthread_t> threads_cpus(NUM_CPUS);
     for (int i = 0; i < NUM_CPUS; ++i) {
-        pthread_create(&threads_cpus[i], nullptr, executarCpu_SRTN, cpus[i]);
+        pthread_create(&threads_cpus[i], nullptr, executarCpu_RoundRobin, cpus[i]);
     }
 
     // Aguarda as threads das CPUs terminarem
-    for (auto &th : threads_cpus) {
+    for (auto& th : threads_cpus) {
         pthread_join(th, nullptr);
     }
 
     cout << "\n\n==Execucao finalizada!==\n";
+    cout << "\nAcompanhe a execucao dos processos no arquivo de output: 'log_output.txt' :)\n";
 
     // Libera memória
     for (auto* cpu : cpus) {
@@ -261,13 +267,25 @@ void main_SRTN(){
     }
     delete memoria;
 
-    for(int i = 0; i < NUM_CPUS; i++){
-        cout << "CLOCK " << i+1 << " = " << CLOCK[i] << " | ";
-        LogSaida("CLOCK " + to_string(i+1) + " = " + to_string(CLOCK[i]) + " | ");
+    for (int i = 0; i < NUM_CPUS; i++) {
+        cout << "CLOCK " << i + 1 << " = " << CLOCK[i] << " | ";
+        LogSaida("CLOCK " + to_string(i + 1) + " = " + to_string(CLOCK[i]) + " | ");
     }
     cout << "\nPC = " << PC << endl;
 
     LogSaida("PC = " + to_string(PC));
+}
+
+void mostrarMenu() {
+    cout << "\n\n=============== Menu de Escalonadores ===============" << endl;
+    cout << "1. Rodar Escalonador FCFS (First Come First Serve)" << endl;
+    cout << "2. Rodar Escalonador SJF (Shortest Job First)" << endl;
+    cout << "3. Rodar Escalonador Loteria" << endl;
+    cout << "4. Rodar Escalonador Round Robin" << endl;
+    cout << "5. Rodar Todos os Escalonadores" << endl;
+    cout << "0. Sair" << endl;
+    cout << "=====================================================" << endl;
+    cout << "Digite sua escolha: ";
 }
 
 int main() {
@@ -282,20 +300,52 @@ int main() {
     } else {
         cerr << "Erro ao abrir o arquivo '" << fileName << "'.\n";
     }
-    
-    limpeza();
-    main_FCFS();
-    limpeza();
 
-    main_Loteria();
-    limpeza();
-    
-    main_SJF();
-    limpeza();
+    int opcao = -1;
 
-    main_SRTN();
-    limpeza();
-    
-    
+    while (opcao != 0) {
+        mostrarMenu();
+        cin >> opcao;
+
+        switch (opcao) {
+            case 1:
+                main_FCFS();
+                limpeza();
+                break;
+            case 2:
+                main_SJF();
+                limpeza();
+                break;
+            case 3:
+                main_Loteria();
+                limpeza();
+                break;
+            case 4:
+                main_RoundRobin();
+                limpeza();
+                break;
+            case 5:
+                main_FCFS();
+                limpeza();
+
+                main_Loteria();
+                limpeza();
+                
+                main_SJF();
+                limpeza();
+
+                main_RoundRobin();
+                limpeza();
+                break;
+            case 0:
+                cout << "Saindo do programa..." << endl;
+                break;
+            default:
+                cout << "Opcao invalida! Tente novamente." << endl;
+        }
+
+        cout << endl;
+    }
+
     return 0;
 }

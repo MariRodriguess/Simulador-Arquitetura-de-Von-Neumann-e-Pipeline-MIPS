@@ -4,18 +4,87 @@ vector<PaginaMemoria*> filaPaginasMemoria; // Usando ponteiros
 
 pthread_mutex_t filaMutex = PTHREAD_MUTEX_INITIALIZER; // Inicializando o mutex
 
-int nArquivos = 0;
-
 struct Args {
     PaginaMemoria* pm;// Ponteiro para a fila
 };
 
-
 unordered_map<char, int> mapaInstrucoes = {{'=',2}, {'+', 5}, {'-', 5}, {'*', 5}, {'/', 5}, {'$',3}, {'?', 3}};
 
 
+// ===== Execução Processos
+
+pair<int,int> nLinhas(const string &nomeArquivo){
+    ifstream arquivo(nomeArquivo);
+    string linha;
+    int cont = 0, quantumNecessario = 0;
+
+    if (!arquivo.is_open()) {
+        cout << "Erro ao abrir o arquivo!" << endl;
+        return make_pair(0,0);
+    }
+
+    while (getline(arquivo, linha)) {
+        if(linha.front() != '@'){
+            quantumNecessario += mapaInstrucoes[linha.front()];
+        }
+        else{
+            quantumNecessario = quantumNecessario + mapaInstrucoes[linha.front()] + mapaInstrucoes[linha.back()];
+        }
+        cont++;
+    }
+
+    arquivo.close();
+    return make_pair(cont,quantumNecessario);
+}
+
+void carregarProcessos(const string& diretorio) {
+    namespace fs = filesystem;
+    int idProcesso = 0;
+
+    for (const auto& entry : fs::directory_iterator(diretorio)) {
+        if (entry.is_regular_file() && entry.path().extension() == ".data") {
+            PCB processo;
+            processo.id = idProcesso++;
+            processo.prioridade = rand() % 10;
+            processo.quantum = (rand() % 6) + 1;
+            // processo.quantum = (rand() % 31) + 20;  // Gera um número entre 20 e 50
+            processo.quantumOriginal = processo.quantum;
+            processo.registradores = (int*)malloc(10 * sizeof(int));
+            processo.caminhoArquivo = entry.path().string();
+            processo.estado = "Pronto";
+            auto resultado = nLinhas(processo.caminhoArquivo);
+            processo.linhasArquivo = resultado.first;
+            processo.quantumNecessario = resultado.second;
+            processo.idCpuAtual = -1;
+            processo.numBilhetes = 1;
+            processo.recebeuRecurso = false;
+            processo.timestamp = 0;
+
+            // Inicializa o semáforo
+            sem_init(&processo.semaforo, 0, 1);
+
+            auto* pm = new PaginaMemoria();
+            pm->pcb = processo;
+            
+            pthread_mutex_init(&pm->mutex, nullptr);
+            pthread_cond_init(&pm->cond, nullptr);
+
+            if (pthread_create(&pm->th_processo, nullptr, executarProcesso, pm) != 0) {
+                cout << "Erro ao criar a thread para o processo " << processo.id << endl;
+                delete pm;
+                continue;
+            }
+
+            filaPaginasMemoria.push_back(pm);
+            cout << "\nCarregando processo " << processo.id + 1 << " do arquivo: " << processo.caminhoArquivo << endl;
+
+            sleep(2);
+        }
+    }
+}
+
 void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, PaginaMemoria *pm) {
-    
+
     ifstream arquivo(nomeArquivo);
     string linha;
     int linhaAtual = 1;
@@ -39,12 +108,6 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
             pm->pcb.linhasProcessadasAnt = pm->pcb.linhasProcessadasAtual;
             pm->pcb.linhasProcessadasAtual = 0;
             pm->pcb.estado = "Bloqueado";
-
-            if(SJF){
-                pm->pcb.idCpuAtual = -1;
-                filaPaginasMemoria.push_back(pm);
-                ordenarFila_SJF();
-            }
 
             cout << "\nProcesso " << pm->pcb.id << " bloqueado! - Periférico em uso\n";
             LogSaida("\nProcesso " + to_string(pm->pcb.id) + " bloqueado! - Periférico em uso\n");
@@ -74,7 +137,7 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
             // Remover o processo finalizado da fila
             pthread_mutex_lock(&filaMutex);
             
-            if(SRTN || Loteria){
+            if(Loteria || FCFS){
                 
                 // Localizar o processo na fila
                 auto it = find(filaPaginasMemoria.begin(), filaPaginasMemoria.end(), pm);
@@ -83,11 +146,12 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
                     filaPaginasMemoria.erase(it); // Remove o processo
                 }        
             }
-            else{
-                if(!SJF){
+            /*
+            else if((!SJF) && (!RoundRobin)){
                     filaPaginasMemoria.erase(filaPaginasMemoria.begin());
                 }
             }
+            */
 
             cout << "Processo " << pm->pcb.id + 1<< " encerrado!" << endl;
             pthread_mutex_unlock(&filaMutex);
@@ -98,7 +162,6 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
             pm->pcb.linhasProcessadasAnt = pm->pcb.linhasProcessadasAtual;
             pm->pcb.linhasProcessadasAtual = 0;
             pm->pcb.estado = "Pronto";
-            pm->jaFoiZeradoQuantum = true;
 
             //Liberar recursos associados
             for(int i = 0; i < (int)pm->pcb.recursos.size(); i++){
@@ -113,79 +176,16 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
             atualizarTimestamps(filaPaginasMemoria, tempoGasto[pm->pcb.idCpuAtual - 1], pm);
             sleep(1);
 
-            if(SJF){
-                pm->pcb.idCpuAtual = -1;
-                filaPaginasMemoria.push_back(pm);
-                ordenarFila_SJF();
-            }
-
             break;
-        }
-        else{
-            int qRestante=0;
-            bool auxiliar=false;
-
-            if(SRTN){
-                if(!filaPaginasMemoria.empty()){
-
-                    if (filaPaginasMemoria.size() > 1){
-                        ordenarFila_SRTN();
-                        for (auto pagina : filaPaginasMemoria) { 
-                            if (pagina->pcb.idCpuAtual == -1){
-                                qRestante = pagina->pcb.quantumNecessario;
-                                auxiliar=true;
-                                break;
-                            }
-                        }
-                        
-                        if ((auxiliar == true) && (pm->pcb.quantumNecessario > qRestante)){
-                            pm->pcb.linhasProcessadasAnt = pm->pcb.linhasProcessadasAtual;
-                            pm->pcb.linhasProcessadasAtual = 0;
-                            qRestante=0;
-                            auxiliar=false;
-                            // Atualizar timestamps
-                            atualizarTimestamps(filaPaginasMemoria, tempoGasto[pm->pcb.idCpuAtual - 1],pm);
-                            sleep(1);
-                            pm->pcb.estado = "Pronto";
-                            // cout << "\nProcesso " << pm->pcb.id+1 << " sofrendo preempcao pois processo com quantum menor chegou." << endl;
-                            LogSaida("\nProcesso " + to_string(pm->pcb.id+1) + " sofrendo preempcao pois processo com quantum menor chegou na fila.\n");
-                            break;
-                        
-                        }
-                    }
-                }
-            }
-        }     
+        }  
     }
 
     arquivo.close();
-}
-
-pair<int,int> nLinhas(const string &nomeArquivo){
-    ifstream arquivo(nomeArquivo);
-    string linha;
-    int cont = 0, quantumNecessario = 0;
-
-    if (!arquivo.is_open()) {
-        cout << "Erro ao abrir o arquivo!" << endl;
-        return make_pair(0,0);
-    }
-
-    while (getline(arquivo, linha)) {
-        if(linha.front() != '@'){
-            quantumNecessario += mapaInstrucoes[linha.front()];
-        }
-        else{
-            quantumNecessario = quantumNecessario + mapaInstrucoes[linha.front()] + mapaInstrucoes[linha.back()];
-        }
-        cont++;
-    }
-
-    arquivo.close();
-    return make_pair(cont,quantumNecessario);
 }
 
 void* executarProcesso(void* arg) {
+
+    int auxCPU=0;
 
     sleep(2);
 
@@ -199,6 +199,7 @@ void* executarProcesso(void* arg) {
         if (pm->pcb.estado == "Finalizado") {
             pthread_mutex_unlock(&pm->mutex);
             pm->pcb.idCpuAtual = -1;
+            contProcessos[auxCPU] -= 1;
             break; // Finaliza a thread
         }
 
@@ -214,16 +215,23 @@ void* executarProcesso(void* arg) {
         sleep(0.5);
         LerInstrucoesDoArquivo(pm->pcb.caminhoArquivo, pm->pcb.registradores, pm);
         pthread_mutex_lock(&pm->mutex);
+
+        auxCPU = pm->pcb.idCpuAtual-1;
         
         if (pm->pcb.estado == "Pronto"){
 
             recalcularQuantum(pm);
-            pm->pcb.recebeuRecurso = true; // Marcar processo como atendido
             pm->pcb.quantumOriginal = pm->pcb.quantum;
             if(Loteria){
                 incrementarBilhetesNaoAtendidos(filaPaginasMemoria); // Aumentar as chances para processos não atendidos a cada execução
             }
-            pm->pcb.idCpuAtual = -1;
+            if(RoundRobin){
+                pm->pcb.idCpuAtual = -1;
+                filaPaginasMemoria.push_back(pm);
+            }else{
+                pm->pcb.idCpuAtual = -1;
+            }
+            contProcessos[auxCPU] -= 1;
             sleep(0.6);   
         }
         else if(pm->pcb.estado == "Bloqueado"){
@@ -231,12 +239,20 @@ void* executarProcesso(void* arg) {
             cout << "Processo bloqueado após acesso de periferico ocupado.\n";
             recalcularQuantum(pm);
             pm->pcb.quantumOriginal = pm->pcb.quantum;
-            pm->pcb.recebeuRecurso = true; // Marcar processo como atendido
             if(Loteria){
                 incrementarBilhetesNaoAtendidos(filaPaginasMemoria); // Aumentar as chances para processos não atendidos a cada execução
             }
-            pm->pcb.idCpuAtual = -1;
-            sleep(0.6);
+            if(SJF || RoundRobin){
+                pm->pcb.idCpuAtual = -1;
+                filaPaginasMemoria.push_back(pm);
+                if (!RoundRobin){
+                    ordenarFila_SJF();
+                }
+            }else{
+                pm->pcb.idCpuAtual = -1;
+                sleep(0.6);
+            }  
+            contProcessos[auxCPU] -= 1;
         }
         else if (pm->pcb.estado == "Finalizado"){
 
@@ -249,6 +265,36 @@ void* executarProcesso(void* arg) {
     }
     return nullptr;
 }
+
+void atualizarTimestamps(vector<PaginaMemoria *> &filaPaginasMemoria, int quantumGasto, PaginaMemoria * pm) {
+
+
+    pthread_mutex_lock(&filaMutex); // Protege a fila contra acesso simultâneo
+
+    for (auto *pagina : filaPaginasMemoria) { 
+        if((pm->pcb.idCpuAtual == pagina->pcb.idCpuAtual) || (pagina->pcb.idCpuAtual == -1)){
+            pagina->pcb.timestamp += (CLOCK[pm->pcb.idCpuAtual-1] - quantumGasto); // Atualiza o timestamp
+        }
+
+        //cout << "\nProcessoAtual: " << pm->pcb.id+1 << " - IdCpuAtual: " << pm->pcb.idCpuAtual << " - Adicionando: " << (CLOCK[pm->pcb.idCpuAtual-1] - quantumGasto) << "(" << CLOCK[pm->pcb.idCpuAtual-1] << "-" << quantumGasto <<  ") - " <<
+        //" - ProcessoAtualizando: " << pagina->pcb.id+1 << " - IdCpuAtualizando: " << pagina->pcb.idCpuAtual << " - LinhasProcessadas " << pm->pcb.linhasProcessadasAtual;
+
+    }
+    if(SJF || RoundRobin){
+        pm->pcb.timestamp += (CLOCK[pm->pcb.idCpuAtual-1] - quantumGasto);
+    }
+
+    pthread_mutex_unlock(&filaMutex);
+}
+
+void recalcularQuantum (PaginaMemoria *pm){
+    
+    sleep(0.5);
+    pm->pcb.quantum = (rand() % 31) + 20;  // Gera um número entre 20 e 50 (inclusive)
+    //pm->pcb.quantum = (rand() % 6) + 1;
+}
+
+// ===== Escalonadores
 
 void* executarCpu_FCFS(void* arg) {
 
@@ -334,6 +380,8 @@ void* executarCpu_Loteria(void* arg) {
             if (filaPaginasMemoria.size() == 1){
                 pm = filaPaginasMemoria.front();
                 pm->pcb.idCpuAtual = cpu->id;
+                pm->pcb.quantum = 2147483647; // Para que o processo não sofra preempção por quantum
+                pm->pcb.recebeuRecurso = true;
             }
             else{
                 // Calcular o total de bilhetes
@@ -351,6 +399,8 @@ void* executarCpu_Loteria(void* arg) {
                     if ((aux > bilheteExecucao) && (pagina->pcb.idCpuAtual == -1)) {
                         pm = pagina;
                         pm->pcb.idCpuAtual = cpu->id;
+                        pm->pcb.quantum = 2147483647; // Para que o processo não sofra preempção por quantum
+                        pm->pcb.recebeuRecurso = true;
                         break;
                         
                     }
@@ -395,6 +445,17 @@ void* executarCpu_Loteria(void* arg) {
         
     }
     return nullptr;
+}
+
+void incrementarBilhetesNaoAtendidos(vector<PaginaMemoria *> &filaPaginasMemoria) {
+
+    pthread_mutex_lock(&filaMutex);
+    for (auto& pagina : filaPaginasMemoria) {
+        if (!pagina->pcb.recebeuRecurso) {
+            pagina->pcb.numBilhetes++; // Incrementa os bilhetes
+        }
+    }
+    pthread_mutex_unlock(&filaMutex);
 }
 
 bool compararPaginas_SJF(const PaginaMemoria* a, const PaginaMemoria* b) {
@@ -463,28 +524,15 @@ void* executarCpu_SJF(void* arg){
     return nullptr;
 }
 
-bool compararPaginas_SRTN(const PaginaMemoria* a, const PaginaMemoria* b) {
-    return a->pcb.quantum < b->pcb.quantum;
-}
-
-void ordenarFila_SRTN() {
-
-    sort(filaPaginasMemoria.begin(), filaPaginasMemoria.end(), compararPaginas_SRTN);
-}
-
-void* executarCpu_SRTN(void* arg){
+void* executarCpu_RoundRobin(void* arg) {
     
     CPU* cpu = static_cast<CPU*>(arg); // CPU específica
 
     while (true) {
-
-        sleep(0.6);
-
         PaginaMemoria* pm = nullptr;
 
         // Tenta pegar um processo da fila
         pthread_mutex_lock(&filaMutex);
-
 
         if (filaPaginasMemoria.empty()) {
             pthread_mutex_unlock(&filaMutex);
@@ -493,34 +541,35 @@ void* executarCpu_SRTN(void* arg){
 
         // Verifica se a CPU está livre
         if (!cpu->ocupada) {
-            ordenarFila_SRTN();
-            sleep(0.6);
-            for (auto pagina : filaPaginasMemoria) { 
-                // cout << "\nCpu " << cpu->id << " analisando Processo " << pagina->pcb.id+1 << " com IdCPU " << pagina->pcb.idCpuAtual << " e Quantum " << pagina->pcb.quantum;
-                if (pagina->pcb.idCpuAtual == -1) {
-                    pm = pagina;
+            for (auto it = filaPaginasMemoria.begin(); it != filaPaginasMemoria.end(); ++it) {
+                if ((*it)->pcb.idCpuAtual == -1) {
+                    pm = *it;
                     pm->pcb.idCpuAtual = cpu->id;
+                    pm->pcb.quantum = 10;
                     cpu->ocupada = true; // Marca a CPU como ocupada
+                    filaPaginasMemoria.erase(it); // Remove da fila circular
                     break;
                 }
             }
         }
-        
+
         pthread_mutex_unlock(&filaMutex);
 
         if (pm != nullptr) {
             if ((pm->pcb.estado == "Pronto" || pm->pcb.estado == "Bloqueado") && pm->pcb.idCpuAtual == cpu->id){
                 
                 //cout << "Cpu " << cpu->id << " pegando Processo " << pm->pcb.id+1 << "." << endl;
-                
+
                 // Executa o processo
+                contProcessos[pm->pcb.idCpuAtual - 1] += 1;
+
                 sleep(0.6);
                 pthread_mutex_lock(&pm->mutex);
                 sleep(0.6);
                 pthread_cond_signal(&pm->cond); // Libera o processo para execução
                 pthread_mutex_unlock(&pm->mutex);
 
-                while(pm->pcb.idCpuAtual == cpu->id){
+                while((pm->pcb.idCpuAtual == cpu->id) || (contProcessos[cpu->id-1] != 0)){
                     sleep(0.1);
                 }
                 sleep(0.1);
@@ -533,57 +582,11 @@ void* executarCpu_SRTN(void* arg){
         } else {
             sleep(1); // Espera por novos processos
         }
-        
     }
     return nullptr;
 }
 
-void carregarProcessos(const string& diretorio) {
-    namespace fs = filesystem;
-    int idProcesso = 0;
-
-    for (const auto& entry : fs::directory_iterator(diretorio)) {
-        if (entry.is_regular_file() && entry.path().extension() == ".data") {
-            nArquivos++;
-            PCB processo;
-            processo.id = idProcesso++;
-            processo.prioridade = rand() % 10;
-            processo.quantum = (rand() % 6) + 1;
-            // processo.quantum = (rand() % 31) + 20;  // Gera um número entre 20 e 50
-            processo.quantumOriginal = processo.quantum;
-            processo.registradores = (int*)malloc(10 * sizeof(int));
-            processo.caminhoArquivo = entry.path().string();
-            processo.estado = "Pronto";
-            auto resultado = nLinhas(processo.caminhoArquivo);
-            processo.linhasArquivo = resultado.first;
-            processo.quantumNecessario = resultado.second;
-            processo.idCpuAtual = -1;
-            processo.numBilhetes = processo.prioridade * 2;
-            processo.recebeuRecurso = false;
-            processo.timestamp = 0;
-
-            // Inicializa o semáforo
-            sem_init(&processo.semaforo, 0, 1);
-
-            auto* pm = new PaginaMemoria();
-            pm->pcb = processo;
-            
-            pthread_mutex_init(&pm->mutex, nullptr);
-            pthread_cond_init(&pm->cond, nullptr);
-
-            if (pthread_create(&pm->th_processo, nullptr, executarProcesso, pm) != 0) {
-                cout << "Erro ao criar a thread para o processo " << processo.id << endl;
-                delete pm;
-                continue;
-            }
-
-            filaPaginasMemoria.push_back(pm);
-            cout << "\nCarregando processo " << processo.id + 1 << " do arquivo: " << processo.caminhoArquivo << endl;
-
-            sleep(2);
-        }
-    }
-}
+// ===== Funções auxiliares
 
 void LogSaida(const string &mensagem) {
     ofstream logFile("log_output.txt", ios::app); // Abre o arquivo no modo append
@@ -602,13 +605,6 @@ void LogSaida(const string &mensagem) {
     }
 }
 
-void recalcularQuantum (PaginaMemoria *pm){
-    
-    sleep(0.5);
-    pm->pcb.quantum = (rand() % 31) + 20;  // Gera um número entre 20 e 50 (inclusive)
-    //pm->pcb.quantum = (rand() % 6) + 1;
-}
-
 void imprimirDados (PaginaMemoria *pm){
 
     if (FCFS || SJF){
@@ -625,7 +621,6 @@ void imprimirDados (PaginaMemoria *pm){
                 "\nPrioridade: " + to_string(pm->pcb.prioridade) + 
                 "\nQuantum necessário para executar: " + to_string(pm->pcb.quantumNecessario) +
                 "\nTimestamp: " + to_string(pm->pcb.timestamp) + 
-                "\nQuantum final: " + to_string(pm->pcb.quantum) + 
                 "\nNúmeros de bilhetes acumulados: " + to_string(pm->pcb.numBilhetes) + 
                 "\nEstado: " + pm->pcb.estado + "\n");
     }else{
@@ -639,33 +634,3 @@ void imprimirDados (PaginaMemoria *pm){
     }
     
 }
-
-void atualizarTimestamps(vector<PaginaMemoria *> &filaPaginasMemoria, int quantumGasto, PaginaMemoria * pm) {
-
-    pthread_mutex_lock(&filaMutex); // Protege a fila contra acesso simultâneo
-    for (auto *pagina : filaPaginasMemoria) { 
-        if((pm->pcb.idCpuAtual == pagina->pcb.idCpuAtual) || (pagina->pcb.idCpuAtual == -1)){
-            pagina->pcb.timestamp += (CLOCK[pm->pcb.idCpuAtual-1] - quantumGasto); // Atualiza o timestamp
-        }
-
-        // cout << "\nProcessoAtual: " << pm->pcb.id+1 << " - IdCpuAtual: " << pm->pcb.idCpuAtual << " - Adicionando: " << (CLOCK[pm->pcb.idCpuAtual-1] - quantumGasto) << "(" << CLOCK[pm->pcb.idCpuAtual-1] << "-" << quantumGasto <<  ") - " <<
-        // " - ProcessoAtualizando: " << pagina->pcb.id+1 << " - IdCpuAtualizando: " << pagina->pcb.idCpuAtual << " - LinhasProcessadas " << pm->pcb.linhasProcessadasAtual;
-
-    }
-    if(SJF){
-        pm->pcb.timestamp += (CLOCK[pm->pcb.idCpuAtual-1] - quantumGasto);
-    }
-    pthread_mutex_unlock(&filaMutex);
-}
-
-void incrementarBilhetesNaoAtendidos(vector<PaginaMemoria *> &filaPaginasMemoria) {
-
-    pthread_mutex_lock(&filaMutex);
-    for (auto& pagina : filaPaginasMemoria) {
-        if (!pagina->pcb.recebeuRecurso) {
-            pagina->pcb.numBilhetes++; // Incrementa os bilhetes
-        }
-    }
-    pthread_mutex_unlock(&filaMutex);
-}
-    
