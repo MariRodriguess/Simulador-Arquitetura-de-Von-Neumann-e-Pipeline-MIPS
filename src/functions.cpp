@@ -1,5 +1,4 @@
 #include "functions.hpp"
-
 vector<PaginaMemoria*> filaPaginasMemoria; // Usando ponteiros
 
 pthread_mutex_t filaMutex = PTHREAD_MUTEX_INITIALIZER; // Inicializando o mutex
@@ -545,7 +544,7 @@ void* executarCpu_RoundRobin(void* arg) {
                 if ((*it)->pcb.idCpuAtual == -1) {
                     pm = *it;
                     pm->pcb.idCpuAtual = cpu->id;
-                    pm->pcb.quantum = 10;
+                    pm->pcb.quantum = 55;
                     cpu->ocupada = true; // Marca a CPU como ocupada
                     filaPaginasMemoria.erase(it); // Remove da fila circular
                     break;
@@ -606,7 +605,6 @@ void LogSaida(const string &mensagem) {
 }
 
 void imprimirDados (PaginaMemoria *pm){
-
     if (FCFS || SJF){
         LogSaida("\nProcesso " + to_string(pm->pcb.id + 1) + " encerrado!" + 
                 "\nDados finais: \nLinhas Processadas: " + to_string(pm->pcb.linhasProcessadasAtual) +  
@@ -622,7 +620,7 @@ void imprimirDados (PaginaMemoria *pm){
                 "\nQuantum necessário para executar: " + to_string(pm->pcb.quantumNecessario) +
                 "\nTimestamp: " + to_string(pm->pcb.timestamp) + 
                 "\nNúmeros de bilhetes acumulados: " + to_string(pm->pcb.numBilhetes) + 
-                "\nEstado: " + pm->pcb.estado + "\n");
+                "\nEstado: " + pm->pcb.estado +"\n");
     }else{
         LogSaida("\nProcesso " + to_string(pm->pcb.id + 1) + " encerrado!" + 
                 "\nDados finais: \nLinhas Processadas: " + to_string(pm->pcb.linhasProcessadasAtual) +  
@@ -630,7 +628,7 @@ void imprimirDados (PaginaMemoria *pm){
                 "\nQuantum necessário para executar: " + to_string(pm->pcb.quantumNecessario) +
                 "\nTimestamp: " + to_string(pm->pcb.timestamp) + 
                 "\nQuantum final: " + to_string(pm->pcb.quantum) + 
-                "\nEstado: " + pm->pcb.estado + "\n");
+                "\nEstado: " + pm->pcb.estado +"\n");
     }
     
 }
