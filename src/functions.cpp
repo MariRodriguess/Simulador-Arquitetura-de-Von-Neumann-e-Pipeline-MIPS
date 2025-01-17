@@ -544,7 +544,7 @@ void* executarCpu_RoundRobin(void* arg) {
                 if ((*it)->pcb.idCpuAtual == -1) {
                     pm = *it;
                     pm->pcb.idCpuAtual = cpu->id;
-                    pm->pcb.quantum = 55;
+                    pm->pcb.quantum = 40;
                     cpu->ocupada = true; // Marca a CPU como ocupada
                     filaPaginasMemoria.erase(it); // Remove da fila circular
                     break;
