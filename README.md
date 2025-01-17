@@ -19,7 +19,6 @@ Este programa implementa um menu interativo que permite ao usuário escolher qua
 4. **Round Robin** - Cada processo recebe uma fatia de tempo para execução em ordem circular.
 5. **Todos os Algoritmos** - Executa todos os escalonadores em sequência, permitindo comparações entre os métodos.
 
----
 
 ## 🖥️Interação com o Menu
 Ao iniciar o programa, você verá o seguinte menu:
@@ -32,6 +31,9 @@ Ao iniciar o programa, você verá o seguinte menu:
 
 - O acompanhamento da execução do processo pode ser feito pelo arquivo de saída gerado, nomeado como **log_output.txt**.
 
+## 📂Processos de Entrada
+
+Os arquivos de entrada estão localizados na pasta data e contêm os processos que serão escalonados. Atualmente, existem 5 processos disponíveis para uso. É possível adicionar mais arquivos conforme necessário, seguindo o formato especificado no modelo do input.
 
 ## 📝Modelo do input (Processo a ser Executado)
 
@@ -54,6 +56,12 @@ Ao iniciar o programa, você verá o seguinte menu:
 * Uso de periféricos
   * $ | Periférico desejado
   * $ 1
+
+## 🛠️Configuração do Round Robin
+
+O escalonador Round Robin utiliza um quantum fixo de 40, definido no início da execução, garantindo que o tempo de execução seja distribuído de forma justa entre os processos. 
+
+O quantum diminui a cada clock no pipeline. Para modificar o valor do quantum do Round Robin, basta alterar a linha 547 no arquivo `functions.cpp` dentro da pasta `src`.
 
 
 ## 👾Compilação e execução
