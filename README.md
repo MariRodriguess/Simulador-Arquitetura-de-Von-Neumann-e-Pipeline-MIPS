@@ -61,7 +61,7 @@ Os arquivos de entrada estão localizados na pasta data e contêm os processos q
 
 O escalonador Round Robin utiliza um quantum fixo de 40, definido no início da execução, garantindo que o tempo de execução seja distribuído de forma justa entre os processos. 
 
-O quantum diminui a cada clock no pipeline. Para modificar o valor do quantum do Round Robin, basta alterar a linha 547 no arquivo `functions.cpp` dentro da pasta `src`.
+O quantum diminui a cada clock no pipeline. Para modificar o valor do quantum do Round Robin, basta alterar a **linha 547** no arquivo `functions.cpp` dentro da pasta `src`.
 
 
 ## 👾Compilação e execução
