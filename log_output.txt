@@ -1,1052 +1,767 @@
 --- POLÍTICA DE ESCALONAMENTO: FCFS
 =================================================================================================
-Processo 2 -> CLOCK 2: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 1 -> CLOCK 1: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 3 (CPU 1)
+Processo 1 -> CLOCK 1: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 3 (CPU 1)
 Processo 1 -> CLOCK 1: 2, PC: 0, ETAPA: DECODE  (CPU 1)
+ = 1 9 (CPU 3)
+Processo 3 -> CLOCK 2: 1, PC: 0, ETAPA: FETCH, Instrucao: = 1 2 (CPU 2)
 Processo 1 -> CLOCK 1: 2, PC: 0, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 1 -> CLOCK 1: 3, PC: 1, ETAPA: FETCH, Instrucao: = 1 2  (CPU 1)
-Processo 1 -> CLOCK 1: 4, PC: 1, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 2: 2, PC: 0, ETAPA: DECODE  (CPU 2)
-Processo 1 -> CLOCK 1: 4, PC: 1, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 2 -> CLOCK 2: 2, PC: 1, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 1 -> CLOCK 1: 5, PC: 2, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
-Processo 1 -> CLOCK 1: 6, PC: 3, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 2: 3, PC: 3, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 1 -> CLOCK 1: 7, PC: 3, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 1 -> CLOCK 1: 8, PC: 3, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 1)
-Processo 1 -> CLOCK 1: 9, PC: 3, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 1)
-Processo 1 -> CLOCK 1: 10, PC: 4, ETAPA: FETCH, Instrucao: = 2 7 (CPU 1)
-Processo 1 -> CLOCK 1: 11, PC: 4, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 11, PC: 4, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 1 -> CLOCK 1: 12, PC: 5, ETAPA: FETCH, Instrucao: = 3 9  (CPU 1)
-Processo 1 -> CLOCK 1: 13, PC: 5, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 13, PC: 5, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 1 -> CLOCK 1: 14, PC: 6, ETAPA: FETCH, Instrucao: + 4 2 3 (CPU 1)
-Processo 1 -> CLOCK 1: 15, PC: 6, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 16, PC: 6, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 1 -> CLOCK 1: 17, PC: 6, ETAPA: MEMORY_ACCESS, Resultado: 16 (CPU 1)
-Processo 1 -> CLOCK 1: 18, PC: 6, ETAPA: WRITEBACK, Escrevendo: 16 na memoria. (CPU 1)
-Processo 1 -> CLOCK 1: 19, PC: 7, ETAPA: FETCH, Instrucao: = 0 7 (CPU 1)
-Processo 1 -> CLOCK 1: 20, PC: 7, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 20, PC: 7, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 1 -> CLOCK 1: 21, PC: 8, ETAPA: FETCH, Instrucao: = 1 2  (CPU 1)
-Processo 1 -> CLOCK 1: 22, PC: 8, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 22, PC: 8, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 1 -> CLOCK 1: 23, PC: 9, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
-Processo 1 -> CLOCK 1: 24, PC: 9, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 25, PC: 9, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 1 -> CLOCK 1: 26, PC: 9, ETAPA: MEMORY_ACCESS, Resultado: 9 (CPU 1)
-Processo 1 -> CLOCK 1: 27, PC: 9, ETAPA: WRITEBACK, Escrevendo: 9 na memoria. (CPU 1)
-Processo 1 -> CLOCK 1: 28, PC: 10, ETAPA: FETCH, Instrucao: * 5 1 0 (CPU 1)
-Processo 1 -> CLOCK 1: 29, PC: 10, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 30, PC: 10, ETAPA: EXECUTE, Instrucao: * (CPU 1)
-Processo 1 -> CLOCK 1: 31, PC: 10, ETAPA: MEMORY_ACCESS, Resultado: 14 (CPU 1)
-Processo 1 -> CLOCK 1: 32, PC: 10, ETAPA: WRITEBACK, Escrevendo: 14 na memoria. (CPU 1)
-Processo 2 -> CLOCK 2: 4, PC: 6, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 4, PC: 11, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 5, PC: 12, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 6, PC: 12, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 7, PC: 12, ETAPA: EXECUTE, Instrucao: - (CPU 2)
-Processo 2 -> CLOCK 2: 8, PC: 12, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 2)
-Processo 2 -> CLOCK 2: 9, PC: 12, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 10, PC: 13, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 11, PC: 13, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 11, PC: 13, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 12, PC: 14, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 13, PC: 14, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 13, PC: 14, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 14, PC: 15, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 15, PC: 15, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 16, PC: 15, ETAPA: EXECUTE, Instrucao: + (CPU 2)
-Processo 2 -> CLOCK 2: 17, PC: 15, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 2)
-Processo 2 -> CLOCK 2: 18, PC: 15, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 19, PC: 16, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 20, PC: 16, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 20, PC: 16, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 21, PC: 17, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 22, PC: 17, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 22, PC: 17, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 23, PC: 18, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 24, PC: 18, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 25, PC: 18, ETAPA: EXECUTE, Instrucao: * (CPU 2)
-Processo 2 -> CLOCK 2: 26, PC: 18, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 2)
-Processo 2 -> CLOCK 2: 27, PC: 18, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 28, PC: 19, ETAPA: FETCH, Instrucao: = 2 10 (CPU 2)
-Processo 2 -> CLOCK 2: 29, PC: 19, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 29, PC: 19, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 30, PC: 20, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 31, PC: 20, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 31, PC: 20, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 32, PC: 21, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 33, PC: 21, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 33, PC: 21, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 34, PC: 22, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 35, PC: 22, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 36, PC: 22, ETAPA: EXECUTE, Instrucao: - (CPU 2)
-Processo 2 -> CLOCK 2: 37, PC: 22, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 2)
-Processo 2 -> CLOCK 2: 38, PC: 22, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 39, PC: 23, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 40, PC: 23, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 40, PC: 23, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 41, PC: 24, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 42, PC: 24, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 42, PC: 24, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 43, PC: 25, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 44, PC: 25, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 45, PC: 25, ETAPA: EXECUTE, Instrucao: + (CPU 2)
-Processo 2 -> CLOCK 2: 46, PC: 25, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 2)
-Processo 2 -> CLOCK 2: 47, PC: 25, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 48, PC: 26, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 49, PC: 26, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 49, PC: 26, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 50, PC: 27, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 51, PC: 27, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 51, PC: 27, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 52, PC: 28, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 53, PC: 28, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 54, PC: 28, ETAPA: EXECUTE, Instrucao: * (CPU 2)
-Processo 2 -> CLOCK 2: 55, PC: 28, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 2)
-Processo 2 -> CLOCK 2: 56, PC: 28, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 57, PC: 29, ETAPA: FETCH, Instrucao: = 2 10 (CPU 2)
-Processo 2 -> CLOCK 2: 58, PC: 29, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 58, PC: 29, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 2, PC: 0, ETAPA: DECODE  (CPU 2)
+Processo 2 -> CLOCK 3: 2, PC: 0, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 1 -> CLOCK 1: 3, PC: 1, ETAPA: FETCH, Instrucao: = 1 2  (CPU 1)
+Processo 3 -> CLOCK 2: 2, PC: 1, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 1 -> CLOCK 1: 4, PC: 2, ETAPA: DECODE  (CPU 1)
+ = 0 5 (CPU 3)
+Processo 3 -> CLOCK 2: 3, PC: 3, ETAPA: FETCH, Instrucao: = 0 3 (CPU 2)
+Processo 3 -> CLOCK 2: 4, PC: 3, ETAPA: DECODE  (CPU 2)
+Processo 2 -> CLOCK 3: 4, PC: 3, ETAPA: DECODE  (CPU 3)
+Processo 1 -> CLOCK 1: 4, PC: 3, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 3 -> CLOCK 2: 4, PC: 3, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 2 -> CLOCK 3: 4, PC: 3, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 3 -> CLOCK 2: 5, PC: 5, ETAPA: FETCH, Instrucao: = 2 9 (CPU 2)
 
-Processo 1 encerrado!
+Processo 1 -> CLOCK 1: 6, PC: 6, ETAPA: DECODE  (CPU 1)
+ = 1 7 (CPU 3)
+Processo 3 -> CLOCK 2: 6, PC: 6, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 2 -> CLOCK 3: 6, PC: 6, ETAPA: DECODE  (CPU 3)
+Processo 1 -> CLOCK 1: 7, PC: 6, ETAPA: EXECUTE, Instrucao: + (CPU 1)
+Processo 3 -> CLOCK 2: 7, PC: 7, ETAPA: FETCH, Instrucao: = 3 11 (CPU 2)
+Processo 1 -> CLOCK 1: 8, PC: 7, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 1)
+Processo 3 -> CLOCK 2: 8, PC: 7, ETAPA: DECODE  (CPU 2)
+Processo 1 -> CLOCK 1: 9, PC: 8, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 1)
+Processo 3 -> CLOCK 2: 8, PC: 8, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 2 -> CLOCK 3: 8, PC: 8, ETAPA: DECODE  (CPU 3)
+Processo 1 -> CLOCK 1: 10, PC: 9, ETAPA: FETCH, Instrucao: = 2 7 (CPU 1)
+Processo 3 -> CLOCK 2: 9, PC: 10, ETAPA: FETCH, Instrucao: = 4 100 (CPU 2)
+Processo 1 -> CLOCK 1: 11, PC: 10, ETAPA: DECODE  (CPU 1)
+: = (CPU 3)
+Processo 3 -> CLOCK 2: 10, PC: 11, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+
+Processo 2 -> CLOCK 3: 10, PC: 11, ETAPA: DECODE  (CPU 3)
+ + 6 0 1 (CPU 2)
+Processo 1 -> CLOCK 1: 13, PC: 13, ETAPA: DECODE  (CPU 1)
+Processo 2 -> CLOCK 3: 10, PC: 13, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 1 -> CLOCK 1: 13, PC: 13, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+
+Processo 3 -> CLOCK 2: 13, PC: 13, ETAPA: EXECUTE, Instrucao: + (CPU 2)
+Processo 2 -> CLOCK 3: 12, PC: 14, ETAPA: DECODE  (CPU 3)
+Processo 3 -> CLOCK 2: 14, PC: 14, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 2)
+Processo 1 -> CLOCK 1: 14, PC: 15, ETAPA: FETCH, Instrucao: + 4 2 3 (CPU 1)
+Processo 2 -> CLOCK 3: 12, PC: 15, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 3 -> CLOCK 2: 15, PC: 15, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 2)
+Processo 2 -> CLOCK 3: 13, PC: 16, ETAPA: FETCH, Instrucao: + 2 0 1 (CPU 3)
+Processo 3 -> CLOCK 2: 16, PC: 17, ETAPA: FETCH, Instrucao: - 7 2 1 (CPU 2)
+Processo 2 -> CLOCK 3: 14, PC: 17, ETAPA: DECODE  (CPU 3)
+o: + (CPU 1)
+Processo 3 -> CLOCK 2: 17, PC: 17, ETAPA: DECODE  (CPU 2)
+Processo 2 -> CLOCK 3: 15, PC: 17, ETAPA: EXECUTE, Instrucao: + (CPU 3)
+Processo 1 -> CLOCK 1: 17, PC: 17, ETAPA: MEMORY_ACCESS, Resultado: 16 (CPU 1)
+Processo 3 -> CLOCK 2: 18, PC: 17, ETAPA: EXECUTE, Instrucao: - (CPU 2)
+Processo 2 -> CLOCK 3: 16, PC: 17, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 3)
+Processo 1 -> CLOCK 1: 18, PC: 17, ETAPA: WRITEBACK, Escrevendo: 16 na memoria. (CPU 1)
+Processo 2 -> CLOCK 3: 17, PC: 17, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 3)
+Processo 2 -> CLOCK 3: 18, PC: 19, ETAPA: FETCH, Instrucao: * 3 0 1 (CPU 3)
+. (CPU 2)
+Processo 3 -> CLOCK 2: 21, PC: 20, ETAPA: FETCH, Instrucao: * 8 3 4 (CPU 2)
+Processo 1 -> CLOCK 1: 20, PC: 20, ETAPA: DECODE  (CPU 1)
+Processo 3 -> CLOCK 2: 22, PC: 20, ETAPA: DECODE  (CPU 2)
+Processo 2 -> CLOCK 3: 20, PC: 20, ETAPA: EXECUTE, Instrucao: * (CPU 3)
+Processo 1 -> CLOCK 1: 20, PC: 20, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 3 -> CLOCK 2: 23, PC: 20, ETAPA: EXECUTE, Instrucao: * (CPU 2)
+Processo 2 -> CLOCK 3: 21, PC: 20, ETAPA: MEMORY_ACCESS, Resultado: 6 (CPU 3)
+Processo 3 -> CLOCK 2: 24, PC: 21, ETAPA: MEMORY_ACCESS, Resultado: 1100 (CPU 2)
+Processo 2 -> CLOCK 3: 22, PC: 21, ETAPA: WRITEBACK, Escrevendo: 6 na memoria. (CPU 3)
+Processo 3 -> CLOCK 2: 25, PC: 21, ETAPA: WRITEBACK, Escrevendo: 1100 na memoria. (CPU 2)
+Processo 1 -> CLOCK 1: 22, PC: 22, ETAPA: DECODE  (CPU 1)
+Processo 2 -> CLOCK 3: 23, PC: 22, ETAPA: FETCH, Instrucao: + 0 0 1 (CPU 3)
+Processo 3 -> CLOCK 2: 26, PC: 23, ETAPA: FETCH, Instrucao: / 9 4 4 (CPU 2)
+Processo 2 -> CLOCK 3: 24, PC: 23, ETAPA: DECODE  (CPU 3)
+Processo 1 -> CLOCK 1: 22, PC: 23, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 3 -> CLOCK 2: 27, PC: 23, ETAPA: DECODE  (CPU 2)
+Processo 1 -> CLOCK 1: 23, PC: 24, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
+Processo 2 -> CLOCK 3: 26, PC: 24, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 3)
+Processo 2 -> CLOCK 3: 27, PC: 24, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 3)
+Processo 1 -> CLOCK 1: 24, PC: 24, ETAPA: DECODE  (CPU 1)
+Processo 3 -> CLOCK 2: 30, PC: 24, ETAPA: WRITEBACK, Escrevendo: 1 na memoria. (CPU 2)
+Processo 2 -> CLOCK 3: 28, PC: 25, ETAPA: FETCH, Instrucao: * 0 0 1 (CPU 3)
+Processo 3 -> CLOCK 2: 31, PC: 26, ETAPA: FETCH, Instrucao: ? 0 1 > (CPU 2)
+Processo 1 -> CLOCK 1: 25, PC: 25, ETAPA: EXECUTE, Instrucao: + (CPU 1)
+Processo 2 -> CLOCK 3: 29, PC: 26, ETAPA: DECODE  (CPU 3)
+Processo 3 -> CLOCK 2: 32, PC: 26, ETAPA: DECODE  (CPU 2)
+Processo 1 -> CLOCK 1: 26, PC: 26, ETAPA: MEMORY_ACCESS, Resultado: 9 (CPU 1)
+Processo 2 -> CLOCK 3: 30, PC: 26, ETAPA: EXECUTE, Instrucao: * (CPU 3)
+oria. (CPU 1)
+Processo 1 -> CLOCK 1: 28, PC: 27, ETAPA: FETCH, Instrucao: * 5 1 0 (CPU 1)
+Processo 2 -> CLOCK 3: 31, PC: 27, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 3)
+Processo 3 -> CLOCK 2: 34, PC: 28, ETAPA: FETCH, Instrucao: = 1 2 (CPU 2)
+Processo 1 -> CLOCK 1: 29, PC: 28, ETAPA: DECODE  (CPU 1)
+Processo 2 -> CLOCK 3: 32, PC: 28, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 3)
+Processo 3 -> CLOCK 2: 35, PC: 28, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 35, PC: 29, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 1 -> CLOCK 1: 30, PC: 28, ETAPA: EXECUTE, Instrucao: * (CPU 1)
+Processo 3 -> CLOCK 2: 36, PC: 30, ETAPA: FETCH, Instrucao: = 0 3 (CPU 2)
+Processo 1 -> CLOCK 1: 31, PC: 30, ETAPA: MEMORY_ACCESS, Resultado: 14 (CPU 1)
+Processo 1 -> CLOCK 1: 32, PC: 30, ETAPA: WRITEBACK, Escrevendo: 14 na memoria. (CPU 1)
+Processo 3 -> CLOCK 2: 37, PC: 30, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 38, PC: 32, ETAPA: FETCH, Instrucao: = 2 9 (CPU 2)
+Processo 3 -> CLOCK 2: 39, PC: 32, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 39, PC: 32, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 40, PC: 33, ETAPA: FETCH, Instrucao: = 3 11 (CPU 2)
+Processo 3 -> CLOCK 2: 41, PC: 33, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 41, PC: 33, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 42, PC: 34, ETAPA: FETCH, Instrucao: = 4 100 (CPU 2)
+Processo 3 -> CLOCK 2: 43, PC: 34, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 43, PC: 34, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 44, PC: 35, ETAPA: FETCH, Instrucao: + 6 0 1 (CPU 2)
+Processo 3 -> CLOCK 2: 45, PC: 35, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 46, PC: 35, ETAPA: EXECUTE, Instrucao: + (CPU 2)
+Processo 3 -> CLOCK 2: 47, PC: 35, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 2)
+Processo 3 -> CLOCK 2: 48, PC: 35, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 2)
+Processo 3 -> CLOCK 2: 49, PC: 36, ETAPA: FETCH, Instrucao: - 7 2 1 (CPU 2)
+Processo 3 -> CLOCK 2: 50, PC: 36, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 51, PC: 36, ETAPA: EXECUTE, Instrucao: - (CPU 2)
+Processo 3 -> CLOCK 2: 52, PC: 36, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 2)
+Processo 3 -> CLOCK 2: 53, PC: 36, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 2)
+Processo 3 -> CLOCK 2: 54, PC: 37, ETAPA: FETCH, Instrucao: * 8 3 4 (CPU 2)
+Processo 3 -> CLOCK 2: 55, PC: 37, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 56, PC: 37, ETAPA: EXECUTE, Instrucao: * (CPU 2)
+Processo 3 -> CLOCK 2: 57, PC: 37, ETAPA: MEMORY_ACCESS, Resultado: 1100 (CPU 2)
+Processo 3 -> CLOCK 2: 58, PC: 37, ETAPA: WRITEBACK, Escrevendo: 1100 na memoria. (CPU 2)
+Processo 3 -> CLOCK 2: 59, PC: 38, ETAPA: FETCH, Instrucao: / 9 4 4 (CPU 2)
+Processo 3 -> CLOCK 2: 60, PC: 38, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 61, PC: 38, ETAPA: EXECUTE, Instrucao: / (CPU 2)
+Processo 3 -> CLOCK 2: 62, PC: 38, ETAPA: MEMORY_ACCESS, Resultado: 1 (CPU 2)
+Processo 3 -> CLOCK 2: 63, PC: 38, ETAPA: WRITEBACK, Escrevendo: 1 na memoria. (CPU 2)
+Processo 3 -> CLOCK 2: 64, PC: 39, ETAPA: FETCH, Instrucao: ? 0 1 > (CPU 2)
+Processo 3 -> CLOCK 2: 65, PC: 39, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 65, PC: 39, ETAPA: EXECUTE, Instrucao: ? (CPU 2)
+
+Processo 2 encerrado!
 Dados finais: 
 Linhas Processadas: 10
-Prioridade: 3
+Prioridade: 1
 Quantum necessário para executar: 32
 Timestamp: 32
 Estado: Finalizado
 
-Processo 3 -> CLOCK 1: 33, PC: 30, ETAPA: FETCH, Instrucao: = 1 9 (CPU 1)
-Processo 3 -> CLOCK 1: 34, PC: 30, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 34, PC: 30, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 3 -> CLOCK 1: 35, PC: 31, ETAPA: FETCH, Instrucao: = 0 5 (CPU 1)
-Processo 3 -> CLOCK 1: 36, PC: 31, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 36, PC: 31, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 3 -> CLOCK 1: 37, PC: 32, ETAPA: FETCH, Instrucao: = 1 7 (CPU 1)
-Processo 3 -> CLOCK 1: 38, PC: 32, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 38, PC: 32, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 3 -> CLOCK 1: 39, PC: 33, ETAPA: FETCH, Instrucao: = 0 2 (CPU 1)
-Processo 3 -> CLOCK 1: 40, PC: 33, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 40, PC: 33, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 3 -> CLOCK 1: 41, PC: 34, ETAPA: FETCH, Instrucao: = 1 1 (CPU 1)
-Processo 3 -> CLOCK 1: 42, PC: 34, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 42, PC: 34, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 3 -> CLOCK 1: 43, PC: 35, ETAPA: FETCH, Instrucao: = 0 6 (CPU 1)
-Processo 3 -> CLOCK 1: 44, PC: 35, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 44, PC: 35, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 3 -> CLOCK 1: 45, PC: 36, ETAPA: FETCH, Instrucao: + 2 0 1 (CPU 1)
-Processo 3 -> CLOCK 1: 46, PC: 36, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 47, PC: 36, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 3 -> CLOCK 1: 48, PC: 36, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 1)
-Processo 3 -> CLOCK 1: 49, PC: 36, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 1)
-Processo 3 -> CLOCK 1: 50, PC: 37, ETAPA: FETCH, Instrucao: * 3 0 1 (CPU 1)
-Processo 3 -> CLOCK 1: 51, PC: 37, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 52, PC: 37, ETAPA: EXECUTE, Instrucao: * (CPU 1)
-Processo 3 -> CLOCK 1: 53, PC: 37, ETAPA: MEMORY_ACCESS, Resultado: 6 (CPU 1)
-Processo 3 -> CLOCK 1: 54, PC: 37, ETAPA: WRITEBACK, Escrevendo: 6 na memoria. (CPU 1)
-Processo 3 -> CLOCK 1: 55, PC: 38, ETAPA: FETCH, Instrucao: + 0 0 1 (CPU 1)
-Processo 3 -> CLOCK 1: 56, PC: 38, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 57, PC: 38, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 3 -> CLOCK 1: 58, PC: 38, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 1)
-Processo 3 -> CLOCK 1: 59, PC: 38, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 1)
-Processo 3 -> CLOCK 1: 60, PC: 39, ETAPA: FETCH, Instrucao: * 0 0 1 (CPU 1)
-Processo 3 -> CLOCK 1: 61, PC: 39, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 62, PC: 39, ETAPA: EXECUTE, Instrucao: * (CPU 1)
-Processo 3 -> CLOCK 1: 63, PC: 39, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 1)
-Processo 3 -> CLOCK 1: 64, PC: 39, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 1)
 
-Processo 2 encerrado!
+Processo 1 encerrado!
 Dados finais: 
-Linhas Processadas: 20
-Prioridade: 7
-Quantum necessário para executar: 58
-Timestamp: 58
+Linhas Processadas: 10
+Prioridade: 5
+Quantum necessário para executar: 32
+Timestamp: 32
 Estado: Finalizado
 
-Processo 4 -> CLOCK 2: 59, PC: 40, ETAPA: FETCH, Instrucao: = 1 2 (CPU 2)
-Processo 4 -> CLOCK 2: 60, PC: 40, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 60, PC: 40, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 61, PC: 41, ETAPA: FETCH, Instrucao: = 0 3 (CPU 2)
-Processo 4 -> CLOCK 2: 62, PC: 41, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 62, PC: 41, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 63, PC: 42, ETAPA: FETCH, Instrucao: = 2 9 (CPU 2)
-Processo 4 -> CLOCK 2: 64, PC: 42, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 64, PC: 42, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 65, PC: 43, ETAPA: FETCH, Instrucao: = 3 11 (CPU 2)
-Processo 4 -> CLOCK 2: 66, PC: 43, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 66, PC: 43, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 67, PC: 44, ETAPA: FETCH, Instrucao: = 4 100 (CPU 2)
-Processo 4 -> CLOCK 2: 68, PC: 44, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 68, PC: 44, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 69, PC: 45, ETAPA: FETCH, Instrucao: + 6 0 1 (CPU 2)
-Processo 4 -> CLOCK 2: 70, PC: 45, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 71, PC: 45, ETAPA: EXECUTE, Instrucao: + (CPU 2)
-Processo 4 -> CLOCK 2: 72, PC: 45, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 2)
-Processo 4 -> CLOCK 2: 73, PC: 45, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 74, PC: 46, ETAPA: FETCH, Instrucao: - 7 2 1 (CPU 2)
-Processo 4 -> CLOCK 2: 75, PC: 46, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 76, PC: 46, ETAPA: EXECUTE, Instrucao: - (CPU 2)
-Processo 4 -> CLOCK 2: 77, PC: 46, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 2)
-Processo 4 -> CLOCK 2: 78, PC: 46, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 79, PC: 47, ETAPA: FETCH, Instrucao: * 8 3 4 (CPU 2)
-Processo 4 -> CLOCK 2: 80, PC: 47, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 81, PC: 47, ETAPA: EXECUTE, Instrucao: * (CPU 2)
-Processo 4 -> CLOCK 2: 82, PC: 47, ETAPA: MEMORY_ACCESS, Resultado: 1100 (CPU 2)
-Processo 4 -> CLOCK 2: 83, PC: 47, ETAPA: WRITEBACK, Escrevendo: 1100 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 84, PC: 48, ETAPA: FETCH, Instrucao: / 9 4 4 (CPU 2)
-Processo 4 -> CLOCK 2: 85, PC: 48, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 86, PC: 48, ETAPA: EXECUTE, Instrucao: / (CPU 2)
-Processo 4 -> CLOCK 2: 87, PC: 48, ETAPA: MEMORY_ACCESS, Resultado: 1 (CPU 2)
-Processo 4 -> CLOCK 2: 88, PC: 48, ETAPA: WRITEBACK, Escrevendo: 1 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 89, PC: 49, ETAPA: FETCH, Instrucao: ? 0 1 > (CPU 2)
-Processo 4 -> CLOCK 2: 90, PC: 49, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 90, PC: 49, ETAPA: EXECUTE, Instrucao: ? (CPU 2)
-Processo 4 -> CLOCK 2: 92, PC: 50, ETAPA: FETCH, Instrucao: = 1 2 (CPU 2)
-Processo 4 -> CLOCK 2: 93, PC: 50, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 93, PC: 50, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 94, PC: 51, ETAPA: FETCH, Instrucao: = 0 3 (CPU 2)
-Processo 4 -> CLOCK 2: 95, PC: 51, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 95, PC: 51, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 96, PC: 52, ETAPA: FETCH, Instrucao: = 2 9 (CPU 2)
-Processo 4 -> CLOCK 2: 97, PC: 52, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 97, PC: 52, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 98, PC: 53, ETAPA: FETCH, Instrucao: = 3 11 (CPU 2)
-Processo 4 -> CLOCK 2: 99, PC: 53, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 99, PC: 53, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 100, PC: 54, ETAPA: FETCH, Instrucao: = 4 100 (CPU 2)
-Processo 4 -> CLOCK 2: 101, PC: 54, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 101, PC: 54, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 102, PC: 55, ETAPA: FETCH, Instrucao: + 6 0 1 (CPU 2)
-Processo 4 -> CLOCK 2: 103, PC: 55, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 104, PC: 55, ETAPA: EXECUTE, Instrucao: + (CPU 2)
-Processo 4 -> CLOCK 2: 105, PC: 55, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 2)
-Processo 4 -> CLOCK 2: 106, PC: 55, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 107, PC: 56, ETAPA: FETCH, Instrucao: - 7 2 1 (CPU 2)
-Processo 4 -> CLOCK 2: 108, PC: 56, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 109, PC: 56, ETAPA: EXECUTE, Instrucao: - (CPU 2)
-Processo 4 -> CLOCK 2: 110, PC: 56, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 2)
-Processo 4 -> CLOCK 2: 111, PC: 56, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 112, PC: 57, ETAPA: FETCH, Instrucao: * 8 3 4 (CPU 2)
-Processo 4 -> CLOCK 2: 113, PC: 57, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 114, PC: 57, ETAPA: EXECUTE, Instrucao: * (CPU 2)
-Processo 4 -> CLOCK 2: 115, PC: 57, ETAPA: MEMORY_ACCESS, Resultado: 1100 (CPU 2)
-Processo 4 -> CLOCK 2: 116, PC: 57, ETAPA: WRITEBACK, Escrevendo: 1100 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 117, PC: 58, ETAPA: FETCH, Instrucao: / 9 4 4 (CPU 2)
-Processo 4 -> CLOCK 2: 118, PC: 58, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 119, PC: 58, ETAPA: EXECUTE, Instrucao: / (CPU 2)
-Processo 4 -> CLOCK 2: 120, PC: 58, ETAPA: MEMORY_ACCESS, Resultado: 1 (CPU 2)
-Processo 4 -> CLOCK 2: 121, PC: 58, ETAPA: WRITEBACK, Escrevendo: 1 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 122, PC: 59, ETAPA: FETCH, Instrucao: ? 0 1 > (CPU 2)
-Processo 4 -> CLOCK 2: 123, PC: 59, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 123, PC: 59, ETAPA: EXECUTE, Instrucao: ? (CPU 2)
+Processo 5 -> CLOCK 3: 33, PC: 40, ETAPA: FETCH, Instrucao: = 0 10 (CPU 3)
+Processo 4 -> CLOCK 1: 33, PC: 40, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 5 -> CLOCK 3: 34, PC: 40, ETAPA: DECODE  (CPU 3)
+Processo 4 -> CLOCK 1: 34, PC: 40, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 3: 34, PC: 40, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 4 -> CLOCK 1: 35, PC: 41, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
+Processo 5 -> CLOCK 3: 35, PC: 42, ETAPA: FETCH, Instrucao: = 1 100 (CPU 3)
+Processo 4 -> CLOCK 1: 36, PC: 42, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 3: 36, PC: 42, ETAPA: DECODE  (CPU 3)
+Processo 4 -> CLOCK 1: 36, PC: 42, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 3: 36, PC: 42, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 4 -> CLOCK 1: 37, PC: 43, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 1)
+Processo 5 -> CLOCK 3: 37, PC: 44, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 3)
+Processo 4 -> CLOCK 1: 38, PC: 44, ETAPA: DECODE  (CPU 1)
+Processo 4 -> CLOCK 1: 39, PC: 44, ETAPA: EXECUTE, Instrucao: - (CPU 1)
+Processo 5 -> CLOCK 3: 39, PC: 44, ETAPA: EXECUTE, Instrucao: - (CPU 3)
+Processo 4 -> CLOCK 1: 40, PC: 44, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 1)
+Processo 4 -> CLOCK 1: 41, PC: 44, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 1)
+Processo 4 -> CLOCK 1: 42, PC: 45, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 5 -> CLOCK 3: 41, PC: 44, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 3)
+Processo 4 -> CLOCK 1: 43, PC: 45, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 3: 42, PC: 46, ETAPA: FETCH, Instrucao: = 0 10 (CPU 3)
+Processo 5 -> CLOCK 3: 43, PC: 46, ETAPA: DECODE  (CPU 3)
+Processo 4 -> CLOCK 1: 43, PC: 46, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 3: 43, PC: 46, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 4 -> CLOCK 1: 44, PC: 47, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
+Processo 5 -> CLOCK 3: 44, PC: 48, ETAPA: FETCH, Instrucao: = 1 100 (CPU 3)
+Processo 4 -> CLOCK 1: 45, PC: 48, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 3: 45, PC: 48, ETAPA: DECODE  (CPU 3)
+Processo 4 -> CLOCK 1: 45, PC: 48, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 3: 45, PC: 48, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 4 -> CLOCK 1: 46, PC: 49, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
+Processo 5 -> CLOCK 3: 46, PC: 50, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 3)
+Processo 4 -> CLOCK 1: 47, PC: 50, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 3: 47, PC: 50, ETAPA: DECODE  (CPU 3)
+Processo 4 -> CLOCK 1: 48, PC: 50, ETAPA: EXECUTE, Instrucao: + (CPU 1)
+Processo 4 -> CLOCK 1: 49, PC: 50, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 1)
+Processo 5 -> CLOCK 3: 49, PC: 50, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 3)
+Processo 4 -> CLOCK 1: 50, PC: 50, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 1)
+Processo 5 -> CLOCK 3: 50, PC: 50, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 3)
+Processo 4 -> CLOCK 1: 51, PC: 51, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 5 -> CLOCK 3: 51, PC: 52, ETAPA: FETCH, Instrucao: = 0 10 (CPU 3)
+Processo 4 -> CLOCK 1: 52, PC: 52, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 3: 52, PC: 52, ETAPA: DECODE  (CPU 3)
+Processo 4 -> CLOCK 1: 52, PC: 52, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 3: 52, PC: 52, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 4 -> CLOCK 1: 53, PC: 53, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
+Processo 5 -> CLOCK 3: 53, PC: 54, ETAPA: FETCH, Instrucao: = 1 100 (CPU 3)
+Processo 4 -> CLOCK 1: 54, PC: 54, ETAPA: DECODE  (CPU 1)
 
 Processo 3 encerrado!
 Dados finais: 
-Linhas Processadas: 10
-Prioridade: 3
-Quantum necessário para executar: 32
-Timestamp: 122
+Linhas Processadas: 20
+Prioridade: 1
+Quantum necessário para executar: 66
+Timestamp: 66
 Estado: Finalizado
 
-Processo 5 -> CLOCK 1: 65, PC: 60, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
-Processo 5 -> CLOCK 1: 66, PC: 60, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 66, PC: 60, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 67, PC: 61, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
-Processo 5 -> CLOCK 1: 68, PC: 61, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 68, PC: 61, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 69, PC: 62, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 1)
-Processo 5 -> CLOCK 1: 70, PC: 62, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 71, PC: 62, ETAPA: EXECUTE, Instrucao: - (CPU 1)
-Processo 5 -> CLOCK 1: 72, PC: 62, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 1)
-Processo 5 -> CLOCK 1: 73, PC: 62, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 1)
-Processo 5 -> CLOCK 1: 74, PC: 63, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
-Processo 5 -> CLOCK 1: 75, PC: 63, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 75, PC: 63, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 76, PC: 64, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
-Processo 5 -> CLOCK 1: 77, PC: 64, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 77, PC: 64, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 78, PC: 65, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
-Processo 5 -> CLOCK 1: 79, PC: 65, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 80, PC: 65, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 5 -> CLOCK 1: 81, PC: 65, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 1)
-Processo 5 -> CLOCK 1: 82, PC: 65, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 1)
-Processo 5 -> CLOCK 1: 83, PC: 66, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
-Processo 5 -> CLOCK 1: 84, PC: 66, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 84, PC: 66, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 85, PC: 67, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
-Processo 5 -> CLOCK 1: 86, PC: 67, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 86, PC: 67, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 87, PC: 68, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 1)
-Processo 5 -> CLOCK 1: 88, PC: 68, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 89, PC: 68, ETAPA: EXECUTE, Instrucao: * (CPU 1)
-Processo 5 -> CLOCK 1: 90, PC: 68, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 1)
-Processo 5 -> CLOCK 1: 91, PC: 68, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 1)
-Processo 5 -> CLOCK 1: 92, PC: 69, ETAPA: FETCH, Instrucao: ? 0 1 = (CPU 1)
-Processo 5 -> CLOCK 1: 93, PC: 69, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 93, PC: 69, ETAPA: EXECUTE, Instrucao: ? (CPU 1)
+Processo 5 -> CLOCK 3: 54, PC: 54, ETAPA: DECODE  (CPU 3)
+o: = (CPU 1)
+Processo 4 -> CLOCK 1: 55, PC: 55, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 1)
+Processo 5 -> CLOCK 3: 55, PC: 56, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 3)
+Processo 5 -> CLOCK 3: 56, PC: 56, ETAPA: DECODE  (CPU 3)
+o: * (CPU 1)
+Processo 4 -> CLOCK 1: 58, PC: 56, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 1)
+Processo 5 -> CLOCK 3: 57, PC: 56, ETAPA: EXECUTE, Instrucao: * (CPU 3)
+Processo 4 -> CLOCK 1: 59, PC: 56, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 1)
+Processo 4 -> CLOCK 1: 60, PC: 57, ETAPA: FETCH, Instrucao: ? 0 1 = (CPU 1)
+Processo 5 -> CLOCK 3: 58, PC: 56, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 3)
+Processo 4 -> CLOCK 1: 61, PC: 57, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 3: 59, PC: 57, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 3)
+Processo 5 -> CLOCK 3: 60, PC: 58, ETAPA: FETCH, Instrucao: = 2 10 (CPU 3)
+Processo 5 -> CLOCK 3: 61, PC: 58, ETAPA: DECODE  (CPU 3)
+Processo 4 -> CLOCK 1: 61, PC: 58, ETAPA: EXECUTE, Instrucao: ? (CPU 1)
+Processo 5 -> CLOCK 3: 62, PC: 59, ETAPA: FETCH, Instrucao: = 0 10 (CPU 3)
+Processo 5 -> CLOCK 3: 63, PC: 60, ETAPA: DECODE  (CPU 3)
+Processo 5 -> CLOCK 3: 63, PC: 60, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 5 -> CLOCK 3: 64, PC: 61, ETAPA: FETCH, Instrucao: = 1 100 (CPU 3)
+Processo 5 -> CLOCK 3: 65, PC: 61, ETAPA: DECODE  (CPU 3)
+Processo 5 -> CLOCK 3: 65, PC: 61, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 5 -> CLOCK 3: 66, PC: 62, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 3)
+Processo 5 -> CLOCK 3: 67, PC: 62, ETAPA: DECODE  (CPU 3)
+Processo 5 -> CLOCK 3: 68, PC: 62, ETAPA: EXECUTE, Instrucao: - (CPU 3)
+Processo 5 -> CLOCK 3: 69, PC: 62, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 3)
+Processo 5 -> CLOCK 3: 70, PC: 62, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 3)
+Processo 5 -> CLOCK 3: 71, PC: 63, ETAPA: FETCH, Instrucao: = 0 10 (CPU 3)
+Processo 5 -> CLOCK 3: 72, PC: 63, ETAPA: DECODE  (CPU 3)
+Processo 5 -> CLOCK 3: 72, PC: 63, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 5 -> CLOCK 3: 73, PC: 64, ETAPA: FETCH, Instrucao: = 1 100 (CPU 3)
+Processo 5 -> CLOCK 3: 74, PC: 64, ETAPA: DECODE  (CPU 3)
+Processo 5 -> CLOCK 3: 74, PC: 64, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 5 -> CLOCK 3: 75, PC: 65, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 3)
+Processo 5 -> CLOCK 3: 76, PC: 65, ETAPA: DECODE  (CPU 3)
+Processo 5 -> CLOCK 3: 77, PC: 65, ETAPA: EXECUTE, Instrucao: + (CPU 3)
+Processo 5 -> CLOCK 3: 78, PC: 65, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 3)
+Processo 5 -> CLOCK 3: 79, PC: 65, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 3)
+Processo 5 -> CLOCK 3: 80, PC: 66, ETAPA: FETCH, Instrucao: = 0 10 (CPU 3)
+Processo 5 -> CLOCK 3: 81, PC: 66, ETAPA: DECODE  (CPU 3)
+Processo 5 -> CLOCK 3: 81, PC: 66, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 5 -> CLOCK 3: 82, PC: 67, ETAPA: FETCH, Instrucao: = 1 100 (CPU 3)
+Processo 5 -> CLOCK 3: 83, PC: 67, ETAPA: DECODE  (CPU 3)
+Processo 5 -> CLOCK 3: 83, PC: 67, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 5 -> CLOCK 3: 84, PC: 68, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 3)
+Processo 5 -> CLOCK 3: 85, PC: 68, ETAPA: DECODE  (CPU 3)
+Processo 5 -> CLOCK 3: 86, PC: 68, ETAPA: EXECUTE, Instrucao: * (CPU 3)
+Processo 5 -> CLOCK 3: 87, PC: 68, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 3)
+Processo 5 -> CLOCK 3: 88, PC: 68, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 3)
+Processo 5 -> CLOCK 3: 89, PC: 69, ETAPA: FETCH, Instrucao: = 2 10 (CPU 3)
+Processo 5 -> CLOCK 3: 90, PC: 69, ETAPA: DECODE  (CPU 3)
+Processo 5 -> CLOCK 3: 90, PC: 69, ETAPA: EXECUTE, Instrucao: = (CPU 3)
 
 Processo 4 encerrado!
 Dados finais: 
-Linhas Processadas: 20
-Prioridade: 6
-Quantum necessário para executar: 66
-Timestamp: 188
+Linhas Processadas: 10
+Prioridade: 5
+Quantum necessário para executar: 30
+Timestamp: 160
 Estado: Finalizado
 
 
 Processo 5 encerrado!
 Dados finais: 
-Linhas Processadas: 10
-Prioridade: 9
-Quantum necessário para executar: 30
-Timestamp: 218
+Linhas Processadas: 20
+Prioridade: 7
+Quantum necessário para executar: 58
+Timestamp: 188
 Estado: Finalizado
 
-CLOCK 1 = 94 | 
-CLOCK 2 = 124 | 
+CLOCK 1 = 62 | 
+CLOCK 2 = 66 | 
+CLOCK 3 = 90 | 
 PC = 70
 
 
 --- POLÍTICA DE ESCALONAMENTO: Loteria
 =================================================================================================
-Processo 4 -> CLOCK 2: 1, PC: 0, ETAPA: FETCH, Instrucao: = 1 2 (CPU 2)
-Processo 2 -> CLOCK 1: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 2 -> CLOCK 1: 1, PC: 0, ETAPA: FETCH, Instrucao: = 1 9 (CPU 1)
+
+Processo 3 -> CLOCK 2: 2, PC: 0, ETAPA: DECODE  (CPU 2)
+Processo 4 -> CLOCK 3: 2, PC: 0, ETAPA: DECODE  (CPU 3)
 Processo 2 -> CLOCK 1: 2, PC: 0, ETAPA: DECODE  (CPU 1)
+Processo 3 -> CLOCK 2: 2, PC: 0, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 4 -> CLOCK 3: 2, PC: 0, ETAPA: EXECUTE, Instrucao: = (CPU 3)
 Processo 2 -> CLOCK 1: 2, PC: 0, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 2 -> CLOCK 1: 3, PC: 1, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
-Processo 2 -> CLOCK 1: 4, PC: 1, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 1: 4, PC: 1, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 2 -> CLOCK 1: 5, PC: 2, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 1)
-Processo 2 -> CLOCK 1: 6, PC: 2, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 1: 7, PC: 2, ETAPA: EXECUTE, Instrucao: - (CPU 1)
-Processo 2 -> CLOCK 1: 8, PC: 2, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 1)
-Processo 2 -> CLOCK 1: 9, PC: 2, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 1)
-Processo 2 -> CLOCK 1: 10, PC: 3, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
-Processo 2 -> CLOCK 1: 11, PC: 3, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 1: 11, PC: 3, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 2 -> CLOCK 1: 12, PC: 4, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
-Processo 2 -> CLOCK 1: 13, PC: 4, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 1: 13, PC: 4, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 2 -> CLOCK 1: 14, PC: 5, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
-Processo 2 -> CLOCK 1: 15, PC: 5, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 1: 16, PC: 5, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 2 -> CLOCK 1: 17, PC: 5, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 1)
-Processo 2 -> CLOCK 1: 18, PC: 5, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 1)
-Processo 2 -> CLOCK 1: 19, PC: 6, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
-Processo 2 -> CLOCK 1: 20, PC: 6, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 1: 20, PC: 6, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 2 -> CLOCK 1: 21, PC: 7, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
-Processo 2 -> CLOCK 1: 22, PC: 7, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 1: 22, PC: 7, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 2 -> CLOCK 1: 23, PC: 8, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 1)
-Processo 2 -> CLOCK 1: 24, PC: 8, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 1: 25, PC: 8, ETAPA: EXECUTE, Instrucao: * (CPU 1)
-Processo 2 -> CLOCK 1: 26, PC: 8, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 1)
-Processo 2 -> CLOCK 1: 27, PC: 8, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 1)
-Processo 2 -> CLOCK 1: 28, PC: 9, ETAPA: FETCH, Instrucao: = 2 10 (CPU 1)
-Processo 2 -> CLOCK 1: 29, PC: 9, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 1: 29, PC: 9, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 2 -> CLOCK 1: 30, PC: 10, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
-Processo 2 -> CLOCK 1: 31, PC: 10, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 1: 31, PC: 10, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 2 -> CLOCK 1: 32, PC: 11, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
-Processo 2 -> CLOCK 1: 33, PC: 11, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 1: 33, PC: 11, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 2 -> CLOCK 1: 34, PC: 12, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 1)
-Processo 2 -> CLOCK 1: 35, PC: 12, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 1: 36, PC: 12, ETAPA: EXECUTE, Instrucao: - (CPU 1)
-Processo 2 -> CLOCK 1: 37, PC: 12, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 1)
-Processo 4 -> CLOCK 2: 2, PC: 0, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 1: 38, PC: 12, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 1)
-Processo 2 -> CLOCK 1: 39, PC: 13, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
-Processo 2 -> CLOCK 1: 40, PC: 13, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 1: 40, PC: 13, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 2 -> CLOCK 1: 41, PC: 14, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
-Processo 2 -> CLOCK 1: 42, PC: 14, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 1: 42, PC: 14, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 2 -> CLOCK 1: 43, PC: 15, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
-Processo 2 -> CLOCK 1: 44, PC: 15, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 1: 45, PC: 15, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 2 -> CLOCK 1: 46, PC: 15, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 1)
-Processo 2 -> CLOCK 1: 47, PC: 15, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 1)
-Processo 2 -> CLOCK 1: 48, PC: 16, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
-Processo 2 -> CLOCK 1: 49, PC: 16, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 1: 49, PC: 16, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 2 -> CLOCK 1: 50, PC: 17, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
-Processo 2 -> CLOCK 1: 51, PC: 17, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 1: 51, PC: 17, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 2 -> CLOCK 1: 52, PC: 18, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 1)
-Processo 2 -> CLOCK 1: 53, PC: 18, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 1: 54, PC: 18, ETAPA: EXECUTE, Instrucao: * (CPU 1)
-Processo 2 -> CLOCK 1: 55, PC: 18, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 1)
-Processo 2 -> CLOCK 1: 56, PC: 18, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 1)
-Processo 2 -> CLOCK 1: 57, PC: 19, ETAPA: FETCH, Instrucao: = 2 10 (CPU 1)
-Processo 2 -> CLOCK 1: 58, PC: 19, ETAPA: DECODE  (CPU 1)
-Processo 2 -> CLOCK 1: 58, PC: 19, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 2: 2, PC: 12, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 3, PC: 21, ETAPA: FETCH, Instrucao: = 0 3 (CPU 2)
-Processo 4 -> CLOCK 2: 4, PC: 21, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 4, PC: 21, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 5, PC: 22, ETAPA: FETCH, Instrucao: = 2 9 (CPU 2)
-Processo 4 -> CLOCK 2: 6, PC: 22, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 6, PC: 22, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 7, PC: 23, ETAPA: FETCH, Instrucao: = 3 11 (CPU 2)
-Processo 4 -> CLOCK 2: 8, PC: 23, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 8, PC: 23, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 9, PC: 24, ETAPA: FETCH, Instrucao: = 4 100 (CPU 2)
-Processo 4 -> CLOCK 2: 10, PC: 24, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 10, PC: 24, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 11, PC: 25, ETAPA: FETCH, Instrucao: + 6 0 1 (CPU 2)
-Processo 4 -> CLOCK 2: 12, PC: 25, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 13, PC: 25, ETAPA: EXECUTE, Instrucao: + (CPU 2)
-Processo 4 -> CLOCK 2: 14, PC: 25, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 2)
-Processo 4 -> CLOCK 2: 15, PC: 25, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 16, PC: 26, ETAPA: FETCH, Instrucao: - 7 2 1 (CPU 2)
-Processo 4 -> CLOCK 2: 17, PC: 26, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 18, PC: 26, ETAPA: EXECUTE, Instrucao: - (CPU 2)
-Processo 4 -> CLOCK 2: 19, PC: 26, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 2)
-Processo 4 -> CLOCK 2: 20, PC: 26, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 21, PC: 27, ETAPA: FETCH, Instrucao: * 8 3 4 (CPU 2)
-Processo 4 -> CLOCK 2: 22, PC: 27, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 23, PC: 27, ETAPA: EXECUTE, Instrucao: * (CPU 2)
-Processo 4 -> CLOCK 2: 24, PC: 27, ETAPA: MEMORY_ACCESS, Resultado: 1100 (CPU 2)
-Processo 4 -> CLOCK 2: 25, PC: 27, ETAPA: WRITEBACK, Escrevendo: 1100 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 26, PC: 28, ETAPA: FETCH, Instrucao: / 9 4 4 (CPU 2)
-Processo 4 -> CLOCK 2: 27, PC: 28, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 28, PC: 28, ETAPA: EXECUTE, Instrucao: / (CPU 2)
-Processo 4 -> CLOCK 2: 29, PC: 28, ETAPA: MEMORY_ACCESS, Resultado: 1 (CPU 2)
-Processo 4 -> CLOCK 2: 30, PC: 28, ETAPA: WRITEBACK, Escrevendo: 1 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 31, PC: 29, ETAPA: FETCH, Instrucao: ? 0 1 > (CPU 2)
-Processo 4 -> CLOCK 2: 32, PC: 29, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 32, PC: 29, ETAPA: EXECUTE, Instrucao: ? (CPU 2)
-Processo 4 -> CLOCK 2: 34, PC: 30, ETAPA: FETCH, Instrucao: = 1 2 (CPU 2)
-Processo 4 -> CLOCK 2: 35, PC: 30, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 35, PC: 30, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 36, PC: 31, ETAPA: FETCH, Instrucao: = 0 3 (CPU 2)
-Processo 4 -> CLOCK 2: 37, PC: 31, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 37, PC: 31, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 38, PC: 32, ETAPA: FETCH, Instrucao: = 2 9 (CPU 2)
-Processo 4 -> CLOCK 2: 39, PC: 32, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 39, PC: 32, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 40, PC: 33, ETAPA: FETCH, Instrucao: = 3 11 (CPU 2)
-Processo 4 -> CLOCK 2: 41, PC: 33, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 41, PC: 33, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 42, PC: 34, ETAPA: FETCH, Instrucao: = 4 100 (CPU 2)
-Processo 4 -> CLOCK 2: 43, PC: 34, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 43, PC: 34, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 44, PC: 35, ETAPA: FETCH, Instrucao: + 6 0 1 (CPU 2)
-Processo 4 -> CLOCK 2: 45, PC: 35, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 46, PC: 35, ETAPA: EXECUTE, Instrucao: + (CPU 2)
-Processo 4 -> CLOCK 2: 47, PC: 35, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 2)
-Processo 4 -> CLOCK 2: 48, PC: 35, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 49, PC: 36, ETAPA: FETCH, Instrucao: - 7 2 1 (CPU 2)
-Processo 4 -> CLOCK 2: 50, PC: 36, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 51, PC: 36, ETAPA: EXECUTE, Instrucao: - (CPU 2)
-Processo 4 -> CLOCK 2: 52, PC: 36, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 2)
-Processo 4 -> CLOCK 2: 53, PC: 36, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 54, PC: 37, ETAPA: FETCH, Instrucao: * 8 3 4 (CPU 2)
-Processo 4 -> CLOCK 2: 55, PC: 37, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 56, PC: 37, ETAPA: EXECUTE, Instrucao: * (CPU 2)
-Processo 4 -> CLOCK 2: 57, PC: 37, ETAPA: MEMORY_ACCESS, Resultado: 1100 (CPU 2)
-Processo 4 -> CLOCK 2: 58, PC: 37, ETAPA: WRITEBACK, Escrevendo: 1100 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 59, PC: 38, ETAPA: FETCH, Instrucao: / 9 4 4 (CPU 2)
-Processo 4 -> CLOCK 2: 60, PC: 38, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 61, PC: 38, ETAPA: EXECUTE, Instrucao: / (CPU 2)
-Processo 4 -> CLOCK 2: 62, PC: 38, ETAPA: MEMORY_ACCESS, Resultado: 1 (CPU 2)
-Processo 4 -> CLOCK 2: 63, PC: 38, ETAPA: WRITEBACK, Escrevendo: 1 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 64, PC: 39, ETAPA: FETCH, Instrucao: ? 0 1 > (CPU 2)
-Processo 4 -> CLOCK 2: 65, PC: 39, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 65, PC: 39, ETAPA: EXECUTE, Instrucao: ? (CPU 2)
+Processo 3 -> CLOCK 2: 3, PC: 1, ETAPA: FETCH, Instrucao: = 0 3 (CPU 2)
+Processo 2 -> CLOCK 1: 3, PC: 3, ETAPA: FETCH, Instrucao: = 0 5 (CPU 1)
+
+Processo 3 -> CLOCK 2: 4, PC: 3, ETAPA: DECODE  (CPU 2)
+Processo 4 -> CLOCK 3: 4, PC: 3, ETAPA: DECODE  (CPU 3)
+Processo 2 -> CLOCK 1: 4, PC: 3, ETAPA: DECODE  (CPU 1)
+Processo 2 -> CLOCK 1: 4, PC: 3, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 3 -> CLOCK 2: 5, PC: 4, ETAPA: FETCH, Instrucao: = 2 9 (CPU 2)
+Processo 4 -> CLOCK 3: 5, PC: 6, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 3)
+Processo 2 -> CLOCK 1: 5, PC: 5, ETAPA: FETCH, Instrucao: = 1 7 (CPU 1)
+Processo 3 -> CLOCK 2: 6, PC: 6, ETAPA: DECODE  (CPU 2)
+Processo 4 -> CLOCK 3: 6, PC: 6, ETAPA: DECODE  (CPU 3)
+Processo 2 -> CLOCK 1: 6, PC: 6, ETAPA: DECODE  (CPU 1)
+Processo 3 -> CLOCK 2: 6, PC: 6, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 2 -> CLOCK 1: 6, PC: 6, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 3 -> CLOCK 2: 7, PC: 7, ETAPA: FETCH, Instrucao: = 3 11 (CPU 2)
+Processo 4 -> CLOCK 3: 8, PC: 7, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 3)
+Processo 2 -> CLOCK 1: 7, PC: 8, ETAPA: FETCH, Instrucao: = 0 2 (CPU 1)
+Processo 3 -> CLOCK 2: 8, PC: 8, ETAPA: DECODE  (CPU 2)
+Processo 4 -> CLOCK 3: 9, PC: 8, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 3)
+Processo 2 -> CLOCK 1: 8, PC: 8, ETAPA: DECODE  (CPU 1)
+Processo 3 -> CLOCK 2: 8, PC: 8, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 4 -> CLOCK 3: 10, PC: 9, ETAPA: FETCH, Instrucao: = 0 10 (CPU 3)
+Processo 3 -> CLOCK 2: 9, PC: 10, ETAPA: FETCH, Instrucao: = 4 100 (CPU 2)
+Processo 4 -> CLOCK 3: 11, PC: 10, ETAPA: DECODE  (CPU 3)
+= 1 1 (CPU 1)
+Processo 3 -> CLOCK 2: 10, PC: 11, ETAPA: DECODE  (CPU 2)
+Processo 4 -> CLOCK 3: 11, PC: 11, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 3 -> CLOCK 2: 10, PC: 11, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 2 -> CLOCK 1: 10, PC: 12, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+3)
+Processo 3 -> CLOCK 2: 11, PC: 13, ETAPA: FETCH, Instrucao: + 6 0 1 (CPU 2)
+Processo 4 -> CLOCK 3: 13, PC: 13, ETAPA: DECODE  (CPU 3)
+Processo 3 -> CLOCK 2: 12, PC: 14, ETAPA: DECODE  (CPU 2)
+Processo 2 -> CLOCK 1: 11, PC: 14, ETAPA: FETCH, Instrucao: = 0 6 (CPU 1)
+Processo 3 -> CLOCK 2: 13, PC: 14, ETAPA: EXECUTE, Instrucao: + (CPU 2)
+Processo 2 -> CLOCK 1: 12, PC: 14, ETAPA: DECODE  (CPU 1)
+Processo 4 -> CLOCK 3: 14, PC: 15, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 3)
+
+Processo 4 -> CLOCK 3: 15, PC: 16, ETAPA: DECODE  (CPU 3)
+endo: 5 na memoria. (CPU 2)
+Processo 3 -> CLOCK 2: 16, PC: 17, ETAPA: FETCH, Instrucao: - 7 2 1 (CPU 2)
+Processo 4 -> CLOCK 3: 16, PC: 17, ETAPA: EXECUTE, Instrucao: + (CPU 3)
+Processo 2 -> CLOCK 1: 15, PC: 17, ETAPA: EXECUTE, Instrucao: + (CPU 1)
+Processo 4 -> CLOCK 3: 17, PC: 17, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 3)
+Processo 4 -> CLOCK 3: 18, PC: 17, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 3)
+Processo 2 -> CLOCK 1: 16, PC: 17, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 1)
+Processo 3 -> CLOCK 2: 19, PC: 17, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 2)
+(CPU 1)
+Processo 4 -> CLOCK 3: 20, PC: 18, ETAPA: DECODE  (CPU 3)
+ * 3 0 1 (CPU 1)
+. (CPU 2)
+Processo 2 -> CLOCK 1: 19, PC: 20, ETAPA: DECODE  (CPU 1)
+o: = (CPU 3)
+2)
+Processo 4 -> CLOCK 3: 21, PC: 21, ETAPA: FETCH, Instrucao:Processo 2 -> CLOCK 1: 20, PC: 21, ETAPA: EXECUTE, Instrucao: * (CPU 1)
+Processo 3 -> CLOCK 2: 23, PC: 21, ETAPA: EXECUTE, Instrucao: * (CPU 2)
+Processo 4 -> CLOCK 3: 22, PC: 21, ETAPA: DECODE  (CPU 3)
+Processo 2 -> CLOCK 1: 21, PC: 21, ETAPA: MEMORY_ACCESS, Resultado: 6 (CPU 1)
+Processo 3 -> CLOCK 2: 24, PC: 21, ETAPA: MEMORY_ACCESS, Resultado: 1100 (CPU 2)
+Processo 4 -> CLOCK 3: 22, PC: 21, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 3 -> CLOCK 2: 25, PC: 21, ETAPA: WRITEBACK, Escrevendo: 1100 na memoria. (CPU 2)
+Processo 2 -> CLOCK 1: 22, PC: 21, ETAPA: WRITEBACK, Escrevendo: 6 na memoria. (CPU 1)
+Processo 4 -> CLOCK 3: 23, PC: 22, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 3)
+Processo 2 -> CLOCK 1: 23, PC: 24, ETAPA: FETCH, Instrucao: + 0 0 1 (CPU 1)
+Processo 4 -> CLOCK 3: 24, PC: 24, ETAPA: DECODE  (CPU 3)
+Processo 2 -> CLOCK 1: 24, PC: 24, ETAPA: DECODE  (CPU 1)
+Processo 4 -> CLOCK 3: 25, PC: 24, ETAPA: EXECUTE, Instrucao: * (CPU 3)
+Processo 3 -> CLOCK 2: 28, PC: 24, ETAPA: EXECUTE, Instrucao: / (CPU 2)
+Processo 2 -> CLOCK 1: 25, PC: 24, ETAPA: EXECUTE, Instrucao: + (CPU 1)
+Processo 4 -> CLOCK 3: 26, PC: 24, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 3)
+Processo 3 -> CLOCK 2: 29, PC: 24, ETAPA: MEMORY_ACCESS, Resultado: 1 (CPU 2)
+Processo 2 -> CLOCK 1: 26, PC: 24, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 1)
+Processo 4 -> CLOCK 3: 27, PC: 24, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 3)
+Processo 3 -> CLOCK 2: 30, PC: 24, ETAPA: WRITEBACK, Escrevendo: 1 na memoria. (CPU 2)
+Processo 4 -> CLOCK 3: 28, PC: 25, ETAPA: FETCH, Instrucao: ? 0 1 = (CPU 3)
+. (CPU 1)
+Processo 3 -> CLOCK 2: 31, PC: 26, ETAPA: FETCH, Instrucao: ? 0 1 > (CPU 2)
+Processo 3 -> CLOCK 2: 32, PC: 27, ETAPA: DECODE  (CPU 2)
+ * 0 0 1 (CPU 1)
+Processo 2 -> CLOCK 1: 29, PC: 27, ETAPA: DECODE  (CPU 1)
+Processo 2 -> CLOCK 1: 30, PC: 27, ETAPA: EXECUTE, Instrucao: * (CPU 1)
+Processo 2 -> CLOCK 1: 31, PC: 27, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 1)
+Processo 2 -> CLOCK 1: 32, PC: 27, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 1)
+Processo 4 -> CLOCK 3: 29, PC: 27, ETAPA: EXECUTE, Instrucao: ? (CPU 3)
+Processo 3 -> CLOCK 2: 32, PC: 29, ETAPA: EXECUTE, Instrucao: ? (CPU 2)
+Processo 3 -> CLOCK 2: 34, PC: 30, ETAPA: FETCH, Instrucao: = 1 2 (CPU 2)
+Processo 3 -> CLOCK 2: 35, PC: 30, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 35, PC: 30, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 36, PC: 31, ETAPA: FETCH, Instrucao: = 0 3 (CPU 2)
+Processo 3 -> CLOCK 2: 37, PC: 31, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 37, PC: 31, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 38, PC: 32, ETAPA: FETCH, Instrucao: = 2 9 (CPU 2)
+Processo 3 -> CLOCK 2: 39, PC: 32, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 39, PC: 32, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 40, PC: 33, ETAPA: FETCH, Instrucao: = 3 11 (CPU 2)
+Processo 3 -> CLOCK 2: 41, PC: 33, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 41, PC: 33, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 42, PC: 34, ETAPA: FETCH, Instrucao: = 4 100 (CPU 2)
+Processo 3 -> CLOCK 2: 43, PC: 34, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 43, PC: 34, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 44, PC: 35, ETAPA: FETCH, Instrucao: + 6 0 1 (CPU 2)
+Processo 3 -> CLOCK 2: 45, PC: 35, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 46, PC: 35, ETAPA: EXECUTE, Instrucao: + (CPU 2)
+Processo 3 -> CLOCK 2: 47, PC: 35, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 2)
+Processo 3 -> CLOCK 2: 48, PC: 35, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 2)
+Processo 3 -> CLOCK 2: 49, PC: 36, ETAPA: FETCH, Instrucao: - 7 2 1 (CPU 2)
+Processo 3 -> CLOCK 2: 50, PC: 36, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 51, PC: 36, ETAPA: EXECUTE, Instrucao: - (CPU 2)
+Processo 3 -> CLOCK 2: 52, PC: 36, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 2)
+Processo 3 -> CLOCK 2: 53, PC: 36, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 2)
+Processo 3 -> CLOCK 2: 54, PC: 37, ETAPA: FETCH, Instrucao: * 8 3 4 (CPU 2)
+Processo 3 -> CLOCK 2: 55, PC: 37, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 56, PC: 37, ETAPA: EXECUTE, Instrucao: * (CPU 2)
+Processo 3 -> CLOCK 2: 57, PC: 37, ETAPA: MEMORY_ACCESS, Resultado: 1100 (CPU 2)
+Processo 3 -> CLOCK 2: 58, PC: 37, ETAPA: WRITEBACK, Escrevendo: 1100 na memoria. (CPU 2)
+Processo 3 -> CLOCK 2: 59, PC: 38, ETAPA: FETCH, Instrucao: / 9 4 4 (CPU 2)
+Processo 3 -> CLOCK 2: 60, PC: 38, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 61, PC: 38, ETAPA: EXECUTE, Instrucao: / (CPU 2)
+Processo 3 -> CLOCK 2: 62, PC: 38, ETAPA: MEMORY_ACCESS, Resultado: 1 (CPU 2)
+Processo 3 -> CLOCK 2: 63, PC: 38, ETAPA: WRITEBACK, Escrevendo: 1 na memoria. (CPU 2)
+Processo 3 -> CLOCK 2: 64, PC: 39, ETAPA: FETCH, Instrucao: ? 0 1 > (CPU 2)
+Processo 3 -> CLOCK 2: 65, PC: 39, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 65, PC: 39, ETAPA: EXECUTE, Instrucao: ? (CPU 2)
 
 Processo 2 encerrado!
 Dados finais: 
-Linhas Processadas: 20
-Prioridade: 0
-Quantum necessário para executar: 58
-Timestamp: 58
+Linhas Processadas: 10
+Prioridade: 2
+Quantum necessário para executar: 32
+Timestamp: 32
 Números de bilhetes acumulados: 1
 Estado: Finalizado
 
-Processo 5 -> CLOCK 1: 59, PC: 40, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
-Processo 5 -> CLOCK 1: 60, PC: 40, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 60, PC: 40, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 61, PC: 41, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
-Processo 5 -> CLOCK 1: 62, PC: 41, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 62, PC: 41, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 63, PC: 42, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 1)
-Processo 5 -> CLOCK 1: 64, PC: 42, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 65, PC: 42, ETAPA: EXECUTE, Instrucao: - (CPU 1)
-Processo 5 -> CLOCK 1: 66, PC: 42, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 1)
-Processo 5 -> CLOCK 1: 67, PC: 42, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 1)
-Processo 5 -> CLOCK 1: 68, PC: 43, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
-Processo 5 -> CLOCK 1: 69, PC: 43, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 69, PC: 43, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 70, PC: 44, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
-Processo 5 -> CLOCK 1: 71, PC: 44, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 71, PC: 44, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 72, PC: 45, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
-Processo 5 -> CLOCK 1: 73, PC: 45, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 74, PC: 45, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 5 -> CLOCK 1: 75, PC: 45, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 1)
-Processo 5 -> CLOCK 1: 76, PC: 45, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 1)
-Processo 5 -> CLOCK 1: 77, PC: 46, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
-Processo 5 -> CLOCK 1: 78, PC: 46, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 78, PC: 46, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 79, PC: 47, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
-Processo 5 -> CLOCK 1: 80, PC: 47, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 80, PC: 47, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 81, PC: 48, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 1)
-Processo 5 -> CLOCK 1: 82, PC: 48, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 83, PC: 48, ETAPA: EXECUTE, Instrucao: * (CPU 1)
-Processo 5 -> CLOCK 1: 84, PC: 48, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 1)
-Processo 5 -> CLOCK 1: 85, PC: 48, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 1)
-Processo 5 -> CLOCK 1: 86, PC: 49, ETAPA: FETCH, Instrucao: ? 0 1 = (CPU 1)
-Processo 5 -> CLOCK 1: 87, PC: 49, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 87, PC: 49, ETAPA: EXECUTE, Instrucao: ? (CPU 1)
 
 Processo 4 encerrado!
 Dados finais: 
+Linhas Processadas: 10
+Prioridade: 1
+Quantum necessário para executar: 30
+Timestamp: 30
+Números de bilhetes acumulados: 1
+Estado: Finalizado
+
+Processo 5 -> CLOCK 1: 33, PC: 40, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 5 -> CLOCK 1: 34, PC: 40, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 34, PC: 40, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 35, PC: 41, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
+Processo 5 -> CLOCK 1: 36, PC: 41, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 36, PC: 41, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 37, PC: 42, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 1)
+Processo 5 -> CLOCK 1: 38, PC: 42, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 39, PC: 42, ETAPA: EXECUTE, Instrucao: - (CPU 1)
+Processo 5 -> CLOCK 1: 40, PC: 42, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 1)
+Processo 5 -> CLOCK 1: 41, PC: 42, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 1)
+Processo 5 -> CLOCK 1: 42, PC: 43, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 5 -> CLOCK 1: 43, PC: 43, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 43, PC: 43, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 44, PC: 44, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
+Processo 5 -> CLOCK 1: 45, PC: 44, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 45, PC: 44, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 46, PC: 45, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
+Processo 5 -> CLOCK 1: 47, PC: 45, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 48, PC: 45, ETAPA: EXECUTE, Instrucao: + (CPU 1)
+Processo 5 -> CLOCK 1: 49, PC: 45, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 1)
+Processo 5 -> CLOCK 1: 50, PC: 45, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 1)
+
+Processo 3 encerrado!
+Dados finais: 
 Linhas Processadas: 20
-Prioridade: 0
+Prioridade: 2
 Quantum necessário para executar: 66
 Timestamp: 66
 Números de bilhetes acumulados: 1
 Estado: Finalizado
 
-Processo 3 -> CLOCK 2: 67, PC: 50, ETAPA: FETCH, Instrucao: = 1 9 (CPU 2)
-Processo 3 -> CLOCK 2: 68, PC: 50, ETAPA: DECODE  (CPU 2)
-Processo 3 -> CLOCK 2: 68, PC: 50, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 3 -> CLOCK 2: 69, PC: 51, ETAPA: FETCH, Instrucao: = 0 5 (CPU 2)
-Processo 3 -> CLOCK 2: 70, PC: 51, ETAPA: DECODE  (CPU 2)
-Processo 3 -> CLOCK 2: 70, PC: 51, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 3 -> CLOCK 2: 71, PC: 52, ETAPA: FETCH, Instrucao: = 1 7 (CPU 2)
-Processo 3 -> CLOCK 2: 72, PC: 52, ETAPA: DECODE  (CPU 2)
-Processo 3 -> CLOCK 2: 72, PC: 52, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 3 -> CLOCK 2: 73, PC: 53, ETAPA: FETCH, Instrucao: = 0 2 (CPU 2)
-Processo 3 -> CLOCK 2: 74, PC: 53, ETAPA: DECODE  (CPU 2)
-Processo 3 -> CLOCK 2: 74, PC: 53, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 3 -> CLOCK 2: 75, PC: 54, ETAPA: FETCH, Instrucao: = 1 1 (CPU 2)
-Processo 3 -> CLOCK 2: 76, PC: 54, ETAPA: DECODE  (CPU 2)
-Processo 3 -> CLOCK 2: 76, PC: 54, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 3 -> CLOCK 2: 77, PC: 55, ETAPA: FETCH, Instrucao: = 0 6 (CPU 2)
-Processo 3 -> CLOCK 2: 78, PC: 55, ETAPA: DECODE  (CPU 2)
-Processo 3 -> CLOCK 2: 78, PC: 55, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 3 -> CLOCK 2: 79, PC: 56, ETAPA: FETCH, Instrucao: + 2 0 1 (CPU 2)
-Processo 3 -> CLOCK 2: 80, PC: 56, ETAPA: DECODE  (CPU 2)
-Processo 3 -> CLOCK 2: 81, PC: 56, ETAPA: EXECUTE, Instrucao: + (CPU 2)
-Processo 3 -> CLOCK 2: 82, PC: 56, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 2)
-Processo 3 -> CLOCK 2: 83, PC: 56, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 2)
-Processo 3 -> CLOCK 2: 84, PC: 57, ETAPA: FETCH, Instrucao: * 3 0 1 (CPU 2)
-Processo 3 -> CLOCK 2: 85, PC: 57, ETAPA: DECODE  (CPU 2)
-Processo 3 -> CLOCK 2: 86, PC: 57, ETAPA: EXECUTE, Instrucao: * (CPU 2)
-Processo 3 -> CLOCK 2: 87, PC: 57, ETAPA: MEMORY_ACCESS, Resultado: 6 (CPU 2)
-Processo 3 -> CLOCK 2: 88, PC: 57, ETAPA: WRITEBACK, Escrevendo: 6 na memoria. (CPU 2)
-Processo 3 -> CLOCK 2: 89, PC: 58, ETAPA: FETCH, Instrucao: + 0 0 1 (CPU 2)
-Processo 3 -> CLOCK 2: 90, PC: 58, ETAPA: DECODE  (CPU 2)
-Processo 3 -> CLOCK 2: 91, PC: 58, ETAPA: EXECUTE, Instrucao: + (CPU 2)
-Processo 3 -> CLOCK 2: 92, PC: 58, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 2)
-Processo 3 -> CLOCK 2: 93, PC: 58, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 2)
-Processo 3 -> CLOCK 2: 94, PC: 59, ETAPA: FETCH, Instrucao: * 0 0 1 (CPU 2)
-Processo 3 -> CLOCK 2: 95, PC: 59, ETAPA: DECODE  (CPU 2)
-Processo 3 -> CLOCK 2: 96, PC: 59, ETAPA: EXECUTE, Instrucao: * (CPU 2)
-Processo 3 -> CLOCK 2: 97, PC: 59, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 2)
-Processo 3 -> CLOCK 2: 98, PC: 59, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 2)
+Processo 5 -> CLOCK 1: 51, PC: 46, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 5 -> CLOCK 1: 52, PC: 46, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 52, PC: 46, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 53, PC: 47, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
+Processo 5 -> CLOCK 1: 54, PC: 47, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 54, PC: 47, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 55, PC: 48, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 1)
+Processo 5 -> CLOCK 1: 56, PC: 48, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 57, PC: 48, ETAPA: EXECUTE, Instrucao: * (CPU 1)
+Processo 5 -> CLOCK 1: 58, PC: 48, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 1)
+Processo 5 -> CLOCK 1: 59, PC: 48, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 1)
+Processo 5 -> CLOCK 1: 60, PC: 49, ETAPA: FETCH, Instrucao: = 2 10 (CPU 1)
+Processo 5 -> CLOCK 1: 61, PC: 49, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 61, PC: 49, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 62, PC: 50, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 5 -> CLOCK 1: 63, PC: 50, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 63, PC: 50, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 64, PC: 51, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
+Processo 5 -> CLOCK 1: 65, PC: 51, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 65, PC: 51, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 66, PC: 52, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 1)
+Processo 5 -> CLOCK 1: 67, PC: 52, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 68, PC: 52, ETAPA: EXECUTE, Instrucao: - (CPU 1)
+Processo 5 -> CLOCK 1: 69, PC: 52, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 1)
+Processo 5 -> CLOCK 1: 70, PC: 52, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 1)
+Processo 5 -> CLOCK 1: 71, PC: 53, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 5 -> CLOCK 1: 72, PC: 53, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 72, PC: 53, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 73, PC: 54, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
+Processo 5 -> CLOCK 1: 74, PC: 54, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 74, PC: 54, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 75, PC: 55, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
+Processo 5 -> CLOCK 1: 76, PC: 55, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 77, PC: 55, ETAPA: EXECUTE, Instrucao: + (CPU 1)
+Processo 5 -> CLOCK 1: 78, PC: 55, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 1)
+Processo 5 -> CLOCK 1: 79, PC: 55, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 1)
+Processo 5 -> CLOCK 1: 80, PC: 56, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 5 -> CLOCK 1: 81, PC: 56, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 81, PC: 56, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 82, PC: 57, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
+Processo 5 -> CLOCK 1: 83, PC: 57, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 83, PC: 57, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 84, PC: 58, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 1)
+Processo 5 -> CLOCK 1: 85, PC: 58, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 86, PC: 58, ETAPA: EXECUTE, Instrucao: * (CPU 1)
+Processo 5 -> CLOCK 1: 87, PC: 58, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 1)
+Processo 5 -> CLOCK 1: 88, PC: 58, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 1)
+Processo 5 -> CLOCK 1: 89, PC: 59, ETAPA: FETCH, Instrucao: = 2 10 (CPU 1)
+Processo 5 -> CLOCK 1: 90, PC: 59, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 90, PC: 59, ETAPA: EXECUTE, Instrucao: = (CPU 1)
 
 Processo 5 encerrado!
 Dados finais: 
-Linhas Processadas: 10
-Prioridade: 2
-Quantum necessário para executar: 30
-Timestamp: 154
+Linhas Processadas: 20
+Prioridade: 8
+Quantum necessário para executar: 58
+Timestamp: 186
 Números de bilhetes acumulados: 2
 Estado: Finalizado
 
-Processo 1 -> CLOCK 1: 89, PC: 60, ETAPA: FETCH, Instrucao: = 0 3 (CPU 1)
-Processo 1 -> CLOCK 1: 90, PC: 60, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 90, PC: 60, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 1 -> CLOCK 1: 91, PC: 61, ETAPA: FETCH, Instrucao: = 1 2  (CPU 1)
-Processo 1 -> CLOCK 1: 92, PC: 61, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 92, PC: 61, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 1 -> CLOCK 1: 93, PC: 62, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
-Processo 1 -> CLOCK 1: 94, PC: 62, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 95, PC: 62, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 1 -> CLOCK 1: 96, PC: 62, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 1)
-Processo 1 -> CLOCK 1: 97, PC: 62, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 1)
-Processo 1 -> CLOCK 1: 98, PC: 63, ETAPA: FETCH, Instrucao: = 2 7 (CPU 1)
-Processo 1 -> CLOCK 1: 99, PC: 63, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 99, PC: 63, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 1 -> CLOCK 1: 100, PC: 64, ETAPA: FETCH, Instrucao: = 3 9  (CPU 1)
-Processo 1 -> CLOCK 1: 101, PC: 64, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 101, PC: 64, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 1 -> CLOCK 1: 102, PC: 65, ETAPA: FETCH, Instrucao: + 4 2 3 (CPU 1)
-Processo 1 -> CLOCK 1: 103, PC: 65, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 104, PC: 65, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 1 -> CLOCK 1: 105, PC: 65, ETAPA: MEMORY_ACCESS, Resultado: 16 (CPU 1)
-Processo 1 -> CLOCK 1: 106, PC: 65, ETAPA: WRITEBACK, Escrevendo: 16 na memoria. (CPU 1)
-Processo 1 -> CLOCK 1: 107, PC: 66, ETAPA: FETCH, Instrucao: = 0 7 (CPU 1)
-Processo 1 -> CLOCK 1: 108, PC: 66, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 108, PC: 66, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 1 -> CLOCK 1: 109, PC: 67, ETAPA: FETCH, Instrucao: = 1 2  (CPU 1)
-Processo 1 -> CLOCK 1: 110, PC: 67, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 110, PC: 67, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 1 -> CLOCK 1: 111, PC: 68, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
-Processo 1 -> CLOCK 1: 112, PC: 68, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 113, PC: 68, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 1 -> CLOCK 1: 114, PC: 68, ETAPA: MEMORY_ACCESS, Resultado: 9 (CPU 1)
-Processo 1 -> CLOCK 1: 115, PC: 68, ETAPA: WRITEBACK, Escrevendo: 9 na memoria. (CPU 1)
-Processo 1 -> CLOCK 1: 116, PC: 69, ETAPA: FETCH, Instrucao: * 5 1 0 (CPU 1)
-Processo 1 -> CLOCK 1: 117, PC: 69, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 118, PC: 69, ETAPA: EXECUTE, Instrucao: * (CPU 1)
-Processo 1 -> CLOCK 1: 119, PC: 69, ETAPA: MEMORY_ACCESS, Resultado: 14 (CPU 1)
-Processo 1 -> CLOCK 1: 120, PC: 69, ETAPA: WRITEBACK, Escrevendo: 14 na memoria. (CPU 1)
-
-Processo 3 encerrado!
-Dados finais: 
-Linhas Processadas: 10
-Prioridade: 3
-Quantum necessário para executar: 32
-Timestamp: 186
-Números de bilhetes acumulados: 3
-Estado: Finalizado
-
+Processo 1 -> CLOCK 1: 91, PC: 60, ETAPA: FETCH, Instrucao: = 0 3 (CPU 1)
+Processo 1 -> CLOCK 1: 92, PC: 60, ETAPA: DECODE  (CPU 1)
+Processo 1 -> CLOCK 1: 92, PC: 60, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 1 -> CLOCK 1: 93, PC: 61, ETAPA: FETCH, Instrucao: = 1 2  (CPU 1)
+Processo 1 -> CLOCK 1: 94, PC: 61, ETAPA: DECODE  (CPU 1)
+Processo 1 -> CLOCK 1: 94, PC: 61, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 1 -> CLOCK 1: 95, PC: 62, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
+Processo 1 -> CLOCK 1: 96, PC: 62, ETAPA: DECODE  (CPU 1)
+Processo 1 -> CLOCK 1: 97, PC: 62, ETAPA: EXECUTE, Instrucao: + (CPU 1)
+Processo 1 -> CLOCK 1: 98, PC: 62, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 1)
+Processo 1 -> CLOCK 1: 99, PC: 62, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 1)
+Processo 1 -> CLOCK 1: 100, PC: 63, ETAPA: FETCH, Instrucao: = 2 7 (CPU 1)
+Processo 1 -> CLOCK 1: 101, PC: 63, ETAPA: DECODE  (CPU 1)
+Processo 1 -> CLOCK 1: 101, PC: 63, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 1 -> CLOCK 1: 102, PC: 64, ETAPA: FETCH, Instrucao: = 3 9  (CPU 1)
+Processo 1 -> CLOCK 1: 103, PC: 64, ETAPA: DECODE  (CPU 1)
+Processo 1 -> CLOCK 1: 103, PC: 64, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 1 -> CLOCK 1: 104, PC: 65, ETAPA: FETCH, Instrucao: + 4 2 3 (CPU 1)
+Processo 1 -> CLOCK 1: 105, PC: 65, ETAPA: DECODE  (CPU 1)
+Processo 1 -> CLOCK 1: 106, PC: 65, ETAPA: EXECUTE, Instrucao: + (CPU 1)
+Processo 1 -> CLOCK 1: 107, PC: 65, ETAPA: MEMORY_ACCESS, Resultado: 16 (CPU 1)
+Processo 1 -> CLOCK 1: 108, PC: 65, ETAPA: WRITEBACK, Escrevendo: 16 na memoria. (CPU 1)
+Processo 1 -> CLOCK 1: 109, PC: 66, ETAPA: FETCH, Instrucao: = 0 7 (CPU 1)
+Processo 1 -> CLOCK 1: 110, PC: 66, ETAPA: DECODE  (CPU 1)
+Processo 1 -> CLOCK 1: 110, PC: 66, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 1 -> CLOCK 1: 111, PC: 67, ETAPA: FETCH, Instrucao: = 1 2  (CPU 1)
+Processo 1 -> CLOCK 1: 112, PC: 67, ETAPA: DECODE  (CPU 1)
+Processo 1 -> CLOCK 1: 112, PC: 67, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 1 -> CLOCK 1: 113, PC: 68, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
+Processo 1 -> CLOCK 1: 114, PC: 68, ETAPA: DECODE  (CPU 1)
+Processo 1 -> CLOCK 1: 115, PC: 68, ETAPA: EXECUTE, Instrucao: + (CPU 1)
+Processo 1 -> CLOCK 1: 116, PC: 68, ETAPA: MEMORY_ACCESS, Resultado: 9 (CPU 1)
+Processo 1 -> CLOCK 1: 117, PC: 68, ETAPA: WRITEBACK, Escrevendo: 9 na memoria. (CPU 1)
+Processo 1 -> CLOCK 1: 118, PC: 69, ETAPA: FETCH, Instrucao: * 5 1 0 (CPU 1)
+Processo 1 -> CLOCK 1: 119, PC: 69, ETAPA: DECODE  (CPU 1)
+Processo 1 -> CLOCK 1: 120, PC: 69, ETAPA: EXECUTE, Instrucao: * (CPU 1)
+Processo 1 -> CLOCK 1: 121, PC: 69, ETAPA: MEMORY_ACCESS, Resultado: 14 (CPU 1)
+Processo 1 -> CLOCK 1: 122, PC: 69, ETAPA: WRITEBACK, Escrevendo: 14 na memoria. (CPU 1)
 
 Processo 1 encerrado!
 Dados finais: 
 Linhas Processadas: 10
-Prioridade: 2
+Prioridade: 1
 Quantum necessário para executar: 32
 Timestamp: 218
-Números de bilhetes acumulados: 4
+Números de bilhetes acumulados: 5
 Estado: Finalizado
 
-CLOCK 1 = 120 | 
-CLOCK 2 = 98 | 
+CLOCK 1 = 122 | 
+CLOCK 2 = 66 | 
+CLOCK 3 = 30 | 
 PC = 70
 
 
 --- POLÍTICA DE ESCALONAMENTO: SJF
 =================================================================================================
-Processo 1 -> CLOCK 2: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 3 (CPU 2)
-Processo 5 -> CLOCK 1: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
-Processo 5 -> CLOCK 1: 2, PC: 0, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 2, PC: 0, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 3, PC: 1, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
-Processo 5 -> CLOCK 1: 4, PC: 1, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 4, PC: 1, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 5, PC: 2, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 1)
-Processo 5 -> CLOCK 1: 6, PC: 2, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 7, PC: 2, ETAPA: EXECUTE, Instrucao: - (CPU 1)
-Processo 5 -> CLOCK 1: 8, PC: 2, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 1)
-Processo 5 -> CLOCK 1: 9, PC: 2, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 1)
-Processo 5 -> CLOCK 1: 10, PC: 3, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
-Processo 5 -> CLOCK 1: 11, PC: 3, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 11, PC: 3, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 12, PC: 4, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
-Processo 5 -> CLOCK 1: 13, PC: 4, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 13, PC: 4, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 14, PC: 5, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
-Processo 5 -> CLOCK 1: 15, PC: 5, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 16, PC: 5, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 5 -> CLOCK 1: 17, PC: 5, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 1)
-Processo 5 -> CLOCK 1: 18, PC: 5, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 1)
-Processo 5 -> CLOCK 1: 19, PC: 6, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
-Processo 5 -> CLOCK 1: 20, PC: 6, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 20, PC: 6, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 21, PC: 7, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
-Processo 5 -> CLOCK 1: 22, PC: 7, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 22, PC: 7, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 23, PC: 8, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 1)
-Processo 5 -> CLOCK 1: 24, PC: 8, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 25, PC: 8, ETAPA: EXECUTE, Instrucao: * (CPU 1)
-Processo 5 -> CLOCK 1: 26, PC: 8, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 1)
-Processo 5 -> CLOCK 1: 27, PC: 8, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 1)
-Processo 5 -> CLOCK 1: 28, PC: 9, ETAPA: FETCH, Instrucao: ? 0 1 = (CPU 1)
-Processo 5 -> CLOCK 1: 29, PC: 9, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 29, PC: 9, ETAPA: EXECUTE, Instrucao: ? (CPU 1)
-Processo 1 -> CLOCK 2: 2, PC: 0, ETAPA: DECODE  (CPU 2)
-Processo 1 -> CLOCK 2: 2, PC: 10, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 1 -> CLOCK 2: 3, PC: 11, ETAPA: FETCH, Instrucao: = 1 2  (CPU 2)
-Processo 1 -> CLOCK 2: 4, PC: 11, ETAPA: DECODE  (CPU 2)
-Processo 1 -> CLOCK 2: 4, PC: 11, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 1 -> CLOCK 2: 5, PC: 12, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 2)
-Processo 1 -> CLOCK 2: 6, PC: 12, ETAPA: DECODE  (CPU 2)
-Processo 1 -> CLOCK 2: 7, PC: 12, ETAPA: EXECUTE, Instrucao: + (CPU 2)
-Processo 1 -> CLOCK 2: 8, PC: 12, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 2)
-Processo 1 -> CLOCK 2: 9, PC: 12, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 2)
-Processo 1 -> CLOCK 2: 10, PC: 13, ETAPA: FETCH, Instrucao: = 2 7 (CPU 2)
-Processo 1 -> CLOCK 2: 11, PC: 13, ETAPA: DECODE  (CPU 2)
-Processo 1 -> CLOCK 2: 11, PC: 13, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 1 -> CLOCK 2: 12, PC: 14, ETAPA: FETCH, Instrucao: = 3 9  (CPU 2)
-Processo 1 -> CLOCK 2: 13, PC: 14, ETAPA: DECODE  (CPU 2)
-Processo 1 -> CLOCK 2: 13, PC: 14, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 1 -> CLOCK 2: 14, PC: 15, ETAPA: FETCH, Instrucao: + 4 2 3 (CPU 2)
-Processo 1 -> CLOCK 2: 15, PC: 15, ETAPA: DECODE  (CPU 2)
-Processo 1 -> CLOCK 2: 16, PC: 15, ETAPA: EXECUTE, Instrucao: + (CPU 2)
-Processo 1 -> CLOCK 2: 17, PC: 15, ETAPA: MEMORY_ACCESS, Resultado: 16 (CPU 2)
-Processo 1 -> CLOCK 2: 18, PC: 15, ETAPA: WRITEBACK, Escrevendo: 16 na memoria. (CPU 2)
-Processo 1 -> CLOCK 2: 19, PC: 16, ETAPA: FETCH, Instrucao: = 0 7 (CPU 2)
-Processo 1 -> CLOCK 2: 20, PC: 16, ETAPA: DECODE  (CPU 2)
-Processo 1 -> CLOCK 2: 20, PC: 16, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 1 -> CLOCK 2: 21, PC: 17, ETAPA: FETCH, Instrucao: = 1 2  (CPU 2)
-Processo 1 -> CLOCK 2: 22, PC: 17, ETAPA: DECODE  (CPU 2)
-Processo 1 -> CLOCK 2: 22, PC: 17, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 1 -> CLOCK 2: 23, PC: 18, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 2)
-Processo 1 -> CLOCK 2: 24, PC: 18, ETAPA: DECODE  (CPU 2)
-Processo 1 -> CLOCK 2: 25, PC: 18, ETAPA: EXECUTE, Instrucao: + (CPU 2)
-Processo 1 -> CLOCK 2: 26, PC: 18, ETAPA: MEMORY_ACCESS, Resultado: 9 (CPU 2)
-Processo 1 -> CLOCK 2: 27, PC: 18, ETAPA: WRITEBACK, Escrevendo: 9 na memoria. (CPU 2)
-Processo 1 -> CLOCK 2: 28, PC: 19, ETAPA: FETCH, Instrucao: * 5 1 0 (CPU 2)
-Processo 1 -> CLOCK 2: 29, PC: 19, ETAPA: DECODE  (CPU 2)
-Processo 1 -> CLOCK 2: 30, PC: 19, ETAPA: EXECUTE, Instrucao: * (CPU 2)
-Processo 1 -> CLOCK 2: 31, PC: 19, ETAPA: MEMORY_ACCESS, Resultado: 14 (CPU 2)
-Processo 1 -> CLOCK 2: 32, PC: 19, ETAPA: WRITEBACK, Escrevendo: 14 na memoria. (CPU 2)
+Processo 4 -> CLOCK 1: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 4 -> CLOCK 1: 2, PC: 0, ETAPA: DECODE  (CPU 1)
+Processo 2 -> CLOCK 3: 2, PC: 0, ETAPA: DECODE  (CPU 3)
+Processo 4 -> CLOCK 1: 2, PC: 0, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 2 -> CLOCK 3: 2, PC: 0, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 4 -> CLOCK 1: 3, PC: 2, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
+Processo 2 -> CLOCK 3: 3, PC: 3, ETAPA: FETCH, Instrucao: = 0 5 (CPU 3)
 
-Processo 5 encerrado!
+Processo 4 -> CLOCK 1: 4, PC: 3, ETAPA: DECODE  (CPU 1)
+Processo 2 -> CLOCK 3: 4, PC: 3, ETAPA: DECODE  (CPU 3)
+Processo 1 -> CLOCK 2: 4, PC: 3, ETAPA: DECODE  (CPU 2)
+Processo 4 -> CLOCK 1: 4, PC: 3, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 2 -> CLOCK 3: 4, PC: 3, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 1 -> CLOCK 2: 4, PC: 3, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+1)
+Processo 2 -> CLOCK 3: 5, PC: 5, ETAPA: FETCH, Instrucao:Processo 1 -> CLOCK 2: 5, PC: 6, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 2)
+Processo 2 -> CLOCK 3: 6, PC: 6, ETAPA: DECODE  (CPU 3)
+o: - (CPU 1)
+Processo 1 -> CLOCK 2: 7, PC: 6, ETAPA: EXECUTE, Instrucao: + (CPU 2)
+Processo 4 -> CLOCK 1: 8, PC: 6, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 1)
+Processo 2 -> CLOCK 3: 6, PC: 6, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 4 -> CLOCK 1: 9, PC: 7, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 1)
+Processo 2 -> CLOCK 3: 8, PC: 7, ETAPA: DECODE  (CPU 3)
+Processo 4 -> CLOCK 1: 10, PC: 8, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 1 -> CLOCK 2: 9, PC: 8, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 2)
+Processo 2 -> CLOCK 3: 8, PC: 8, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+)
+Processo 4 -> CLOCK 1: 11, PC: 8, ETAPA: DECODE  (CPU 1)
+Processo 1 -> CLOCK 2: 11, PC: 9, ETAPA: DECODE  (CPU 2)
+ = 1 1 (CPU 3)
+Processo 4 -> CLOCK 1: 11, PC: 10, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 2 -> CLOCK 3: 10, PC: 10, ETAPA: DECODE  (CPU 3)
+Processo 1 -> CLOCK 2: 11, PC: 11, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+1)
+Processo 2 -> CLOCK 3: 10, PC: 11, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 4 -> CLOCK 1: 13, PC: 11, ETAPA: DECODE  (CPU 1)
+ = 3 9  (CPU 2)
+Processo 2 -> CLOCK 3: 11, PC: 13, ETAPA: FETCH, Instrucao: = 0 6 (CPU 3)
+Processo 2 -> CLOCK 3: 12, PC: 13, ETAPA: DECODE  (CPU 3)
+o: = (CPU 1)
+Processo 1 -> CLOCK 2: 13, PC: 13, ETAPA: DECODE  (CPU 2)
+Processo 2 -> CLOCK 3: 12, PC: 14, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+1)
+Processo 1 -> CLOCK 2: 13, PC: 14, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 4 -> CLOCK 1: 15, PC: 14, ETAPA: DECODE  (CPU 1)
+Processo 2 -> CLOCK 3: 13, PC: 16, ETAPA: FETCH, Instrucao: + 2 0 1 (CPU 3)
+Processo 4 -> CLOCK 1: 16, PC: 16, ETAPA: EXECUTE, Instrucao: + (CPU 1)
+Processo 2 -> CLOCK 3: 14, PC: 16, ETAPA: DECODE  (CPU 3)
+Processo 4 -> CLOCK 1: 17, PC: 16, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 1)
+Processo 1 -> CLOCK 2: 16, PC: 16, ETAPA: EXECUTE, Instrucao: + (CPU 2)
+emoria. (CPU 1)
+Processo 2 -> CLOCK 3: 16, PC: 16, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 3)
+
+Processo 4 -> CLOCK 1: 20, PC: 17, ETAPA: DECODE  (CPU 1)
+endo: 16 na memoria. (CPU 2)
+Processo 2 -> CLOCK 3: 17, PC: 17, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 3)
+Processo 4 -> CLOCK 1: 20, PC: 18, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+3)
+Processo 2 -> CLOCK 3: 19, PC: 20, ETAPA: DECODE  (CPU 3)
+ = 1 100 (CPU 1)
+Processo 1 -> CLOCK 2: 20, PC: 20, ETAPA: DECODE  (CPU 2)
+Processo 4 -> CLOCK 1: 22, PC: 20, ETAPA: DECODE  (CPU 1)
+Processo 2 -> CLOCK 3: 20, PC: 20, ETAPA: EXECUTE, Instrucao: * (CPU 3)
+Processo 1 -> CLOCK 2: 21, PC: 21, ETAPA: FETCH, Instrucao: = 1 2  (CPU 2)
+Processo 2 -> CLOCK 3: 21, PC: 21, ETAPA: MEMORY_ACCESS, Resultado: 6 (CPU 3)
+Processo 4 -> CLOCK 1: 23, PC: 22, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 1)
+Processo 2 -> CLOCK 3: 22, PC: 22, ETAPA: WRITEBACK, Escrevendo: 6 na memoria. (CPU 3)
+Processo 4 -> CLOCK 1: 24, PC: 22, ETAPA: DECODE  (CPU 1)
+Processo 1 -> CLOCK 2: 22, PC: 22, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 2 -> CLOCK 3: 23, PC: 23, ETAPA: FETCH, Instrucao: + 0 0 1 (CPU 3)
+Processo 1 -> CLOCK 2: 23, PC: 24, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 2)
+ 1)
+Processo 2 -> CLOCK 3: 24, PC: 24, ETAPA: DECODE  (CPU 3)
+Processo 4 -> CLOCK 1: 27, PC: 24, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 1)
+Processo 2 -> CLOCK 3: 25, PC: 24, ETAPA: EXECUTE, Instrucao: + (CPU 3)
+Processo 1 -> CLOCK 2: 24, PC: 24, ETAPA: DECODE  (CPU 2)
+Processo 4 -> CLOCK 1: 28, PC: 25, ETAPA: FETCH, Instrucao: ? 0 1 = (CPU 1)
+Processo 1 -> CLOCK 2: 25, PC: 25, ETAPA: EXECUTE, Instrucao: + (CPU 2)
+U 3)
+Processo 4 -> CLOCK 1: 29, PC: 25, ETAPA: DECODE  (CPU 1)
+Processo 2 -> CLOCK 3: 27, PC: 25, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 3)
+Processo 4 -> CLOCK 1: 29, PC: 25, ETAPA: EXECUTE, Instrucao: ? (CPU 1)
+Processo 1 -> CLOCK 2: 27, PC: 25, ETAPA: WRITEBACK, Escrevendo: 9 na memoria. (CPU 2)
+Processo 2 -> CLOCK 3: 28, PC: 26, ETAPA: FETCH, Instrucao: * 0 0 1 (CPU 3)
+Processo 1 -> CLOCK 2: 28, PC: 28, ETAPA: FETCH, Instrucao: * 5 1 0 (CPU 2)
+Processo 2 -> CLOCK 3: 29, PC: 28, ETAPA: DECODE  (CPU 3)
+Processo 1 -> CLOCK 2: 29, PC: 28, ETAPA: DECODE  (CPU 2)
+Processo 2 -> CLOCK 3: 30, PC: 28, ETAPA: EXECUTE, Instrucao: * (CPU 3)
+Processo 1 -> CLOCK 2: 30, PC: 28, ETAPA: EXECUTE, Instrucao: * (CPU 2)
+Processo 2 -> CLOCK 3: 31, PC: 28, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 3)
+Processo 1 -> CLOCK 2: 31, PC: 28, ETAPA: MEMORY_ACCESS, Resultado: 14 (CPU 2)
+Processo 2 -> CLOCK 3: 32, PC: 28, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 3)
+Processo 1 -> CLOCK 2: 32, PC: 28, ETAPA: WRITEBACK, Escrevendo: 14 na memoria. (CPU 2)
+
+Processo 4 encerrado!
 Dados finais: 
 Linhas Processadas: 10
-Prioridade: 8
+Prioridade: 7
 Quantum necessário para executar: 30
 Timestamp: 30
 Estado: Finalizado
 
-Processo 3 -> CLOCK 1: 31, PC: 20, ETAPA: FETCH, Instrucao: = 1 9 (CPU 1)
-Processo 3 -> CLOCK 1: 32, PC: 20, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 32, PC: 20, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 3 -> CLOCK 1: 33, PC: 21, ETAPA: FETCH, Instrucao: = 0 5 (CPU 1)
-Processo 3 -> CLOCK 1: 34, PC: 21, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 34, PC: 21, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 3 -> CLOCK 1: 35, PC: 22, ETAPA: FETCH, Instrucao: = 1 7 (CPU 1)
-Processo 3 -> CLOCK 1: 36, PC: 22, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 36, PC: 22, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 3 -> CLOCK 1: 37, PC: 23, ETAPA: FETCH, Instrucao: = 0 2 (CPU 1)
-Processo 3 -> CLOCK 1: 38, PC: 23, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 38, PC: 23, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 3 -> CLOCK 1: 39, PC: 24, ETAPA: FETCH, Instrucao: = 1 1 (CPU 1)
-Processo 3 -> CLOCK 1: 40, PC: 24, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 40, PC: 24, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 3 -> CLOCK 1: 41, PC: 25, ETAPA: FETCH, Instrucao: = 0 6 (CPU 1)
-Processo 3 -> CLOCK 1: 42, PC: 25, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 42, PC: 25, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 3 -> CLOCK 1: 43, PC: 26, ETAPA: FETCH, Instrucao: + 2 0 1 (CPU 1)
-Processo 3 -> CLOCK 1: 44, PC: 26, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 45, PC: 26, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 3 -> CLOCK 1: 46, PC: 26, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 1)
-Processo 3 -> CLOCK 1: 47, PC: 26, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 1)
-Processo 3 -> CLOCK 1: 48, PC: 27, ETAPA: FETCH, Instrucao: * 3 0 1 (CPU 1)
-Processo 3 -> CLOCK 1: 49, PC: 27, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 50, PC: 27, ETAPA: EXECUTE, Instrucao: * (CPU 1)
-Processo 3 -> CLOCK 1: 51, PC: 27, ETAPA: MEMORY_ACCESS, Resultado: 6 (CPU 1)
-Processo 3 -> CLOCK 1: 52, PC: 27, ETAPA: WRITEBACK, Escrevendo: 6 na memoria. (CPU 1)
-Processo 3 -> CLOCK 1: 53, PC: 28, ETAPA: FETCH, Instrucao: + 0 0 1 (CPU 1)
-Processo 3 -> CLOCK 1: 54, PC: 28, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 55, PC: 28, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 3 -> CLOCK 1: 56, PC: 28, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 1)
-Processo 3 -> CLOCK 1: 57, PC: 28, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 1)
-Processo 3 -> CLOCK 1: 58, PC: 29, ETAPA: FETCH, Instrucao: * 0 0 1 (CPU 1)
-Processo 3 -> CLOCK 1: 59, PC: 29, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 60, PC: 29, ETAPA: EXECUTE, Instrucao: * (CPU 1)
-Processo 3 -> CLOCK 1: 61, PC: 29, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 1)
-Processo 3 -> CLOCK 1: 62, PC: 29, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 1)
-
-Processo 1 encerrado!
-Dados finais: 
-Linhas Processadas: 10
-Prioridade: 0
-Quantum necessário para executar: 32
-Timestamp: 32
-Estado: Finalizado
-
-Processo 2 -> CLOCK 2: 33, PC: 30, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 34, PC: 30, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 34, PC: 30, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 35, PC: 31, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 36, PC: 31, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 36, PC: 31, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 37, PC: 32, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 38, PC: 32, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 39, PC: 32, ETAPA: EXECUTE, Instrucao: - (CPU 2)
-Processo 2 -> CLOCK 2: 40, PC: 32, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 2)
-Processo 2 -> CLOCK 2: 41, PC: 32, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 42, PC: 33, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 43, PC: 33, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 43, PC: 33, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 44, PC: 34, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 45, PC: 34, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 45, PC: 34, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 46, PC: 35, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 47, PC: 35, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 48, PC: 35, ETAPA: EXECUTE, Instrucao: + (CPU 2)
-Processo 2 -> CLOCK 2: 49, PC: 35, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 2)
-Processo 2 -> CLOCK 2: 50, PC: 35, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 51, PC: 36, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 52, PC: 36, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 52, PC: 36, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 53, PC: 37, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 54, PC: 37, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 54, PC: 37, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 55, PC: 38, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 56, PC: 38, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 57, PC: 38, ETAPA: EXECUTE, Instrucao: * (CPU 2)
-Processo 2 -> CLOCK 2: 58, PC: 38, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 2)
-Processo 2 -> CLOCK 2: 59, PC: 38, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 60, PC: 39, ETAPA: FETCH, Instrucao: = 2 10 (CPU 2)
-Processo 2 -> CLOCK 2: 61, PC: 39, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 61, PC: 39, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 62, PC: 40, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 63, PC: 40, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 63, PC: 40, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 64, PC: 41, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 65, PC: 41, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 65, PC: 41, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 66, PC: 42, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 67, PC: 42, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 68, PC: 42, ETAPA: EXECUTE, Instrucao: - (CPU 2)
-Processo 2 -> CLOCK 2: 69, PC: 42, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 2)
-Processo 2 -> CLOCK 2: 70, PC: 42, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 71, PC: 43, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 72, PC: 43, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 72, PC: 43, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 73, PC: 44, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 74, PC: 44, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 74, PC: 44, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 75, PC: 45, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 76, PC: 45, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 77, PC: 45, ETAPA: EXECUTE, Instrucao: + (CPU 2)
-Processo 2 -> CLOCK 2: 78, PC: 45, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 2)
-Processo 2 -> CLOCK 2: 79, PC: 45, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 80, PC: 46, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 81, PC: 46, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 81, PC: 46, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 82, PC: 47, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 83, PC: 47, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 83, PC: 47, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 84, PC: 48, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 85, PC: 48, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 86, PC: 48, ETAPA: EXECUTE, Instrucao: * (CPU 2)
-Processo 2 -> CLOCK 2: 87, PC: 48, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 2)
-Processo 2 -> CLOCK 2: 88, PC: 48, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 89, PC: 49, ETAPA: FETCH, Instrucao: = 2 10 (CPU 2)
-Processo 2 -> CLOCK 2: 90, PC: 49, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 90, PC: 49, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-
-Processo 3 encerrado!
-Dados finais: 
-Linhas Processadas: 10
-Prioridade: 5
-Quantum necessário para executar: 32
-Timestamp: 94
-Estado: Finalizado
-
-Processo 4 -> CLOCK 1: 63, PC: 50, ETAPA: FETCH, Instrucao: = 1 2 (CPU 1)
-Processo 4 -> CLOCK 1: 64, PC: 50, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 64, PC: 50, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 65, PC: 51, ETAPA: FETCH, Instrucao: = 0 3 (CPU 1)
-Processo 4 -> CLOCK 1: 66, PC: 51, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 66, PC: 51, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 67, PC: 52, ETAPA: FETCH, Instrucao: = 2 9 (CPU 1)
-Processo 4 -> CLOCK 1: 68, PC: 52, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 68, PC: 52, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 69, PC: 53, ETAPA: FETCH, Instrucao: = 3 11 (CPU 1)
-Processo 4 -> CLOCK 1: 70, PC: 53, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 70, PC: 53, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 71, PC: 54, ETAPA: FETCH, Instrucao: = 4 100 (CPU 1)
-Processo 4 -> CLOCK 1: 72, PC: 54, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 72, PC: 54, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 73, PC: 55, ETAPA: FETCH, Instrucao: + 6 0 1 (CPU 1)
-Processo 4 -> CLOCK 1: 74, PC: 55, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 75, PC: 55, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 4 -> CLOCK 1: 76, PC: 55, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 1)
-Processo 4 -> CLOCK 1: 77, PC: 55, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 1)
-Processo 4 -> CLOCK 1: 78, PC: 56, ETAPA: FETCH, Instrucao: - 7 2 1 (CPU 1)
-Processo 4 -> CLOCK 1: 79, PC: 56, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 80, PC: 56, ETAPA: EXECUTE, Instrucao: - (CPU 1)
-Processo 4 -> CLOCK 1: 81, PC: 56, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 1)
-Processo 4 -> CLOCK 1: 82, PC: 56, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 1)
-Processo 4 -> CLOCK 1: 83, PC: 57, ETAPA: FETCH, Instrucao: * 8 3 4 (CPU 1)
-Processo 4 -> CLOCK 1: 84, PC: 57, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 85, PC: 57, ETAPA: EXECUTE, Instrucao: * (CPU 1)
-Processo 4 -> CLOCK 1: 86, PC: 57, ETAPA: MEMORY_ACCESS, Resultado: 1100 (CPU 1)
-Processo 4 -> CLOCK 1: 87, PC: 57, ETAPA: WRITEBACK, Escrevendo: 1100 na memoria. (CPU 1)
-Processo 4 -> CLOCK 1: 88, PC: 58, ETAPA: FETCH, Instrucao: / 9 4 4 (CPU 1)
-Processo 4 -> CLOCK 1: 89, PC: 58, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 90, PC: 58, ETAPA: EXECUTE, Instrucao: / (CPU 1)
-Processo 4 -> CLOCK 1: 91, PC: 58, ETAPA: MEMORY_ACCESS, Resultado: 1 (CPU 1)
-Processo 4 -> CLOCK 1: 92, PC: 58, ETAPA: WRITEBACK, Escrevendo: 1 na memoria. (CPU 1)
-Processo 4 -> CLOCK 1: 93, PC: 59, ETAPA: FETCH, Instrucao: ? 0 1 > (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 59, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 59, ETAPA: EXECUTE, Instrucao: ? (CPU 1)
-Processo 4 -> CLOCK 1: 96, PC: 60, ETAPA: FETCH, Instrucao: = 1 2 (CPU 1)
-Processo 4 -> CLOCK 1: 97, PC: 60, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 97, PC: 60, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 98, PC: 61, ETAPA: FETCH, Instrucao: = 0 3 (CPU 1)
-Processo 4 -> CLOCK 1: 99, PC: 61, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 99, PC: 61, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 100, PC: 62, ETAPA: FETCH, Instrucao: = 2 9 (CPU 1)
-Processo 4 -> CLOCK 1: 101, PC: 62, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 101, PC: 62, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 102, PC: 63, ETAPA: FETCH, Instrucao: = 3 11 (CPU 1)
-Processo 4 -> CLOCK 1: 103, PC: 63, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 103, PC: 63, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 104, PC: 64, ETAPA: FETCH, Instrucao: = 4 100 (CPU 1)
-Processo 4 -> CLOCK 1: 105, PC: 64, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 105, PC: 64, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 106, PC: 65, ETAPA: FETCH, Instrucao: + 6 0 1 (CPU 1)
-Processo 4 -> CLOCK 1: 107, PC: 65, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 108, PC: 65, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 4 -> CLOCK 1: 109, PC: 65, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 1)
-Processo 4 -> CLOCK 1: 110, PC: 65, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 1)
-Processo 4 -> CLOCK 1: 111, PC: 66, ETAPA: FETCH, Instrucao: - 7 2 1 (CPU 1)
-Processo 4 -> CLOCK 1: 112, PC: 66, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 113, PC: 66, ETAPA: EXECUTE, Instrucao: - (CPU 1)
-Processo 4 -> CLOCK 1: 114, PC: 66, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 1)
-Processo 4 -> CLOCK 1: 115, PC: 66, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 1)
-Processo 4 -> CLOCK 1: 116, PC: 67, ETAPA: FETCH, Instrucao: * 8 3 4 (CPU 1)
-Processo 4 -> CLOCK 1: 117, PC: 67, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 118, PC: 67, ETAPA: EXECUTE, Instrucao: * (CPU 1)
-Processo 4 -> CLOCK 1: 119, PC: 67, ETAPA: MEMORY_ACCESS, Resultado: 1100 (CPU 1)
-Processo 4 -> CLOCK 1: 120, PC: 67, ETAPA: WRITEBACK, Escrevendo: 1100 na memoria. (CPU 1)
-Processo 4 -> CLOCK 1: 121, PC: 68, ETAPA: FETCH, Instrucao: / 9 4 4 (CPU 1)
-Processo 4 -> CLOCK 1: 122, PC: 68, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 123, PC: 68, ETAPA: EXECUTE, Instrucao: / (CPU 1)
-Processo 4 -> CLOCK 1: 124, PC: 68, ETAPA: MEMORY_ACCESS, Resultado: 1 (CPU 1)
-Processo 4 -> CLOCK 1: 125, PC: 68, ETAPA: WRITEBACK, Escrevendo: 1 na memoria. (CPU 1)
-Processo 4 -> CLOCK 1: 126, PC: 69, ETAPA: FETCH, Instrucao: ? 0 1 > (CPU 1)
-Processo 4 -> CLOCK 1: 127, PC: 69, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 127, PC: 69, ETAPA: EXECUTE, Instrucao: ? (CPU 1)
-
-Processo 2 encerrado!
-Dados finais: 
-Linhas Processadas: 20
-Prioridade: 3
-Quantum necessário para executar: 58
-Timestamp: 152
-Estado: Finalizado
-
-
-Processo 4 encerrado!
-Dados finais: 
-Linhas Processadas: 20
-Prioridade: 2
-Quantum necessário para executar: 66
-Timestamp: 218
-Estado: Finalizado
-
-CLOCK 1 = 128 | 
-CLOCK 2 = 90 | 
-PC = 70
-
-
---- POLÍTICA DE ESCALONAMENTO: Round Robin
-=================================================================================================
-Processo 2 -> CLOCK 2: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 1 -> CLOCK 1: 1, PC: 0, ETAPA: FETCH, Instrucao: = 0 3 (CPU 1)
-Processo 1 -> CLOCK 1: 2, PC: 0, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 2, PC: 0, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 1 -> CLOCK 1: 3, PC: 1, ETAPA: FETCH, Instrucao: = 1 2  (CPU 1)
-Processo 1 -> CLOCK 1: 4, PC: 1, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 4, PC: 1, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 1 -> CLOCK 1: 5, PC: 2, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
-Processo 1 -> CLOCK 1: 6, PC: 2, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 7, PC: 2, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 1 -> CLOCK 1: 8, PC: 2, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 1)
-Processo 1 -> CLOCK 1: 9, PC: 2, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 1)
-Processo 1 -> CLOCK 1: 10, PC: 3, ETAPA: FETCH, Instrucao: = 2 7 (CPU 1)
-Processo 1 -> CLOCK 1: 11, PC: 3, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 11, PC: 3, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 1 -> CLOCK 1: 12, PC: 4, ETAPA: FETCH, Instrucao: = 3 9  (CPU 1)
-Processo 1 -> CLOCK 1: 13, PC: 4, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 13, PC: 4, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 1 -> CLOCK 1: 14, PC: 5, ETAPA: FETCH, Instrucao: + 4 2 3 (CPU 1)
-Processo 1 -> CLOCK 1: 15, PC: 5, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 16, PC: 5, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 1 -> CLOCK 1: 17, PC: 5, ETAPA: MEMORY_ACCESS, Resultado: 16 (CPU 1)
-Processo 1 -> CLOCK 1: 18, PC: 5, ETAPA: WRITEBACK, Escrevendo: 16 na memoria. (CPU 1)
-Processo 1 -> CLOCK 1: 19, PC: 6, ETAPA: FETCH, Instrucao: = 0 7 (CPU 1)
-Processo 1 -> CLOCK 1: 20, PC: 6, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 20, PC: 6, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 1 -> CLOCK 1: 21, PC: 7, ETAPA: FETCH, Instrucao: = 1 2  (CPU 1)
-Processo 1 -> CLOCK 1: 22, PC: 7, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 22, PC: 7, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 1 -> CLOCK 1: 23, PC: 8, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
-Processo 1 -> CLOCK 1: 24, PC: 8, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 25, PC: 8, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 1 -> CLOCK 1: 26, PC: 8, ETAPA: MEMORY_ACCESS, Resultado: 9 (CPU 1)
-Processo 1 -> CLOCK 1: 27, PC: 8, ETAPA: WRITEBACK, Escrevendo: 9 na memoria. (CPU 1)
-Processo 1 -> CLOCK 1: 28, PC: 9, ETAPA: FETCH, Instrucao: * 5 1 0 (CPU 1)
-Processo 1 -> CLOCK 1: 29, PC: 9, ETAPA: DECODE  (CPU 1)
-Processo 1 -> CLOCK 1: 30, PC: 9, ETAPA: EXECUTE, Instrucao: * (CPU 1)
-Processo 1 -> CLOCK 1: 31, PC: 9, ETAPA: MEMORY_ACCESS, Resultado: 14 (CPU 1)
-Processo 1 -> CLOCK 1: 32, PC: 9, ETAPA: WRITEBACK, Escrevendo: 14 na memoria. (CPU 1)
-Processo 2 -> CLOCK 2: 2, PC: 0, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 2, PC: 10, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 3, PC: 11, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 4, PC: 11, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 4, PC: 11, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 5, PC: 12, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 6, PC: 12, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 7, PC: 12, ETAPA: EXECUTE, Instrucao: - (CPU 2)
-Processo 2 -> CLOCK 2: 8, PC: 12, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 2)
-Processo 2 -> CLOCK 2: 9, PC: 12, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 10, PC: 13, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 11, PC: 13, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 11, PC: 13, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 12, PC: 14, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 13, PC: 14, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 13, PC: 14, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 14, PC: 15, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 15, PC: 15, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 16, PC: 15, ETAPA: EXECUTE, Instrucao: + (CPU 2)
-Processo 2 -> CLOCK 2: 17, PC: 15, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 2)
-Processo 2 -> CLOCK 2: 18, PC: 15, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 19, PC: 16, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 20, PC: 16, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 20, PC: 16, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 21, PC: 17, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 22, PC: 17, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 22, PC: 17, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 23, PC: 18, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 24, PC: 18, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 25, PC: 18, ETAPA: EXECUTE, Instrucao: * (CPU 2)
-Processo 2 -> CLOCK 2: 26, PC: 18, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 2)
-Processo 2 -> CLOCK 2: 27, PC: 18, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 28, PC: 19, ETAPA: FETCH, Instrucao: = 2 10 (CPU 2)
-Processo 2 -> CLOCK 2: 29, PC: 19, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 29, PC: 19, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 30, PC: 20, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 31, PC: 20, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 31, PC: 20, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 32, PC: 21, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 33, PC: 21, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 33, PC: 21, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 34, PC: 22, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 35, PC: 22, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 36, PC: 22, ETAPA: EXECUTE, Instrucao: - (CPU 2)
-Processo 2 -> CLOCK 2: 37, PC: 22, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 2)
-Processo 2 -> CLOCK 2: 38, PC: 22, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 39, PC: 23, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 40, PC: 23, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 40, PC: 23, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 41, PC: 24, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 42, PC: 24, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 42, PC: 24, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 43, PC: 25, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 44, PC: 25, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 45, PC: 25, ETAPA: EXECUTE, Instrucao: + (CPU 2)
-Processo 2 -> CLOCK 2: 46, PC: 25, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 2)
-Processo 2 -> CLOCK 2: 47, PC: 25, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 48, PC: 26, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 49, PC: 26, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 49, PC: 26, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 50, PC: 27, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 51, PC: 27, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 51, PC: 27, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 52, PC: 28, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 53, PC: 28, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 54, PC: 28, ETAPA: EXECUTE, Instrucao: * (CPU 2)
-Processo 2 -> Quantum esgotado!
+Processo 5 -> CLOCK 1: 31, PC: 30, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 5 -> CLOCK 1: 32, PC: 30, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 32, PC: 30, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 33, PC: 31, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
+Processo 5 -> CLOCK 1: 34, PC: 31, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 34, PC: 31, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 35, PC: 32, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 1)
+Processo 5 -> CLOCK 1: 36, PC: 32, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 37, PC: 32, ETAPA: EXECUTE, Instrucao: - (CPU 1)
+Processo 5 -> CLOCK 1: 38, PC: 32, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 1)
+Processo 5 -> CLOCK 1: 39, PC: 32, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 1)
+Processo 5 -> CLOCK 1: 40, PC: 33, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 5 -> CLOCK 1: 41, PC: 33, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 41, PC: 33, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 42, PC: 34, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
+Processo 5 -> CLOCK 1: 43, PC: 34, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 43, PC: 34, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 44, PC: 35, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
+Processo 5 -> CLOCK 1: 45, PC: 35, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 46, PC: 35, ETAPA: EXECUTE, Instrucao: + (CPU 1)
+Processo 5 -> CLOCK 1: 47, PC: 35, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 1)
+Processo 5 -> CLOCK 1: 48, PC: 35, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 1)
+Processo 5 -> CLOCK 1: 49, PC: 36, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 5 -> CLOCK 1: 50, PC: 36, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 50, PC: 36, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 51, PC: 37, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
+Processo 5 -> CLOCK 1: 52, PC: 37, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 52, PC: 37, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 53, PC: 38, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 1)
+Processo 5 -> CLOCK 1: 54, PC: 38, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 55, PC: 38, ETAPA: EXECUTE, Instrucao: * (CPU 1)
+Processo 5 -> CLOCK 1: 56, PC: 38, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 1)
+Processo 5 -> CLOCK 1: 57, PC: 38, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 1)
+Processo 5 -> CLOCK 1: 58, PC: 39, ETAPA: FETCH, Instrucao: = 2 10 (CPU 1)
+Processo 5 -> CLOCK 1: 59, PC: 39, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 59, PC: 39, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 60, PC: 40, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 5 -> CLOCK 1: 61, PC: 40, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 61, PC: 40, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 62, PC: 41, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
+Processo 5 -> CLOCK 1: 63, PC: 41, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 63, PC: 41, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 64, PC: 42, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 1)
+Processo 5 -> CLOCK 1: 65, PC: 42, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 66, PC: 42, ETAPA: EXECUTE, Instrucao: - (CPU 1)
+Processo 5 -> CLOCK 1: 67, PC: 42, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 1)
+Processo 5 -> CLOCK 1: 68, PC: 42, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 1)
+Processo 5 -> CLOCK 1: 69, PC: 43, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 5 -> CLOCK 1: 70, PC: 43, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 70, PC: 43, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 71, PC: 44, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
+Processo 5 -> CLOCK 1: 72, PC: 44, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 72, PC: 44, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 73, PC: 45, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
+Processo 5 -> CLOCK 1: 74, PC: 45, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 75, PC: 45, ETAPA: EXECUTE, Instrucao: + (CPU 1)
+Processo 5 -> CLOCK 1: 76, PC: 45, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 1)
+Processo 5 -> CLOCK 1: 77, PC: 45, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 1)
+Processo 5 -> CLOCK 1: 78, PC: 46, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 5 -> CLOCK 1: 79, PC: 46, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 79, PC: 46, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 80, PC: 47, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
+Processo 5 -> CLOCK 1: 81, PC: 47, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 81, PC: 47, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 1: 82, PC: 48, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 1)
+Processo 5 -> CLOCK 1: 83, PC: 48, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 84, PC: 48, ETAPA: EXECUTE, Instrucao: * (CPU 1)
+Processo 5 -> CLOCK 1: 85, PC: 48, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 1)
+Processo 5 -> CLOCK 1: 86, PC: 48, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 1)
+Processo 5 -> CLOCK 1: 87, PC: 49, ETAPA: FETCH, Instrucao: = 2 10 (CPU 1)
+Processo 5 -> CLOCK 1: 88, PC: 49, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 1: 88, PC: 49, ETAPA: EXECUTE, Instrucao: = (CPU 1)
 
 Processo 1 encerrado!
 Dados finais: 
@@ -1054,336 +769,490 @@ Linhas Processadas: 10
 Prioridade: 7
 Quantum necessário para executar: 32
 Timestamp: 32
-Quantum final: 23
 Estado: Finalizado
 
-Processo 3 -> CLOCK 1: 33, PC: 29, ETAPA: FETCH, Instrucao: = 1 9 (CPU 1)
-Processo 3 -> CLOCK 1: 34, PC: 29, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 34, PC: 29, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 3 -> CLOCK 1: 35, PC: 30, ETAPA: FETCH, Instrucao: = 0 5 (CPU 1)
-Processo 3 -> CLOCK 1: 36, PC: 30, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 36, PC: 30, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 3 -> CLOCK 1: 37, PC: 31, ETAPA: FETCH, Instrucao: = 1 7 (CPU 1)
-Processo 3 -> CLOCK 1: 38, PC: 31, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 38, PC: 31, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 3 -> CLOCK 1: 39, PC: 32, ETAPA: FETCH, Instrucao: = 0 2 (CPU 1)
-Processo 3 -> CLOCK 1: 40, PC: 32, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 40, PC: 32, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 3 -> CLOCK 1: 41, PC: 33, ETAPA: FETCH, Instrucao: = 1 1 (CPU 1)
-Processo 3 -> CLOCK 1: 42, PC: 33, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 42, PC: 33, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 3 -> CLOCK 1: 43, PC: 34, ETAPA: FETCH, Instrucao: = 0 6 (CPU 1)
-Processo 3 -> CLOCK 1: 44, PC: 34, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 44, PC: 34, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 3 -> CLOCK 1: 45, PC: 35, ETAPA: FETCH, Instrucao: + 2 0 1 (CPU 1)
-Processo 3 -> CLOCK 1: 46, PC: 35, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 47, PC: 35, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 3 -> CLOCK 1: 48, PC: 35, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 1)
-Processo 3 -> CLOCK 1: 49, PC: 35, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 1)
-Processo 3 -> CLOCK 1: 50, PC: 36, ETAPA: FETCH, Instrucao: * 3 0 1 (CPU 1)
-Processo 3 -> CLOCK 1: 51, PC: 36, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 52, PC: 36, ETAPA: EXECUTE, Instrucao: * (CPU 1)
-Processo 3 -> CLOCK 1: 53, PC: 36, ETAPA: MEMORY_ACCESS, Resultado: 6 (CPU 1)
-Processo 3 -> CLOCK 1: 54, PC: 36, ETAPA: WRITEBACK, Escrevendo: 6 na memoria. (CPU 1)
-Processo 3 -> CLOCK 1: 55, PC: 37, ETAPA: FETCH, Instrucao: + 0 0 1 (CPU 1)
-Processo 3 -> CLOCK 1: 56, PC: 37, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 57, PC: 37, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 3 -> CLOCK 1: 58, PC: 37, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 1)
-Processo 3 -> CLOCK 1: 59, PC: 37, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 1)
-Processo 3 -> CLOCK 1: 60, PC: 38, ETAPA: FETCH, Instrucao: * 0 0 1 (CPU 1)
-Processo 3 -> CLOCK 1: 61, PC: 38, ETAPA: DECODE  (CPU 1)
-Processo 3 -> CLOCK 1: 62, PC: 38, ETAPA: EXECUTE, Instrucao: * (CPU 1)
-Processo 3 -> CLOCK 1: 63, PC: 38, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 1)
-Processo 3 -> CLOCK 1: 64, PC: 38, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 1)
-Processo 4 -> CLOCK 2: 56, PC: 39, ETAPA: FETCH, Instrucao: = 1 2 (CPU 2)
-Processo 4 -> CLOCK 2: 57, PC: 39, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 57, PC: 39, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 58, PC: 40, ETAPA: FETCH, Instrucao: = 0 3 (CPU 2)
-Processo 4 -> CLOCK 2: 59, PC: 40, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 59, PC: 40, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 60, PC: 41, ETAPA: FETCH, Instrucao: = 2 9 (CPU 2)
-Processo 4 -> CLOCK 2: 61, PC: 41, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 61, PC: 41, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 62, PC: 42, ETAPA: FETCH, Instrucao: = 3 11 (CPU 2)
-Processo 4 -> CLOCK 2: 63, PC: 42, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 63, PC: 42, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 64, PC: 43, ETAPA: FETCH, Instrucao: = 4 100 (CPU 2)
-Processo 4 -> CLOCK 2: 65, PC: 43, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 65, PC: 43, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 66, PC: 44, ETAPA: FETCH, Instrucao: + 6 0 1 (CPU 2)
-Processo 4 -> CLOCK 2: 67, PC: 44, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 68, PC: 44, ETAPA: EXECUTE, Instrucao: + (CPU 2)
-Processo 4 -> CLOCK 2: 69, PC: 44, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 2)
-Processo 4 -> CLOCK 2: 70, PC: 44, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 71, PC: 45, ETAPA: FETCH, Instrucao: - 7 2 1 (CPU 2)
-Processo 4 -> CLOCK 2: 72, PC: 45, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 73, PC: 45, ETAPA: EXECUTE, Instrucao: - (CPU 2)
-Processo 4 -> CLOCK 2: 74, PC: 45, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 2)
-Processo 4 -> CLOCK 2: 75, PC: 45, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 76, PC: 46, ETAPA: FETCH, Instrucao: * 8 3 4 (CPU 2)
-Processo 4 -> CLOCK 2: 77, PC: 46, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 78, PC: 46, ETAPA: EXECUTE, Instrucao: * (CPU 2)
-Processo 4 -> CLOCK 2: 79, PC: 46, ETAPA: MEMORY_ACCESS, Resultado: 1100 (CPU 2)
-Processo 4 -> CLOCK 2: 80, PC: 46, ETAPA: WRITEBACK, Escrevendo: 1100 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 81, PC: 47, ETAPA: FETCH, Instrucao: / 9 4 4 (CPU 2)
-Processo 4 -> CLOCK 2: 82, PC: 47, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 83, PC: 47, ETAPA: EXECUTE, Instrucao: / (CPU 2)
-Processo 4 -> CLOCK 2: 84, PC: 47, ETAPA: MEMORY_ACCESS, Resultado: 1 (CPU 2)
-Processo 4 -> CLOCK 2: 85, PC: 47, ETAPA: WRITEBACK, Escrevendo: 1 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 86, PC: 48, ETAPA: FETCH, Instrucao: ? 0 1 > (CPU 2)
-Processo 4 -> CLOCK 2: 87, PC: 48, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 87, PC: 48, ETAPA: EXECUTE, Instrucao: ? (CPU 2)
-Processo 4 -> CLOCK 2: 89, PC: 49, ETAPA: FETCH, Instrucao: = 1 2 (CPU 2)
-Processo 4 -> CLOCK 2: 90, PC: 49, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 90, PC: 49, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 91, PC: 50, ETAPA: FETCH, Instrucao: = 0 3 (CPU 2)
-Processo 4 -> CLOCK 2: 92, PC: 50, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 92, PC: 50, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 93, PC: 51, ETAPA: FETCH, Instrucao: = 2 9 (CPU 2)
-Processo 4 -> CLOCK 2: 94, PC: 51, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 94, PC: 51, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 95, PC: 52, ETAPA: FETCH, Instrucao: = 3 11 (CPU 2)
-Processo 4 -> CLOCK 2: 96, PC: 52, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 96, PC: 52, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 97, PC: 53, ETAPA: FETCH, Instrucao: = 4 100 (CPU 2)
-Processo 4 -> CLOCK 2: 98, PC: 53, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 98, PC: 53, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 4 -> CLOCK 2: 99, PC: 54, ETAPA: FETCH, Instrucao: + 6 0 1 (CPU 2)
-Processo 4 -> CLOCK 2: 100, PC: 54, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 101, PC: 54, ETAPA: EXECUTE, Instrucao: + (CPU 2)
-Processo 4 -> CLOCK 2: 102, PC: 54, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 2)
-Processo 4 -> CLOCK 2: 103, PC: 54, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 104, PC: 55, ETAPA: FETCH, Instrucao: - 7 2 1 (CPU 2)
-Processo 4 -> CLOCK 2: 105, PC: 55, ETAPA: DECODE  (CPU 2)
-Processo 4 -> CLOCK 2: 106, PC: 55, ETAPA: EXECUTE, Instrucao: - (CPU 2)
-Processo 4 -> CLOCK 2: 107, PC: 55, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 2)
-Processo 4 -> CLOCK 2: 108, PC: 55, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 2)
-Processo 4 -> CLOCK 2: 109, PC: 56, ETAPA: FETCH, Instrucao: * 8 3 4 (CPU 2)
-Processo 4 -> Quantum esgotado!
+
+Processo 2 encerrado!
+Dados finais: 
+Linhas Processadas: 10
+Prioridade: 1
+Quantum necessário para executar: 32
+Timestamp: 32
+Estado: Finalizado
+
+Processo 3 -> CLOCK 2: 33, PC: 50, ETAPA: FETCH, Instrucao: = 1 2 (CPU 2)
+Processo 3 -> CLOCK 2: 34, PC: 50, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 34, PC: 50, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 35, PC: 51, ETAPA: FETCH, Instrucao: = 0 3 (CPU 2)
+Processo 3 -> CLOCK 2: 36, PC: 51, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 36, PC: 51, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 37, PC: 52, ETAPA: FETCH, Instrucao: = 2 9 (CPU 2)
+Processo 3 -> CLOCK 2: 38, PC: 52, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 38, PC: 52, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 39, PC: 53, ETAPA: FETCH, Instrucao: = 3 11 (CPU 2)
+Processo 3 -> CLOCK 2: 40, PC: 53, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 40, PC: 53, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 41, PC: 54, ETAPA: FETCH, Instrucao: = 4 100 (CPU 2)
+Processo 3 -> CLOCK 2: 42, PC: 54, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 42, PC: 54, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 43, PC: 55, ETAPA: FETCH, Instrucao: + 6 0 1 (CPU 2)
+Processo 3 -> CLOCK 2: 44, PC: 55, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 45, PC: 55, ETAPA: EXECUTE, Instrucao: + (CPU 2)
+Processo 3 -> CLOCK 2: 46, PC: 55, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 2)
+Processo 3 -> CLOCK 2: 47, PC: 55, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 2)
+Processo 3 -> CLOCK 2: 48, PC: 56, ETAPA: FETCH, Instrucao: - 7 2 1 (CPU 2)
+Processo 3 -> CLOCK 2: 49, PC: 56, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 50, PC: 56, ETAPA: EXECUTE, Instrucao: - (CPU 2)
+Processo 3 -> CLOCK 2: 51, PC: 56, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 2)
+Processo 3 -> CLOCK 2: 52, PC: 56, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 2)
+Processo 3 -> CLOCK 2: 53, PC: 57, ETAPA: FETCH, Instrucao: * 8 3 4 (CPU 2)
+Processo 3 -> CLOCK 2: 54, PC: 57, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 55, PC: 57, ETAPA: EXECUTE, Instrucao: * (CPU 2)
+Processo 3 -> CLOCK 2: 56, PC: 57, ETAPA: MEMORY_ACCESS, Resultado: 1100 (CPU 2)
+Processo 3 -> CLOCK 2: 57, PC: 57, ETAPA: WRITEBACK, Escrevendo: 1100 na memoria. (CPU 2)
+Processo 3 -> CLOCK 2: 58, PC: 58, ETAPA: FETCH, Instrucao: / 9 4 4 (CPU 2)
+Processo 3 -> CLOCK 2: 59, PC: 58, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 60, PC: 58, ETAPA: EXECUTE, Instrucao: / (CPU 2)
+Processo 3 -> CLOCK 2: 61, PC: 58, ETAPA: MEMORY_ACCESS, Resultado: 1 (CPU 2)
+Processo 3 -> CLOCK 2: 62, PC: 58, ETAPA: WRITEBACK, Escrevendo: 1 na memoria. (CPU 2)
+Processo 3 -> CLOCK 2: 63, PC: 59, ETAPA: FETCH, Instrucao: ? 0 1 > (CPU 2)
+Processo 3 -> CLOCK 2: 64, PC: 59, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 64, PC: 59, ETAPA: EXECUTE, Instrucao: ? (CPU 2)
+Processo 3 -> CLOCK 2: 66, PC: 60, ETAPA: FETCH, Instrucao: = 1 2 (CPU 2)
+Processo 3 -> CLOCK 2: 67, PC: 60, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 67, PC: 60, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 68, PC: 61, ETAPA: FETCH, Instrucao: = 0 3 (CPU 2)
+Processo 3 -> CLOCK 2: 69, PC: 61, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 69, PC: 61, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 70, PC: 62, ETAPA: FETCH, Instrucao: = 2 9 (CPU 2)
+Processo 3 -> CLOCK 2: 71, PC: 62, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 71, PC: 62, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 72, PC: 63, ETAPA: FETCH, Instrucao: = 3 11 (CPU 2)
+Processo 3 -> CLOCK 2: 73, PC: 63, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 73, PC: 63, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 74, PC: 64, ETAPA: FETCH, Instrucao: = 4 100 (CPU 2)
+Processo 3 -> CLOCK 2: 75, PC: 64, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 75, PC: 64, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 2: 76, PC: 65, ETAPA: FETCH, Instrucao: + 6 0 1 (CPU 2)
+Processo 3 -> CLOCK 2: 77, PC: 65, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 78, PC: 65, ETAPA: EXECUTE, Instrucao: + (CPU 2)
+Processo 3 -> CLOCK 2: 79, PC: 65, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 2)
+Processo 3 -> CLOCK 2: 80, PC: 65, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 2)
+Processo 3 -> CLOCK 2: 81, PC: 66, ETAPA: FETCH, Instrucao: - 7 2 1 (CPU 2)
+Processo 3 -> CLOCK 2: 82, PC: 66, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 83, PC: 66, ETAPA: EXECUTE, Instrucao: - (CPU 2)
+Processo 3 -> CLOCK 2: 84, PC: 66, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 2)
+Processo 3 -> CLOCK 2: 85, PC: 66, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 2)
+Processo 3 -> CLOCK 2: 86, PC: 67, ETAPA: FETCH, Instrucao: * 8 3 4 (CPU 2)
+Processo 3 -> CLOCK 2: 87, PC: 67, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 88, PC: 67, ETAPA: EXECUTE, Instrucao: * (CPU 2)
+Processo 3 -> CLOCK 2: 89, PC: 67, ETAPA: MEMORY_ACCESS, Resultado: 1100 (CPU 2)
+Processo 3 -> CLOCK 2: 90, PC: 67, ETAPA: WRITEBACK, Escrevendo: 1100 na memoria. (CPU 2)
+Processo 3 -> CLOCK 2: 91, PC: 68, ETAPA: FETCH, Instrucao: / 9 4 4 (CPU 2)
+Processo 3 -> CLOCK 2: 92, PC: 68, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 93, PC: 68, ETAPA: EXECUTE, Instrucao: / (CPU 2)
+Processo 3 -> CLOCK 2: 94, PC: 68, ETAPA: MEMORY_ACCESS, Resultado: 1 (CPU 2)
+Processo 3 -> CLOCK 2: 95, PC: 68, ETAPA: WRITEBACK, Escrevendo: 1 na memoria. (CPU 2)
+Processo 3 -> CLOCK 2: 96, PC: 69, ETAPA: FETCH, Instrucao: ? 0 1 > (CPU 2)
+Processo 3 -> CLOCK 2: 97, PC: 69, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 2: 97, PC: 69, ETAPA: EXECUTE, Instrucao: ? (CPU 2)
+
+Processo 5 encerrado!
+Dados finais: 
+Linhas Processadas: 20
+Prioridade: 5
+Quantum necessário para executar: 58
+Timestamp: 152
+Estado: Finalizado
+
 
 Processo 3 encerrado!
+Dados finais: 
+Linhas Processadas: 20
+Prioridade: 9
+Quantum necessário para executar: 66
+Timestamp: 218
+Estado: Finalizado
+
+CLOCK 1 = 88 | 
+CLOCK 2 = 98 | 
+CLOCK 3 = 32 | 
+PC = 70
+
+
+--- POLÍTICA DE ESCALONAMENTO: Round Robin
+=================================================================================================
+Processo 3 -> CLOCK 3: 1, PC: 0, ETAPA: FETCH, Instrucao: = 1 2 (CPU 3)
+Processo 2 -> CLOCK 2: 2, PC: 0, ETAPA: DECODE  (CPU 2)
+Processo 1 -> CLOCK 1: 2, PC: 0, ETAPA: DECODE  (CPU 1)
+Processo 2 -> CLOCK 2: 2, PC: 0, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 1 -> CLOCK 1: 2, PC: 0, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 3 -> CLOCK 3: 3, PC: 1, ETAPA: FETCH, Instrucao: = 0 3 (CPU 3)
+Processo 2 -> CLOCK 2: 3, PC: 2, ETAPA: FETCH, Instrucao: = 0 5 (CPU 2)
+Processo 3 -> CLOCK 3: 4, PC: 3, ETAPA: DECODE  (CPU 3)
+ = 1 2  (CPU 1)
+Processo 2 -> CLOCK 2: 4, PC: 3, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 3: 4, PC: 3, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 2 -> CLOCK 2: 4, PC: 3, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 3: 5, PC: 4, ETAPA: FETCH, Instrucao: = 2 9 (CPU 3)
+Processo 2 -> CLOCK 2: 5, PC: 5, ETAPA: FETCH, Instrucao: = 1 7 (CPU 2)
+Processo 3 -> CLOCK 3: 6, PC: 5, ETAPA: DECODE  (CPU 3)
+Processo 1 -> CLOCK 1: 5, PC: 6, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
+Processo 1 -> CLOCK 1: 6, PC: 6, ETAPA: DECODE  (CPU 1)
+o: = (CPU 3)
+Processo 2 -> CLOCK 2: 6, PC: 7, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+)
+Processo 2 -> CLOCK 2: 7, PC: 8, ETAPA: FETCH, Instrucao: = 0 2 (CPU 2)
+1)
+Processo 2 -> CLOCK 2: 8, PC: 8, ETAPA: DECODE  (CPU 2)
+o: = (CPU 3)
+Processo 1 -> CLOCK 1: 9, PC: 8, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 1)
+Processo 2 -> CLOCK 2: 8, PC: 10, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+)
+Processo 1 -> CLOCK 1: 10, PC: 10, ETAPA: FETCH, Instrucao: = 2 7 (CPU 1)
+Processo 3 -> CLOCK 3: 10, PC: 10, ETAPA: DECODE  (CPU 3)
+Processo 1 -> CLOCK 1: 11, PC: 11, ETAPA: DECODE  (CPU 1)
+= 1 1 (CPU 2)
+Processo 2 -> CLOCK 2: 10, PC: 11, ETAPA: DECODE  (CPU 2)
+o: = (CPU 3)
+Processo 1 -> CLOCK 1: 11, PC: 11, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 2 -> CLOCK 2: 10, PC: 12, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+3)
+Processo 1 -> CLOCK 1: 12, PC: 13, ETAPA: FETCH, Instrucao: = 3 9  (CPU 1)
+Processo 3 -> CLOCK 3: 12, PC: 13, ETAPA: DECODE  (CPU 3)
+Processo 1 -> CLOCK 1: 13, PC: 13, ETAPA: DECODE  (CPU 1)
+Processo 2 -> CLOCK 2: 11, PC: 14, ETAPA: FETCH, Instrucao: = 0 6 (CPU 2)
+Processo 3 -> CLOCK 3: 13, PC: 14, ETAPA: EXECUTE, Instrucao: + (CPU 3)
+Processo 1 -> CLOCK 1: 13, PC: 14, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 3 -> CLOCK 3: 14, PC: 14, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 3)
+Processo 1 -> CLOCK 1: 14, PC: 15, ETAPA: FETCH, Instrucao: + 4 2 3 (CPU 1)
+Processo 3 -> CLOCK 3: 15, PC: 15, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 3)
+Processo 1 -> CLOCK 1: 15, PC: 15, ETAPA: DECODE  (CPU 1)
+Processo 3 -> CLOCK 3: 16, PC: 16, ETAPA: FETCH, Instrucao: - 7 2 1 (CPU 3)
+Processo 1 -> CLOCK 1: 16, PC: 16, ETAPA: EXECUTE, Instrucao: + (CPU 1)
+Processo 2 -> CLOCK 2: 13, PC: 17, ETAPA: FETCH, Instrucao: + 2 0 1 (CPU 2)
+Processo 3 -> CLOCK 3: 17, PC: 17, ETAPA: DECODE  (CPU 3)
+Processo 2 -> CLOCK 2: 14, PC: 17, ETAPA: DECODE  (CPU 2)
+sultado: 16 (CPU 1)
+Processo 3 -> CLOCK 3: 18, PC: 17, ETAPA: EXECUTE, Instrucao: - (CPU 3)
+Processo 1 -> CLOCK 1: 18, PC: 17, ETAPA: WRITEBACK, Escrevendo: 16 na memoria. (CPU 1)
+Processo 3 -> CLOCK 3: 19, PC: 17, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU Processo 2 -> CLOCK 2: 16, PC: 18, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 2)
+Processo 2 -> CLOCK 2: 17, PC: 18, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 2)
+Processo 1 -> CLOCK 1: 20, PC: 18, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 2 -> CLOCK 2: 18, PC: 20, ETAPA: FETCH, Instrucao: * 3 0 1 (CPU 2)
+Processo 3 -> CLOCK 3: 21, PC: 20, ETAPA: FETCH, Instrucao: * 8 3 4 (CPU 3)
+Processo 2 -> CLOCK 2: 19, PC: 21, ETAPA: DECODE  (CPU 2)
+ = 1 2  (CPU 1)
+Processo 2 -> CLOCK 2: 20, PC: 21, ETAPA: EXECUTE, Instrucao: * (CPU 2)
+Processo 2 -> CLOCK 2: 21, PC: 21, ETAPA: MEMORY_ACCESS, Resultado: 6 (CPU 2)
+)
+Processo 1 -> CLOCK 1: 23, PC: 22, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
+ria. (CPU 3)
+Processo 2 -> CLOCK 2: 22, PC: 21, ETAPA: WRITEBACK, Escrevendo: 6 na memoria. (CPU 2)
+Processo 3 -> CLOCK 3: 26, PC: 23, ETAPA: FETCH, Instrucao: / 9 4 4 (CPU 3)
+Processo 3 -> CLOCK 3: 27, PC: 24, ETAPA: DECODE  (CPU 3)
+o: + (CPU 1)
+Processo 2 -> CLOCK 2: 25, PC: 24, ETAPA: EXECUTE, Instrucao: + (CPU 2)
+U 1)
+Processo 3 -> CLOCK 3: 28, PC: 24, ETAPA: EXECUTE, Instrucao: / (CPU 3)
+Processo 2 -> CLOCK 2: 26, PC: 24, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 2)
+(CPU 1)
+Processo 3 -> CLOCK 3: 30, PC: 24, ETAPA: WRITEBACK, Escrevendo: 1 na memoria. (CPU 3)
+Processo 2 -> CLOCK 2: 27, PC: 24, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 2)
+Processo 1 -> CLOCK 1: 28, PC: 25, ETAPA: FETCH, Instrucao: * 5 1 0 (CPU 1)
+Processo 3 -> CLOCK 3: 31, PC: 26, ETAPA: FETCH, Instrucao: ? 0 1 > (CPU 3)
+Processo 1 -> CLOCK 1: 29, PC: 27, ETAPA: DECODE  (CPU 1)
+ * 0 0 1 (CPU 2)
+Processo 3 -> CLOCK 3: 32, PC: 27, ETAPA: DECODE  (CPU 3)
+Processo 1 -> CLOCK 1: 30, PC: 27, ETAPA: EXECUTE, Instrucao: * (CPU 1)
+Processo 2 -> CLOCK 2: 30, PC: 27, ETAPA: EXECUTE, Instrucao: * (CPU 2)
+PU 1)
+Processo 3 -> CLOCK 3: 32, PC: 27, ETAPA: EXECUTE, Instrucao: ? (CPU 3)
+Processo 1 -> CLOCK 1: 32, PC: 27, ETAPA: WRITEBACK, Escrevendo: 14 na memoria. (CPU 1)
+Processo 2 -> CLOCK 2: 31, PC: 27, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 2)
+Processo 3 -> CLOCK 3: 34, PC: 28, ETAPA: FETCH, Instrucao: = 1 2 (CPU 3)
+Processo 2 -> CLOCK 2: 32, PC: 29, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 2)
+Processo 3 -> CLOCK 3: 35, PC: 29, ETAPA: DECODE  (CPU 3)
+Processo 3 -> CLOCK 3: 35, PC: 30, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 3 -> CLOCK 3: 36, PC: 31, ETAPA: FETCH, Instrucao: = 0 3 (CPU 3)
+Processo 3 -> CLOCK 3: 37, PC: 31, ETAPA: DECODE  (CPU 3)
+Processo 3 -> CLOCK 3: 37, PC: 31, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 3 -> CLOCK 3: 38, PC: 32, ETAPA: FETCH, Instrucao: = 2 9 (CPU 3)
+Processo 3 -> CLOCK 3: 39, PC: 32, ETAPA: DECODE  (CPU 3)
+Processo 3 -> CLOCK 3: 39, PC: 32, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 3 -> Quantum esgotado!
+
+Processo 1 encerrado!
+Dados finais: 
+Linhas Processadas: 10
+Prioridade: 3
+Quantum necessário para executar: 32
+Timestamp: 32
+Quantum final: 8
+Estado: Finalizado
+
+
+Processo 2 encerrado!
 Dados finais: 
 Linhas Processadas: 10
 Prioridade: 2
 Quantum necessário para executar: 32
-Timestamp: 119
-Quantum final: 23
+Timestamp: 32
+Quantum final: 8
 Estado: Finalizado
 
-Processo 5 -> CLOCK 1: 65, PC: 57, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
-Processo 5 -> CLOCK 1: 66, PC: 57, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 66, PC: 57, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 67, PC: 58, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
-Processo 5 -> CLOCK 1: 68, PC: 58, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 68, PC: 58, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 69, PC: 59, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 1)
-Processo 5 -> CLOCK 1: 70, PC: 59, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 71, PC: 59, ETAPA: EXECUTE, Instrucao: - (CPU 1)
-Processo 5 -> CLOCK 1: 72, PC: 59, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 1)
-Processo 5 -> CLOCK 1: 73, PC: 59, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 1)
-Processo 5 -> CLOCK 1: 74, PC: 60, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
-Processo 5 -> CLOCK 1: 75, PC: 60, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 75, PC: 60, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 76, PC: 61, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
-Processo 5 -> CLOCK 1: 77, PC: 61, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 77, PC: 61, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 78, PC: 62, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
-Processo 5 -> CLOCK 1: 79, PC: 62, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 80, PC: 62, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 5 -> CLOCK 1: 81, PC: 62, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 1)
-Processo 5 -> CLOCK 1: 82, PC: 62, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 1)
-Processo 5 -> CLOCK 1: 83, PC: 63, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
-Processo 5 -> CLOCK 1: 84, PC: 63, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 84, PC: 63, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 85, PC: 64, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
-Processo 5 -> CLOCK 1: 86, PC: 64, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 86, PC: 64, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 5 -> CLOCK 1: 87, PC: 65, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 1)
-Processo 5 -> CLOCK 1: 88, PC: 65, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 89, PC: 65, ETAPA: EXECUTE, Instrucao: * (CPU 1)
-Processo 5 -> CLOCK 1: 90, PC: 65, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 1)
-Processo 5 -> CLOCK 1: 91, PC: 65, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 1)
-Processo 5 -> CLOCK 1: 92, PC: 66, ETAPA: FETCH, Instrucao: ? 0 1 = (CPU 1)
-Processo 5 -> CLOCK 1: 93, PC: 66, ETAPA: DECODE  (CPU 1)
-Processo 5 -> CLOCK 1: 93, PC: 66, ETAPA: EXECUTE, Instrucao: ? (CPU 1)
-Processo 2 -> CLOCK 2: 110, PC: 67, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 67, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 67, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 68, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 68, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 68, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 69, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 69, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 69, ETAPA: EXECUTE, Instrucao: - (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 69, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 69, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 70, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 70, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 70, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 71, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 71, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 71, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 72, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 72, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 72, ETAPA: EXECUTE, Instrucao: + (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 72, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 72, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 73, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 73, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 73, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 74, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 74, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 74, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 75, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 75, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 75, ETAPA: EXECUTE, Instrucao: * (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 75, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 75, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 76, ETAPA: FETCH, Instrucao: = 2 10 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 76, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 76, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 77, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 77, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 77, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 78, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 78, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 78, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 79, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 79, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 79, ETAPA: EXECUTE, Instrucao: - (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 79, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 79, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 80, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 80, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 80, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 81, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 81, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 81, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 82, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 82, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 82, ETAPA: EXECUTE, Instrucao: + (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 82, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 82, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 83, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 83, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 83, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 84, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 84, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 110, PC: 84, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-Processo 2 -> CLOCK 2: 111, PC: 85, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 2)
-Processo 2 -> CLOCK 2: 112, PC: 85, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 113, PC: 85, ETAPA: EXECUTE, Instrucao: * (CPU 2)
-Processo 2 -> CLOCK 2: 114, PC: 85, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 2)
-Processo 2 -> CLOCK 2: 115, PC: 85, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 2)
-Processo 2 -> CLOCK 2: 116, PC: 86, ETAPA: FETCH, Instrucao: = 2 10 (CPU 2)
-Processo 2 -> CLOCK 2: 117, PC: 86, ETAPA: DECODE  (CPU 2)
-Processo 2 -> CLOCK 2: 117, PC: 86, ETAPA: EXECUTE, Instrucao: = (CPU 2)
-
-Processo 5 encerrado!
-Dados finais: 
-Linhas Processadas: 10
-Prioridade: 9
-Quantum necessário para executar: 30
-Timestamp: 204
-Quantum final: 25
-Estado: Finalizado
-
-Processo 4 -> CLOCK 1: 94, PC: 87, ETAPA: FETCH, Instrucao: = 1 2 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 87, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 87, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 88, ETAPA: FETCH, Instrucao: = 0 3 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 88, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 88, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 89, ETAPA: FETCH, Instrucao: = 2 9 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 89, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 89, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 90, ETAPA: FETCH, Instrucao: = 3 11 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 90, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 90, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 91, ETAPA: FETCH, Instrucao: = 4 100 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 91, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 91, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 92, ETAPA: FETCH, Instrucao: + 6 0 1 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 92, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 92, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 92, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 92, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 93, ETAPA: FETCH, Instrucao: - 7 2 1 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 93, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 93, ETAPA: EXECUTE, Instrucao: - (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 93, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 93, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 94, ETAPA: FETCH, Instrucao: * 8 3 4 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 94, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 94, ETAPA: EXECUTE, Instrucao: * (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 94, ETAPA: MEMORY_ACCESS, Resultado: 1100 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 94, ETAPA: WRITEBACK, Escrevendo: 1100 na memoria. (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 95, ETAPA: FETCH, Instrucao: / 9 4 4 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 95, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 95, ETAPA: EXECUTE, Instrucao: / (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 95, ETAPA: MEMORY_ACCESS, Resultado: 1 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 95, ETAPA: WRITEBACK, Escrevendo: 1 na memoria. (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 96, ETAPA: FETCH, Instrucao: ? 0 1 > (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 96, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 96, ETAPA: EXECUTE, Instrucao: ? (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 97, ETAPA: FETCH, Instrucao: = 1 2 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 97, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 97, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 98, ETAPA: FETCH, Instrucao: = 0 3 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 98, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 98, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 99, ETAPA: FETCH, Instrucao: = 2 9 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 99, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 99, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 100, ETAPA: FETCH, Instrucao: = 3 11 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 100, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 100, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 101, ETAPA: FETCH, Instrucao: = 4 100 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 101, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 101, ETAPA: EXECUTE, Instrucao: = (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 102, ETAPA: FETCH, Instrucao: + 6 0 1 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 102, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 102, ETAPA: EXECUTE, Instrucao: + (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 102, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 102, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 103, ETAPA: FETCH, Instrucao: - 7 2 1 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 103, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 103, ETAPA: EXECUTE, Instrucao: - (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 103, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 1)
-Processo 4 -> CLOCK 1: 94, PC: 103, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 1)
-Processo 4 -> CLOCK 1: 95, PC: 104, ETAPA: FETCH, Instrucao: * 8 3 4 (CPU 1)
-Processo 4 -> CLOCK 1: 96, PC: 104, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 97, PC: 104, ETAPA: EXECUTE, Instrucao: * (CPU 1)
-Processo 4 -> CLOCK 1: 98, PC: 104, ETAPA: MEMORY_ACCESS, Resultado: 1100 (CPU 1)
-Processo 4 -> CLOCK 1: 99, PC: 104, ETAPA: WRITEBACK, Escrevendo: 1100 na memoria. (CPU 1)
-Processo 4 -> CLOCK 1: 100, PC: 105, ETAPA: FETCH, Instrucao: / 9 4 4 (CPU 1)
-Processo 4 -> CLOCK 1: 101, PC: 105, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 102, PC: 105, ETAPA: EXECUTE, Instrucao: / (CPU 1)
-Processo 4 -> CLOCK 1: 103, PC: 105, ETAPA: MEMORY_ACCESS, Resultado: 1 (CPU 1)
-Processo 4 -> CLOCK 1: 104, PC: 105, ETAPA: WRITEBACK, Escrevendo: 1 na memoria. (CPU 1)
-Processo 4 -> CLOCK 1: 105, PC: 106, ETAPA: FETCH, Instrucao: ? 0 1 > (CPU 1)
-Processo 4 -> CLOCK 1: 106, PC: 106, ETAPA: DECODE  (CPU 1)
-Processo 4 -> CLOCK 1: 106, PC: 106, ETAPA: EXECUTE, Instrucao: ? (CPU 1)
-
-Processo 2 encerrado!
-Dados finais: 
-Linhas Processadas: 20
-Prioridade: 6
-Quantum necessário para executar: 58
-Timestamp: 147
-Quantum final: 48
-Estado: Finalizado
-
+Processo 5 -> CLOCK 2: 33, PC: 33, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
+Processo 4 -> CLOCK 1: 34, PC: 33, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 2: 34, PC: 33, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 4 -> CLOCK 1: 34, PC: 33, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 2: 35, PC: 34, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
+Processo 4 -> CLOCK 1: 35, PC: 35, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
+Processo 5 -> CLOCK 2: 36, PC: 35, ETAPA: DECODE  (CPU 2)
+Processo 4 -> CLOCK 1: 36, PC: 35, ETAPA: DECODE  (CPU 1)
+Processo 4 -> CLOCK 1: 36, PC: 35, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 2: 37, PC: 36, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 2)
+Processo 4 -> CLOCK 1: 37, PC: 37, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 1)
+Processo 5 -> CLOCK 2: 38, PC: 37, ETAPA: DECODE  (CPU 2)
+Processo 4 -> CLOCK 1: 38, PC: 37, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 2: 39, PC: 37, ETAPA: EXECUTE, Instrucao: - (CPU 2)
+Processo 4 -> CLOCK 1: 39, PC: 37, ETAPA: EXECUTE, Instrucao: - (CPU 1)
+Processo 5 -> CLOCK 2: 40, PC: 37, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 2)
+Processo 4 -> CLOCK 1: 40, PC: 37, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 1)
+Processo 5 -> CLOCK 2: 41, PC: 37, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 2)
+Processo 5 -> CLOCK 2: 42, PC: 38, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
+Processo 4 -> CLOCK 1: 41, PC: 37, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 1)
+Processo 5 -> CLOCK 2: 43, PC: 38, ETAPA: DECODE  (CPU 2)
+Processo 4 -> CLOCK 1: 42, PC: 39, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 4 -> CLOCK 1: 43, PC: 39, ETAPA: DECODE  (CPU 1)
+o: = (CPU 2)
+Processo 5 -> CLOCK 2: 44, PC: 40, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
+Processo 4 -> CLOCK 1: 43, PC: 39, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 2: 45, PC: 40, ETAPA: DECODE  (CPU 2)
+Processo 4 -> CLOCK 1: 44, PC: 41, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
+Processo 5 -> CLOCK 2: 45, PC: 41, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 4 -> CLOCK 1: 45, PC: 41, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 2: 46, PC: 42, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 2)
+Processo 4 -> CLOCK 1: 45, PC: 42, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 2: 47, PC: 42, ETAPA: DECODE  (CPU 2)
+Processo 4 -> CLOCK 1: 46, PC: 43, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 1)
+Processo 5 -> CLOCK 2: 48, PC: 43, ETAPA: EXECUTE, Instrucao: + (CPU 2)
+Processo 4 -> CLOCK 1: 47, PC: 43, ETAPA: DECODE  (CPU 1)
+Processo 3 -> CLOCK 3: 40, PC: 43, ETAPA: FETCH, Instrucao: = 1 2 (CPU 3)
+U 2)
+Processo 4 -> CLOCK 1: 49, PC: 43, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 1)
+(CPU 2)
+Processo 3 -> CLOCK 3: 40, PC: 44, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+)
+Processo 4 -> CLOCK 1: 50, PC: 44, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 1)
+Processo 5 -> CLOCK 2: 52, PC: 44, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 3: 40, PC: 45, ETAPA: FETCH, Instrucao: = 0 3 (CPU 3)
+Processo 4 -> CLOCK 1: 51, PC: 46, ETAPA: FETCH, Instrucao: = 0 10 (CPU 1)
+Processo 5 -> CLOCK 2: 52, PC: 46, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 4 -> CLOCK 1: 52, PC: 46, ETAPA: DECODE  (CPU 1)
+Processo 3 -> CLOCK 3: 40, PC: 46, ETAPA: DECODE  (CPU 3)
+Processo 5 -> CLOCK 2: 53, PC: 47, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
+Processo 4 -> CLOCK 1: 52, PC: 47, ETAPA: EXECUTE, Instrucao: = (CPU 1)
+Processo 5 -> CLOCK 2: 54, PC: 47, ETAPA: DECODE  (CPU 2)
+o: = (CPU 3)
+Processo 4 -> CLOCK 1: 53, PC: 48, ETAPA: FETCH, Instrucao: = 1 100 (CPU 1)
+Processo 3 -> CLOCK 3: 40, PC: 49, ETAPA: FETCH, Instrucao: = 2 9 (CPU 3)
+Processo 5 -> CLOCK 2: 54, PC: 49, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 4 -> CLOCK 1: 54, PC: 49, ETAPA: DECODE  (CPU 1)
+Processo 3 -> CLOCK 3: 40, PC: 49, ETAPA: DECODE  (CPU 3)
+Processo 5 -> CLOCK 2: 55, PC: 50, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 2)
+Processo 3 -> CLOCK 3: 40, PC: 50, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 4 -> CLOCK 1: 55, PC: 51, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 1)
+Processo 5 -> CLOCK 2: 56, PC: 51, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 3: 40, PC: 52, ETAPA: FETCH, Instrucao: = 3 11 (CPU 3)
+Processo 4 -> CLOCK 1: 56, PC: 52, ETAPA: DECODE  (CPU 1)
+Processo 3 -> CLOCK 3: 40, PC: 52, ETAPA: DECODE  (CPU 3)
+o: * (CPU 2)
+Processo 4 -> CLOCK 1: 57, PC: 52, ETAPA: EXECUTE, Instrucao: * (CPU 1)
+Processo 5 -> CLOCK 2: 58, PC: 52, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 2)
+Processo 3 -> CLOCK 3: 40, PC: 52, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 4 -> CLOCK 1: 58, PC: 52, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 1)
+Processo 5 -> CLOCK 2: 59, PC: 52, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 2)
+Processo 3 -> CLOCK 3: 40, PC: 53, ETAPA: FETCH, Instrucao: = 4 100 (CPU 3)
+Processo 4 -> CLOCK 1: 59, PC: 53, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 1)
+Processo 5 -> CLOCK 2: 60, PC: 54, ETAPA: FETCH, Instrucao: = 2 10 (CPU 2)
+Processo 3 -> CLOCK 3: 40, PC: 54, ETAPA: DECODE  (CPU 3)
+Processo 4 -> CLOCK 1: 60, PC: 55, ETAPA: FETCH, Instrucao: ? 0 1 = (CPU 1)
+Processo 3 -> CLOCK 3: 40, PC: 55, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 4 -> CLOCK 1: 61, PC: 55, ETAPA: DECODE  (CPU 1)
+Processo 5 -> CLOCK 2: 61, PC: 55, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 3: 40, PC: 56, ETAPA: FETCH, Instrucao: + 6 0 1 (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 57, ETAPA: DECODE  (CPU 3)
+ = 0 10 (CPU 2)
+Processo 3 -> CLOCK 3: 40, PC: 57, ETAPA: EXECUTE, Instrucao: + (CPU 3)
+Processo 5 -> CLOCK 2: 63, PC: 57, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+U 3)
+Processo 3 -> CLOCK 3: 40, PC: 57, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 3)
+Processo 5 -> CLOCK 2: 64, PC: 59, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
+Processo 3 -> CLOCK 3: 40, PC: 60, ETAPA: FETCH, Instrucao: - 7 2 1 (CPU 3)
+Processo 5 -> CLOCK 2: 65, PC: 60, ETAPA: DECODE  (CPU 2)
+Processo 3 -> CLOCK 3: 40, PC: 60, ETAPA: DECODE  (CPU 3)
+Processo 5 -> CLOCK 2: 65, PC: 60, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 3 -> CLOCK 3: 40, PC: 60, ETAPA: EXECUTE, Instrucao: - (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 61, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 61, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 3)
+Processo 5 -> CLOCK 2: 68, PC: 61, ETAPA: EXECUTE, Instrucao: - (CPU 2)
+Processo 3 -> CLOCK 3: 40, PC: 62, ETAPA: FETCH, Instrucao: * 8 3 4 (CPU 3)
+Processo 5 -> CLOCK 2: 69, PC: 62, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 2)
+Processo 3 -> CLOCK 3: 40, PC: 62, ETAPA: DECODE  (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 62, ETAPA: EXECUTE, Instrucao: * (CPU 3)
+moria. (CPU 2)
+Processo 3 -> CLOCK 3: 40, PC: 62, ETAPA: MEMORY_ACCESS, Resultado: 1100 (CPU 3)
+Processo 5 -> CLOCK 2: 71, PC: 63, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
+Processo 3 -> CLOCK 3: 40, PC: 63, ETAPA: WRITEBACK, Escrevendo: 1100 na memoria. (CPU 3)
+Processo 5 -> Quantum esgotado!
+, ETAPA: FETCH, Instrucao: / 9 4 4 (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 65, ETAPA: DECODE  (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 65, ETAPA: EXECUTE, Instrucao: / (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 65, ETAPA: MEMORY_ACCESS, Resultado: 1 (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 65, ETAPA: WRITEBACK, Escrevendo: 1 na memoria. (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 66, ETAPA: FETCH, Instrucao: ? 0 1 > (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 66, ETAPA: DECODE  (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 66, ETAPA: EXECUTE, Instrucao: ? (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 67, ETAPA: FETCH, Instrucao: = 1 2 (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 67, ETAPA: DECODE  (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 67, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 68, ETAPA: FETCH, Instrucao: = 0 3 (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 68, ETAPA: DECODE  (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 68, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 69, ETAPA: FETCH, Instrucao: = 2 9 (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 69, ETAPA: DECODE  (CPU 3)
+Processo 3 -> CLOCK 3: 40, PC: 69, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 3 -> CLOCK 3: 41, PC: 70, ETAPA: FETCH, Instrucao: = 3 11 (CPU 3)
+Processo 3 -> CLOCK 3: 42, PC: 70, ETAPA: DECODE  (CPU 3)
+Processo 3 -> CLOCK 3: 42, PC: 70, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 3 -> CLOCK 3: 43, PC: 71, ETAPA: FETCH, Instrucao: = 4 100 (CPU 3)
+Processo 3 -> CLOCK 3: 44, PC: 71, ETAPA: DECODE  (CPU 3)
+Processo 3 -> CLOCK 3: 44, PC: 71, ETAPA: EXECUTE, Instrucao: = (CPU 3)
+Processo 3 -> CLOCK 3: 45, PC: 72, ETAPA: FETCH, Instrucao: + 6 0 1 (CPU 3)
+Processo 3 -> CLOCK 3: 46, PC: 72, ETAPA: DECODE  (CPU 3)
+Processo 3 -> CLOCK 3: 47, PC: 72, ETAPA: EXECUTE, Instrucao: + (CPU 3)
+Processo 3 -> CLOCK 3: 48, PC: 72, ETAPA: MEMORY_ACCESS, Resultado: 5 (CPU 3)
+Processo 3 -> CLOCK 3: 49, PC: 72, ETAPA: WRITEBACK, Escrevendo: 5 na memoria. (CPU 3)
+Processo 3 -> CLOCK 3: 50, PC: 73, ETAPA: FETCH, Instrucao: - 7 2 1 (CPU 3)
+Processo 3 -> CLOCK 3: 51, PC: 73, ETAPA: DECODE  (CPU 3)
+Processo 3 -> CLOCK 3: 52, PC: 73, ETAPA: EXECUTE, Instrucao: - (CPU 3)
+Processo 3 -> CLOCK 3: 53, PC: 73, ETAPA: MEMORY_ACCESS, Resultado: 7 (CPU 3)
+Processo 3 -> CLOCK 3: 54, PC: 73, ETAPA: WRITEBACK, Escrevendo: 7 na memoria. (CPU 3)
+Processo 3 -> CLOCK 3: 55, PC: 74, ETAPA: FETCH, Instrucao: * 8 3 4 (CPU 3)
+Processo 3 -> CLOCK 3: 56, PC: 74, ETAPA: DECODE  (CPU 3)
+Processo 3 -> CLOCK 3: 57, PC: 74, ETAPA: EXECUTE, Instrucao: * (CPU 3)
+Processo 3 -> CLOCK 3: 58, PC: 74, ETAPA: MEMORY_ACCESS, Resultado: 1100 (CPU 3)
+Processo 3 -> CLOCK 3: 59, PC: 74, ETAPA: WRITEBACK, Escrevendo: 1100 na memoria. (CPU 3)
+Processo 3 -> CLOCK 3: 60, PC: 75, ETAPA: FETCH, Instrucao: / 9 4 4 (CPU 3)
+Processo 3 -> CLOCK 3: 61, PC: 75, ETAPA: DECODE  (CPU 3)
+Processo 3 -> CLOCK 3: 62, PC: 75, ETAPA: EXECUTE, Instrucao: / (CPU 3)
+Processo 3 -> CLOCK 3: 63, PC: 75, ETAPA: MEMORY_ACCESS, Resultado: 1 (CPU 3)
+Processo 3 -> CLOCK 3: 64, PC: 75, ETAPA: WRITEBACK, Escrevendo: 1 na memoria. (CPU 3)
+Processo 3 -> CLOCK 3: 65, PC: 76, ETAPA: FETCH, Instrucao: ? 0 1 > (CPU 3)
+Processo 3 -> CLOCK 3: 66, PC: 76, ETAPA: DECODE  (CPU 3)
+Processo 3 -> CLOCK 3: 66, PC: 76, ETAPA: EXECUTE, Instrucao: ? (CPU 3)
 
 Processo 4 encerrado!
+Dados finais: 
+Linhas Processadas: 10
+Prioridade: 1
+Quantum necessário para executar: 30
+Timestamp: 134
+Quantum final: 10
+Estado: Finalizado
+
+Processo 5 -> CLOCK 2: 72, PC: 77, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 77, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 77, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 78, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 78, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 78, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 79, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 79, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 79, ETAPA: EXECUTE, Instrucao: - (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 79, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 79, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 80, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 80, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 80, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 81, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 81, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 81, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 82, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 82, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 82, ETAPA: EXECUTE, Instrucao: + (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 82, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 82, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 83, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 83, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 83, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 84, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 84, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 84, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 85, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 85, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 85, ETAPA: EXECUTE, Instrucao: * (CPU 2)
+
+Processo 3 encerrado!
 Dados finais: 
 Linhas Processadas: 20
 Prioridade: 3
 Quantum necessário para executar: 66
-Timestamp: 194
-Quantum final: 42
+Timestamp: 67
+Quantum final: 13
 Estado: Finalizado
 
-CLOCK 1 = 107 | 
-CLOCK 2 = 117 | 
-PC = 107
+Processo 5 -> CLOCK 2: 72, PC: 85, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 86, ETAPA: FETCH, Instrucao: = 2 10 (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 86, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 86, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 87, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 87, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 87, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 88, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 88, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 88, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 89, ETAPA: FETCH, Instrucao: - 3 1 0 (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 89, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 89, ETAPA: EXECUTE, Instrucao: - (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 89, ETAPA: MEMORY_ACCESS, Resultado: 90 (CPU 2)
+Processo 5 -> CLOCK 2: 72, PC: 89, ETAPA: WRITEBACK, Escrevendo: 90 na memoria. (CPU 2)
+Processo 5 -> CLOCK 2: 73, PC: 90, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
+Processo 5 -> CLOCK 2: 74, PC: 90, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 74, PC: 90, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 5 -> CLOCK 2: 75, PC: 91, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
+Processo 5 -> CLOCK 2: 76, PC: 91, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 76, PC: 91, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 5 -> CLOCK 2: 77, PC: 92, ETAPA: FETCH, Instrucao: + 3 1 0 (CPU 2)
+Processo 5 -> CLOCK 2: 78, PC: 92, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 79, PC: 92, ETAPA: EXECUTE, Instrucao: + (CPU 2)
+Processo 5 -> CLOCK 2: 80, PC: 92, ETAPA: MEMORY_ACCESS, Resultado: 110 (CPU 2)
+Processo 5 -> CLOCK 2: 81, PC: 92, ETAPA: WRITEBACK, Escrevendo: 110 na memoria. (CPU 2)
+Processo 5 -> CLOCK 2: 82, PC: 93, ETAPA: FETCH, Instrucao: = 0 10 (CPU 2)
+Processo 5 -> CLOCK 2: 83, PC: 93, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 83, PC: 93, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 5 -> CLOCK 2: 84, PC: 94, ETAPA: FETCH, Instrucao: = 1 100 (CPU 2)
+Processo 5 -> CLOCK 2: 85, PC: 94, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 85, PC: 94, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+Processo 5 -> CLOCK 2: 86, PC: 95, ETAPA: FETCH, Instrucao: * 3 1 0 (CPU 2)
+Processo 5 -> CLOCK 2: 87, PC: 95, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 88, PC: 95, ETAPA: EXECUTE, Instrucao: * (CPU 2)
+Processo 5 -> CLOCK 2: 89, PC: 95, ETAPA: MEMORY_ACCESS, Resultado: 1000 (CPU 2)
+Processo 5 -> CLOCK 2: 90, PC: 95, ETAPA: WRITEBACK, Escrevendo: 1000 na memoria. (CPU 2)
+Processo 5 -> CLOCK 2: 91, PC: 96, ETAPA: FETCH, Instrucao: = 2 10 (CPU 2)
+Processo 5 -> CLOCK 2: 92, PC: 96, ETAPA: DECODE  (CPU 2)
+Processo 5 -> CLOCK 2: 92, PC: 96, ETAPA: EXECUTE, Instrucao: = (CPU 2)
+
+Processo 5 encerrado!
+Dados finais: 
+Linhas Processadas: 20
+Prioridade: 3
+Quantum necessário para executar: 58
+Timestamp: 164
+Quantum final: 20
+Estado: Finalizado
+
+CLOCK 1 = 62 | 
+CLOCK 2 = 92 | 
+CLOCK 3 = 67 | 
+PC = 97

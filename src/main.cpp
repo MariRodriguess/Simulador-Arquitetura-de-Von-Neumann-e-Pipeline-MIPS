@@ -276,6 +276,19 @@ void main_RoundRobin() {
     LogSaida("PC = " + to_string(PC));
 }
 
+void limparArquivo(){
+    const string fileName = "log_output.txt";
+
+    //Limpeza do arquivo de log
+    ofstream file(fileName, ios::out | ios::trunc);
+
+    if (file.is_open()) {
+        file.close();
+    } else {
+        cerr << "Erro ao abrir o arquivo '" << fileName << "'.\n";
+    }
+}
+
 void mostrarMenu() {
     cout << "\n\n=============== Menu de Escalonadores ===============" << endl;
     cout << "1. Rodar Escalonador FCFS (First Come First Serve)" << endl;
@@ -290,16 +303,7 @@ void mostrarMenu() {
 
 int main() {
 
-    const string fileName = "log_output.txt";
-
-    //Limpeza do arquivo de log
-    ofstream file(fileName, ios::out | ios::trunc);
-
-    if (file.is_open()) {
-        file.close();
-    } else {
-        cerr << "Erro ao abrir o arquivo '" << fileName << "'.\n";
-    }
+    limparArquivo();
 
     int opcao = -1;
 
@@ -309,22 +313,28 @@ int main() {
 
         switch (opcao) {
             case 1:
+                limparArquivo();
                 main_FCFS();
                 limpeza();
                 break;
             case 2:
+                limparArquivo();
                 main_SJF();
                 limpeza();
                 break;
             case 3:
+                limparArquivo();
                 main_Loteria();
                 limpeza();
                 break;
             case 4:
+                limparArquivo();
                 main_RoundRobin();
                 limpeza();
                 break;
             case 5:
+                limparArquivo();
+
                 main_FCFS();
                 limpeza();
 

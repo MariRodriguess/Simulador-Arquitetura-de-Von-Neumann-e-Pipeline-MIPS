@@ -31,9 +31,11 @@ Ao iniciar o programa, você verá o seguinte menu:
 
 - O acompanhamento da execução do processo pode ser feito pelo arquivo de saída gerado, nomeado como **log_output.txt**.
 
-## 📂Processos de Entrada
+## 📂 Processos de Entrada e Decisão Multicore
 
-Os arquivos de entrada estão localizados na pasta data e contêm os processos que serão escalonados. Atualmente, existem 5 processos disponíveis para uso. É possível adicionar mais arquivos conforme necessário, seguindo o formato especificado no modelo do input.
+- Os arquivos de entrada estão localizados na pasta data e contêm os processos a serem escalonados. Atualmente, estão disponíveis 5 arquivos de entrada, mas é possível adicionar mais conforme necessário, desde que sigam o formato especificado no modelo de input.
+
+- Além disso, o programa permite ajustar o número de núcleos (CPUs) utilizados para processar os arquivos de forma simultânea. Para configurar essa opção, basta alterar o valor da variável **NUM_CPUS**, localizada na **linha 17** do arquivo `include.hpp`, dentro da pasta `src`. Definindo NUM_CPUS = n, será possível executar até n processos simultaneamente.
 
 ## 📝Modelo do input (Processo a ser Executado)
 

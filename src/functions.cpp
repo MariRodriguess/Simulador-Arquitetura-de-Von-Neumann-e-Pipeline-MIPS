@@ -299,6 +299,8 @@ void* executarCpu_FCFS(void* arg) {
 
     CPU* cpu = static_cast<CPU*>(arg); // CPU específica
 
+    cout << "\nCPU " << cpu->id << " inicializada.\n";
+
     while (true) {
 
         PaginaMemoria* pm = nullptr;
