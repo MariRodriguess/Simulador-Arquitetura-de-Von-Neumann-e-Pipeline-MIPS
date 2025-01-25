@@ -304,6 +304,7 @@ void mostrarMenu() {
 int main() {
 
     limparArquivo();
+    limpeza();
 
     int opcao = -1;
 

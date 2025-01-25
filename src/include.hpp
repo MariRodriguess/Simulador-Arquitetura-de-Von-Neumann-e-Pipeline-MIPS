@@ -14,7 +14,7 @@
 #include <semaphore.h>
 #include <algorithm>
 
-#define NUM_CPUS 3
+#define NUM_CPUS 2
 #define NUM_PERIFERICOS 5
 
 using namespace std;

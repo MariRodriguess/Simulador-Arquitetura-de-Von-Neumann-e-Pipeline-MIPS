@@ -322,6 +322,7 @@ void* executarCpu_FCFS(void* arg) {
                     pm->pcb.idCpuAtual = cpu->id;
                     cpu->ocupada = true; // Marca a CPU como ocupada
                     pm->pcb.quantum = 2147483647; // Para que o processo não sofra preempção
+                    pm->pcb.quantum = 100;
                     break;
                 }
             }
@@ -612,6 +613,7 @@ void imprimirDados (PaginaMemoria *pm){
                 "\nDados finais: \nLinhas Processadas: " + to_string(pm->pcb.linhasProcessadasAtual) +  
                 "\nPrioridade: " + to_string(pm->pcb.prioridade) + 
                 "\nQuantum necessário para executar: " + to_string(pm->pcb.quantumNecessario) +
+                "\nQuantum final: " + to_string(pm->pcb.quantum) +
                 "\nTimestamp: " + to_string(pm->pcb.timestamp) + 
                 "\nEstado: " + pm->pcb.estado + "\n");
     }
