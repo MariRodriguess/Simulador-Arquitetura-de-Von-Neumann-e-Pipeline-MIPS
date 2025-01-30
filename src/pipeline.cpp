@@ -2,7 +2,7 @@
 
 pthread_mutex_t mtx = PTHREAD_MUTEX_INITIALIZER;
 unordered_map<string, int> cacheInstrucoes;
-const int CACHE_SIZE = 50;
+const int CACHE_SIZE = 5;
 
 vector<string> infosInstrucaoAtual[NUM_CPUS];
 bool instrucaoExiste[NUM_CPUS];

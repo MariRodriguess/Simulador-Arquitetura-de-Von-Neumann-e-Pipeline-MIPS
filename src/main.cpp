@@ -91,16 +91,20 @@ void main_FCFS(){
 
     // Libera memória
     for (auto* cpu : cpus) {
-        delete cpu;
+        if (cpu) {
+            delete cpu;
+            cpu = nullptr;  // Evita double free
+        }
     }
-    delete memoria;
-
+    if (memoria) {
+        delete memoria;
+        memoria = nullptr;
+    }
     for(int i = 0; i < NUM_CPUS; i++){
         cout << "CLOCK " << i+1 << " = " << CLOCK[i] << " | ";
         LogSaida("CLOCK " + to_string(i+1) + " = " + to_string(CLOCK[i]) + " | ");
     }
-    cout << "\nPC = " << PC << endl;
-
+    
     LogSaida("PC = " + to_string(PC));
 }
 
@@ -302,7 +306,9 @@ void mostrarMenu() {
 }
 
 int main() {
-
+    auto inicio = chrono::high_resolution_clock::now();
+    auto fim = chrono::high_resolution_clock::now();
+    auto duracao = chrono::duration_cast<std::chrono::milliseconds>(fim - inicio);
     limparArquivo();
     limpeza();
 
@@ -315,7 +321,11 @@ int main() {
         switch (opcao) {
             case 1:
                 limparArquivo();
+                inicio = chrono::high_resolution_clock::now();
                 main_FCFS();
+                fim = chrono::high_resolution_clock::now();
+                duracao = chrono::duration_cast<std::chrono::milliseconds>(fim - inicio); // Calcula a duração
+                cout << "Tempo de execução: " << duracao.count() << " ms" << endl;
                 limpeza();
                 break;
             case 2:
