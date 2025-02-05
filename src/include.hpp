@@ -13,8 +13,9 @@
 #include <mutex>
 #include <semaphore.h>
 #include <algorithm>
+#include <chrono>
 
-#define NUM_CPUS 3
+#define NUM_CPUS 1
 #define NUM_PERIFERICOS 5
 
 using namespace std;

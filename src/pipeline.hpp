@@ -6,6 +6,7 @@
 #include "cpu.hpp"
 #include "memoria.hpp"
 #include "functions.hpp"
+#include "cache.hpp"
 
 extern pthread_mutex_t lockPipeline;
 

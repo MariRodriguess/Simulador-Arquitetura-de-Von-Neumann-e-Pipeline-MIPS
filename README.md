@@ -17,13 +17,14 @@ Este programa implementa um menu interativo que permite ao usuário escolher qua
 2. **SJF (Shortest Job First)** - Menor Trabalho Primeiro.
 3. **Loteria** - Escolhe processos aleatoriamente baseado em bilhetes de loteria.
 4. **Round Robin** - Cada processo recebe uma fatia de tempo para execução em ordem circular.
-5. **Todos os Algoritmos** - Executa todos os escalonadores em sequência, permitindo comparações entre os métodos.
+5. **Baseado em Similaridade** - Os processos são executados conforme suas similaridades. 
+6. **Todos os Algoritmos** - Executa todos os escalonadores em sequência, permitindo comparações entre os métodos.
 
 
 ## 🖥️Interação com o Menu
 Ao iniciar o programa, você verá o seguinte menu:
 
-![alt text](image.png)
+![alt text](image.jpg)
 
 - Digite o número correspondente ao escalonador que deseja executar e pressione **Enter**.
 
@@ -35,7 +36,7 @@ Ao iniciar o programa, você verá o seguinte menu:
 
 - Os arquivos de entrada estão localizados na pasta data e contêm os processos a serem escalonados. Atualmente, estão disponíveis 5 arquivos de entrada, mas é possível adicionar mais conforme necessário, desde que sigam o formato especificado no modelo de input.
 
-- Além disso, o programa permite ajustar o número de núcleos (CPUs) utilizados para processar os arquivos de forma simultânea. Para configurar essa opção, basta alterar o valor da variável **NUM_CPUS**, localizada na **linha 17** do arquivo `include.hpp`, dentro da pasta `src`. Definindo NUM_CPUS = n, será possível executar até n processos simultaneamente.
+- Além disso, o programa permite ajustar o número de núcleos (CPUs) utilizados para processar os arquivos de forma simultânea. Para configurar essa opção, basta alterar o valor da variável **NUM_CPUS**, localizada na **linha 18** do arquivo `include.hpp`, dentro da pasta `src`. Definindo NUM_CPUS = n, será possível executar até n processos simultaneamente.
 
 ## 📝Modelo do input (Processo a ser Executado)
 
@@ -64,6 +65,11 @@ Ao iniciar o programa, você verá o seguinte menu:
 O escalonador Round Robin utiliza um quantum fixo de 40, definido no início da execução, garantindo que o tempo de execução seja distribuído de forma justa entre os processos. 
 
 O quantum diminui a cada clock no pipeline. Para modificar o valor do quantum do Round Robin, basta alterar a **linha 547** no arquivo `functions.cpp` dentro da pasta `src`.
+
+## 🛠️Configuração da Similaridade
+
+Variável a ser inicializada com `true`:
+* Linha 12 - `functions.cpp`
 
 
 ## 👾Compilação e execução

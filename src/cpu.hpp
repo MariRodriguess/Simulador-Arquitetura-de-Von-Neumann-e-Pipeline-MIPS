@@ -1,6 +1,5 @@
 #ifndef CPU_HPP
 #define CPU_HPP
-
 #include "include.hpp"
 #include "unidadeControle.hpp"
 

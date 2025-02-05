@@ -3,6 +3,7 @@
 
 #include "unidadeControle.hpp"
 #include <filesystem> // Para manipulação de diretórios
+#include <unordered_set>
 
 // ===== Execução Processos
 

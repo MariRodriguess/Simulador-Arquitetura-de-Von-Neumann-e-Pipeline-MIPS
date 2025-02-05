@@ -9,6 +9,8 @@ struct Args {
 
 unordered_map<char, int> mapaInstrucoes = {{'=',2}, {'+', 5}, {'-', 5}, {'*', 5}, {'/', 5}, {'$',3}, {'?', 3}};
 
+bool similaridade = true;
+
 
 // ===== Execução Processos
 
@@ -34,6 +36,64 @@ pair<int,int> nLinhas(const string &nomeArquivo){
 
     arquivo.close();
     return make_pair(cont,quantumNecessario);
+}
+
+double jaccardSimilarity(const unordered_set<string>& set1, const unordered_set<string>& set2) {
+    unordered_set<string> intersectionSet;
+    unordered_set<string> unionSet = set1;
+
+    for (const auto& token : set2) {
+        if (set1.count(token)) {
+            intersectionSet.insert(token);
+        }
+        unionSet.insert(token);
+    }
+
+    if (unionSet.empty()) return 0.0;
+
+    return static_cast<double>(intersectionSet.size()) / unionSet.size();
+}
+
+// Função para processar um arquivo e transformar suas linhas em um conjunto de tokens
+unordered_set<string> processarArquivo(const string& caminho) {
+    ifstream file(caminho);
+    unordered_set<string> tokens;
+    string line;
+
+    if (!file.is_open()) {
+        cerr << "Erro ao abrir arquivo: " << caminho << endl;
+        return tokens;
+    }
+
+    while (getline(file, line)) {
+        size_t pos = 0;
+        while ((pos = line.find(' ')) != string::npos) {
+            tokens.insert(line.substr(0, pos));
+            line.erase(0, pos + 1);
+        }
+        if (!line.empty()) tokens.insert(line);
+    }
+
+    file.close();
+    return tokens;
+}
+
+// Função para encontrar a melhor posição para inserir o processo na fila
+size_t encontrarPosicaoInsercao(const unordered_set<string>& novoProcessoTokens) {
+    double maxSimilaridade = -1.0;
+    size_t melhorPosicao = filaPaginasMemoria.size(); // Se não for similar, insere no final
+
+    for (size_t i = 0; i < filaPaginasMemoria.size(); ++i) {
+        unordered_set<string> tokensExistente = processarArquivo(filaPaginasMemoria[i]->pcb.caminhoArquivo);
+        double similaridade = jaccardSimilarity(novoProcessoTokens, tokensExistente);
+
+        if (similaridade > maxSimilaridade) {
+            maxSimilaridade = similaridade;
+            melhorPosicao = i;
+        }
+    }
+
+    return melhorPosicao;
 }
 
 void carregarProcessos(const string& diretorio) {
@@ -73,8 +133,18 @@ void carregarProcessos(const string& diretorio) {
                 delete pm;
                 continue;
             }
+            //Se similaridade, colocar na fila de acordo com o critério
+            if(!similaridade){
+                filaPaginasMemoria.push_back(pm);
+            }
+            else{
+                // Obtém tokens do novo processo
+                unordered_set<string> novoProcessoTokens = processarArquivo(processo.caminhoArquivo);
 
-            filaPaginasMemoria.push_back(pm);
+                // Encontra a posição ideal na fila com base na similaridade
+                size_t posicao = encontrarPosicaoInsercao(novoProcessoTokens);
+                filaPaginasMemoria.insert(filaPaginasMemoria.begin() + posicao, pm);
+            }
             cout << "\nCarregando processo " << processo.id + 1 << " do arquivo: " << processo.caminhoArquivo << endl;
 
             sleep(2);
@@ -322,6 +392,7 @@ void* executarCpu_FCFS(void* arg) {
                     pm->pcb.idCpuAtual = cpu->id;
                     cpu->ocupada = true; // Marca a CPU como ocupada
                     pm->pcb.quantum = 2147483647; // Para que o processo não sofra preempção
+                    pm->pcb.quantum = 100;
                     break;
                 }
             }
@@ -612,6 +683,7 @@ void imprimirDados (PaginaMemoria *pm){
                 "\nDados finais: \nLinhas Processadas: " + to_string(pm->pcb.linhasProcessadasAtual) +  
                 "\nPrioridade: " + to_string(pm->pcb.prioridade) + 
                 "\nQuantum necessário para executar: " + to_string(pm->pcb.quantumNecessario) +
+                "\nQuantum final: " + to_string(pm->pcb.quantum) +
                 "\nTimestamp: " + to_string(pm->pcb.timestamp) + 
                 "\nEstado: " + pm->pcb.estado + "\n");
     }
