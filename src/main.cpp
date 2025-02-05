@@ -10,6 +10,7 @@ volatile bool FCFS=false;
 volatile bool RoundRobin=false;
 volatile bool Loteria=false;
 volatile bool SJF=false;
+volatile bool auxiliar=false;
 
 pthread_mutex_t filaLock = PTHREAD_MUTEX_INITIALIZER;
 
@@ -68,8 +69,13 @@ void main_FCFS(){
 
     string diretorio = "data"; // Pasta contendo os arquivos .data
 
-    LogSaida("--- POLÍTICA DE ESCALONAMENTO: FCFS\n=================================================================================================");
-    cout << "\n\n===== POLITICA DE ESCALONAMENTO: FCFS =====\n";
+    if (!auxiliar){ 
+        LogSaida("--- POLÍTICA DE ESCALONAMENTO: FCFS\n================================================================================================="); 
+        cout << "\n\n===== POLITICA DE ESCALONAMENTO: FCFS =====\n"; 
+    }else{ 
+        LogSaida("--- ESCALONAMENTO BASEADO EM SIMILARIDADE\n================================================================================================="); 
+        cout << "\n\n===== ESCALONAMENTO BASEADO EM SIMILARIDADE =====\n"; 
+    }
 
     carregarProcessos(diretorio);
 
@@ -294,15 +300,16 @@ void limparArquivo(){
 }
 
 void mostrarMenu() {
-    cout << "\n\n=============== Menu de Escalonadores ===============" << endl;
-    cout << "1. Rodar Escalonador FCFS (First Come First Serve)" << endl;
-    cout << "2. Rodar Escalonador SJF (Shortest Job First)" << endl;
-    cout << "3. Rodar Escalonador Loteria" << endl;
-    cout << "4. Rodar Escalonador Round Robin" << endl;
-    cout << "5. Rodar Todos os Escalonadores" << endl;
-    cout << "0. Sair" << endl;
-    cout << "=====================================================" << endl;
-    cout << "Digite sua escolha: ";
+    cout << "\n\n=============== Menu de Escalonadores ===============" << endl; 
+    cout << "1. Rodar Escalonador FCFS (First Come First Serve)" << endl; 
+    cout << "2. Rodar Escalonador SJF (Shortest Job First)" << endl; 
+    cout << "3. Rodar Escalonador Loteria" << endl; 
+    cout << "4. Rodar Escalonador Round Robin" << endl; 
+    cout << "5. Rodar Escalonamento Baseado em Similaridade" << endl; 
+    cout << "6. Rodar Todos os Escalonadores" << endl; 
+    cout << "0. Sair" << endl; 
+    cout << "=====================================================" << endl; 
+    cout << "Digite sua escolha: "; 
 }
 
 int main() {
@@ -343,20 +350,27 @@ int main() {
                 main_RoundRobin();
                 limpeza();
                 break;
-            case 5:
+            case 5: 
+                auxiliar = true; 
                 limparArquivo();
-
-                main_FCFS();
-                limpeza();
-
-                main_Loteria();
-                limpeza();
-                
-                main_SJF();
-                limpeza();
-
-                main_RoundRobin();
-                limpeza();
+                main_FCFS(); 
+                limpeza(); 
+                auxiliar = false; 
+                break; 
+            case 6: 
+                limparArquivo(); 
+ 
+                main_FCFS(); 
+                limpeza(); 
+ 
+                main_Loteria(); 
+                limpeza(); 
+                 
+                main_SJF(); 
+                limpeza(); 
+ 
+                main_RoundRobin(); 
+                limpeza(); 
                 break;
             case 0:
                 cout << "Saindo do programa..." << endl;
