@@ -14,6 +14,7 @@
 #include <semaphore.h>
 #include <algorithm>
 #include <chrono>
+#include <bitset>
 
 #define NUM_CPUS 1
 #define NUM_PERIFERICOS 5
@@ -28,6 +29,7 @@ extern volatile bool FCFS;
 extern volatile bool RoundRobin;
 extern volatile bool Loteria;
 extern volatile bool SJF;
+extern volatile bool MMU;
 extern unordered_map<int, int> cache;
 extern vector<int> principal;
 extern vector<vector<int>> disco;

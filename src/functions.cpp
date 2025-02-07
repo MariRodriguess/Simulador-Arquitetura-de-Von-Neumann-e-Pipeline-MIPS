@@ -1,6 +1,8 @@
 #include "functions.hpp"
 vector<PaginaMemoria*> filaPaginasMemoria; // Usando ponteiros
 
+vector<bitset<10>> vetorBinarios;
+
 pthread_mutex_t filaMutex = PTHREAD_MUTEX_INITIALIZER; // Inicializando o mutex
 
 struct Args {
@@ -9,8 +11,7 @@ struct Args {
 
 unordered_map<char, int> mapaInstrucoes = {{'=',2}, {'+', 5}, {'-', 5}, {'*', 5}, {'/', 5}, {'$',3}, {'?', 3}};
 
-bool similaridade = true;
-
+bool similaridade = false;
 
 // ===== Execução Processos
 
@@ -99,6 +100,7 @@ size_t encontrarPosicaoInsercao(const unordered_set<string>& novoProcessoTokens)
 void carregarProcessos(const string& diretorio) {
     namespace fs = filesystem;
     int idProcesso = 0;
+    int cont = 0;
 
     for (const auto& entry : fs::directory_iterator(diretorio)) {
         if (entry.is_regular_file() && entry.path().extension() == ".data") {
@@ -145,7 +147,14 @@ void carregarProcessos(const string& diretorio) {
                 size_t posicao = encontrarPosicaoInsercao(novoProcessoTokens);
                 filaPaginasMemoria.insert(filaPaginasMemoria.begin() + posicao, pm);
             }
+
             cout << "\nCarregando processo " << processo.id + 1 << " do arquivo: " << processo.caminhoArquivo << endl;
+
+            if(MMU){
+                bitset<10> bin(cont);
+                vetorBinarios.push_back(bin);
+                cont++;
+            }
 
             sleep(2);
         }
@@ -205,6 +214,7 @@ void LerInstrucoesDoArquivo(const string &nomeArquivo, int *registradores, Pagin
             
             // Remover o processo finalizado da fila
             pthread_mutex_lock(&filaMutex);
+            
             
             if(Loteria || FCFS){
                 
@@ -363,6 +373,12 @@ void recalcularQuantum (PaginaMemoria *pm){
     //pm->pcb.quantum = (rand() % 6) + 1;
 }
 
+int MMU_Convert(bitset<10> binario){
+    int inteiro;
+    inteiro = binario.to_ulong();
+    return inteiro;
+}
+
 // ===== Escalonadores
 
 void* executarCpu_FCFS(void* arg) {
@@ -370,6 +386,8 @@ void* executarCpu_FCFS(void* arg) {
     CPU* cpu = static_cast<CPU*>(arg); // CPU específica
 
     cout << "\nCPU " << cpu->id << " inicializada.\n";
+
+    int indicePagina;
 
     while (true) {
 
@@ -385,15 +403,32 @@ void* executarCpu_FCFS(void* arg) {
 
         // Verifica se a CPU está livre
         if (!cpu->ocupada) {
-            for (auto pagina : filaPaginasMemoria) { 
-                //cout << "\nCpu " << cpu->id << " analisando Processo " << pagina->pcb.id+1 << " com IdCPU " << pagina->pcb.idCpuAtual << " e Quantum " << pagina->pcb.quantum;
-                if (pagina->pcb.idCpuAtual == -1) {
-                    pm = pagina;
-                    pm->pcb.idCpuAtual = cpu->id;
-                    cpu->ocupada = true; // Marca a CPU como ocupada
-                    pm->pcb.quantum = 2147483647; // Para que o processo não sofra preempção
-                    pm->pcb.quantum = 100;
-                    break;
+            if(!MMU){
+                for (auto pagina : filaPaginasMemoria) { 
+                    //cout << "\nCpu " << cpu->id << " analisando Processo " << pagina->pcb.id+1 << " com IdCPU " << pagina->pcb.idCpuAtual << " e Quantum " << pagina->pcb.quantum;
+                    if (pagina->pcb.idCpuAtual == -1) {
+                        pm = pagina;
+                        pm->pcb.idCpuAtual = cpu->id;
+                        cpu->ocupada = true; // Marca a CPU como ocupada
+                        pm->pcb.quantum = 2147483647; // Para que o processo não sofra preempção
+                        pm->pcb.quantum = 100;
+                        break;
+                    }
+                }
+            }
+            else{
+                for(int i = 0; i < (int)vetorBinarios.size(); i++){
+                    indicePagina = MMU_Convert(vetorBinarios[i]);
+                    cout << "\nConversão: " << vetorBinarios[i] << " (binario) -> " << indicePagina << " (decimal)\n";
+                    PaginaMemoria* pagina = filaPaginasMemoria[indicePagina];
+                    if (pagina->pcb.idCpuAtual == -1) {
+                        pm = pagina;
+                        pm->pcb.idCpuAtual = cpu->id;
+                        cpu->ocupada = true; // Marca a CPU como ocupada
+                        pm->pcb.quantum = 2147483647; // Para que o processo não sofra preempção
+                        pm->pcb.quantum = 100;
+                        break;
+                    }
                 }
             }
         }
