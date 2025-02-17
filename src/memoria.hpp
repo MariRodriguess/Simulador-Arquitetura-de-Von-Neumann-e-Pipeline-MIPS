@@ -23,6 +23,8 @@ struct PaginaMemoria {
     pthread_t th_processo;  // Thread vinculada ao processo
     pthread_mutex_t mutex;     // Mutex para sincronização de threads
     pthread_cond_t cond;           // Variável de condição para sincronização
+    int base;
+    int limite;
 
     PaginaMemoria();
 };

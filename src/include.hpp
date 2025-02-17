@@ -15,7 +15,7 @@
 #include <algorithm>
 #include <chrono>
 
-#define NUM_CPUS 1
+#define NUM_CPUS 2
 #define NUM_PERIFERICOS 5
 
 using namespace std;
@@ -28,15 +28,13 @@ extern volatile bool FCFS;
 extern volatile bool RoundRobin;
 extern volatile bool Loteria;
 extern volatile bool SJF;
+extern volatile bool SJF_map;
 extern unordered_map<int, int> cache;
 extern vector<int> principal;
 extern vector<vector<int>> disco;
-
-extern pthread_mutex_t mtx;
-
 extern bool perifericos[NUM_PERIFERICOS];
-
 extern int processoFinalizado;
+extern pthread_mutex_t mtx;
 
 struct PCB {
     int id;               // Identificador do processo/thread
@@ -65,5 +63,13 @@ struct PCB {
         quantumNecessario = 0;
     }
 };
+
+struct PaginaVirtual {
+    string enderecoVirtual; // ID em binário (endereço virtual)
+    int quantumNecessario;  // Quantum necessário para execução
+};
+extern vector<PaginaVirtual> paginasVirtuais;
+
+
 
 #endif
