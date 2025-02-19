@@ -126,7 +126,7 @@ void carregarProcessos(const string& diretorio) {
             auto* pm = new PaginaMemoria();
             pm->pcb = processo;
             pm->base = filaPaginasMemoria.size();
-            pm->limite = filaPaginasMemoria.size()+1;
+            pm->limite = pm->base + 1;
             
             pthread_mutex_init(&pm->mutex, nullptr);
             pthread_cond_init(&pm->cond, nullptr);
@@ -140,7 +140,7 @@ void carregarProcessos(const string& diretorio) {
             if(!similaridade){
 
                 filaPaginasMemoria.push_back(pm);
-                cout << "Pm: " << pm->base << " e " << pm->limite << endl;
+                // cout << "Pm: " << pm->base << " e " << pm->limite << endl;
 
                 if (SJF_map){
                     // Cria uma página virtual para o processo
@@ -159,8 +159,9 @@ void carregarProcessos(const string& diretorio) {
             }
             if (!SJF_map){
                 cout << "\nCarregando processo " << processo.id + 1 << " do arquivo: " << processo.caminhoArquivo << endl;
+            }else{
+                cout << "Processo " << processo.id+1 << " carregado. Endereco virtual: " << pagina.enderecoVirtual << endl;
             }
-            cout << "Processo " << processo.id+1 << " carregado. Endereco virtual: " << pagina.enderecoVirtual << endl;
 
             sleep(2);
         }

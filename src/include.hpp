@@ -15,9 +15,8 @@
 #include <algorithm>
 #include <chrono>
 
-#define NUM_CPUS 2
+#define NUM_CPUS 1
 #define NUM_PERIFERICOS 5
-
 using namespace std;
 
 extern int PC;

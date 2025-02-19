@@ -393,11 +393,7 @@ int main() {
         switch (opcao) {
             case 1:
                 limparArquivo();
-                inicio = chrono::high_resolution_clock::now();
                 main_FCFS();
-                fim = chrono::high_resolution_clock::now();
-                duracao = chrono::duration_cast<std::chrono::milliseconds>(fim - inicio); // Calcula a duração
-                cout << "Tempo de execução: " << duracao.count() << " ms" << endl;
                 limpeza();
                 break;
             case 2:
@@ -423,7 +419,6 @@ int main() {
                 auxiliar = false; 
                 break; 
             case 6:
-                auxiliar = false;
                 limparArquivo();
                 main_SJF_mapeamento();
                 limpeza();
@@ -452,6 +447,7 @@ int main() {
 
         cout << endl;
     }
+
 
     return 0;
 }
