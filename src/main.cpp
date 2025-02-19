@@ -10,6 +10,7 @@ volatile bool FCFS=false;
 volatile bool RoundRobin=false;
 volatile bool Loteria=false;
 volatile bool SJF=false;
+volatile bool SJF_map=false;
 volatile bool auxiliar=false;
 
 pthread_mutex_t filaLock = PTHREAD_MUTEX_INITIALIZER;
@@ -57,6 +58,7 @@ void main_FCFS(){
     Loteria=false;
     SJF=false;
     RoundRobin=false;
+    SJF_map=false;
 
     // Inicializa as CPUs
     for (int i = 0; i < NUM_CPUS; ++i) {
@@ -120,6 +122,7 @@ void main_Loteria(){
     Loteria=true;
     SJF=false;
     RoundRobin=false;
+    SJF_map=false;
 
     vector<CPU*> cpus(NUM_CPUS);
 
@@ -181,6 +184,7 @@ void main_SJF(){
     SJF=true;
     Loteria=false;
     RoundRobin=false;
+    SJF_map=false;
 
     // Inicializa as CPUs
     for (int i = 0; i < NUM_CPUS; ++i) {
@@ -229,6 +233,65 @@ void main_SJF(){
     LogSaida("PC = " + to_string(PC));
 }
 
+void main_SJF_mapeamento(){
+
+    vector<CPU*> cpus(NUM_CPUS);
+
+    Memoria* memoria = new Memoria();
+
+    FCFS=true;
+    SJF=true;
+    Loteria=false;
+    RoundRobin=false;
+    SJF_map=true;
+
+    // Inicializa as CPUs
+    for (int i = 0; i < NUM_CPUS; ++i) {
+        cpus[i] = new CPU();
+        cpus[i]->id = i + 1; // Identificação da CPU
+        cpus[i]->ocupada = false;
+    }
+
+    bootloader(memoria);
+
+    string diretorio = "data"; // Pasta contendo os arquivos .data
+
+    LogSaida("\n\n--- POLÍTICA DE ESCALONAMENTO: SJF com Mapeamento de Páginas para Suporte a Memória Virtual\n=================================================================================================");
+    cout << "\n\n===== POLITICA DE ESCALONAMENTO: SJF com Mapeamento de Paginas para Suporte a Memoria Virtual =====\n";
+
+    carregarProcessos(diretorio);
+
+    cout << "\n\n==Iniciando execucao...==\n\n\n";
+    // Cria threads para cada CPU
+    vector<pthread_t> threads_cpus(NUM_CPUS);
+    for (int i = 0; i < NUM_CPUS; ++i) {
+        pthread_create(&threads_cpus[i], nullptr, executarCpu_SJF_mapeamento, cpus[i]);
+        //sleep(1);
+    }
+
+    // Aguarda as threads das CPUs terminarem
+    for (auto &th : threads_cpus) {
+        pthread_join(th, nullptr);
+    }
+
+    cout << "\n\n==Execucao finalizada!==\n";
+    cout << "\nAcompanhe a execucao dos processos no arquivo de output: 'log_output.txt' :)\n";
+
+    // Libera memória
+    for (auto* cpu : cpus) {
+        delete cpu;
+    }
+    delete memoria;
+
+    for(int i = 0; i < NUM_CPUS; i++){
+        cout << "CLOCK " << i+1 << " = " << CLOCK[i] << " | ";
+        LogSaida("CLOCK " + to_string(i+1) + " = " + to_string(CLOCK[i]) + " | ");
+    }
+    cout << "\nPC = " << PC << endl;
+
+    LogSaida("PC = " + to_string(PC));
+}
+
 void main_RoundRobin() {
     vector<CPU*> cpus(NUM_CPUS);
 
@@ -238,6 +301,7 @@ void main_RoundRobin() {
     SJF=false;
     Loteria=false;
     RoundRobin=true;
+    SJF_map=false;
 
     // Inicializa as CPUs
     for (int i = 0; i < NUM_CPUS; ++i) {
@@ -306,7 +370,8 @@ void mostrarMenu() {
     cout << "3. Rodar Escalonador Loteria" << endl; 
     cout << "4. Rodar Escalonador Round Robin" << endl; 
     cout << "5. Rodar Escalonamento Baseado em Similaridade" << endl; 
-    cout << "6. Rodar Todos os Escalonadores" << endl; 
+    cout << "6. Rodar Escalonador SJF com Mapeamento de Paginas para Suporte a Memoria Virtual" << endl;
+    cout << "7. Rodar Todos os Escalonadores" << endl; 
     cout << "0. Sair" << endl; 
     cout << "=====================================================" << endl; 
     cout << "Digite sua escolha: "; 
@@ -328,11 +393,7 @@ int main() {
         switch (opcao) {
             case 1:
                 limparArquivo();
-                inicio = chrono::high_resolution_clock::now();
                 main_FCFS();
-                fim = chrono::high_resolution_clock::now();
-                duracao = chrono::duration_cast<std::chrono::milliseconds>(fim - inicio); // Calcula a duração
-                cout << "Tempo de execução: " << duracao.count() << " ms" << endl;
                 limpeza();
                 break;
             case 2:
@@ -357,7 +418,12 @@ int main() {
                 limpeza(); 
                 auxiliar = false; 
                 break; 
-            case 6: 
+            case 6:
+                limparArquivo();
+                main_SJF_mapeamento();
+                limpeza();
+                break;
+            case 7: 
                 limparArquivo(); 
  
                 main_FCFS(); 
@@ -381,6 +447,7 @@ int main() {
 
         cout << endl;
     }
+
 
     return 0;
 }

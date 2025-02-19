@@ -18,13 +18,14 @@ Este programa implementa um menu interativo que permite ao usuário escolher qua
 3. **Loteria** - Escolhe processos aleatoriamente baseado em bilhetes de loteria.
 4. **Round Robin** - Cada processo recebe uma fatia de tempo para execução em ordem circular.
 5. **Baseado em Similaridade** - Os processos são executados conforme suas similaridades. 
-6. **Todos os Algoritmos** - Executa todos os escalonadores em sequência, permitindo comparações entre os métodos.
+6. **SJF com Mapeamento de Páginas para Suporte a Memória Virtual** -  Menor Trabalho Primeiro com suporte a memória virtual.
+7. **Todos os Algoritmos** - Executa todos os escalonadores em sequência, permitindo comparações entre os métodos.
 
 
 ## 🖥️Interação com o Menu
 Ao iniciar o programa, você verá o seguinte menu:
 
-![alt text](image.jpg)
+![alt text](image.png)
 
 - Digite o número correspondente ao escalonador que deseja executar e pressione **Enter**.
 

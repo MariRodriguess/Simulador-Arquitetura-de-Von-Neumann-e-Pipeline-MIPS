@@ -2,6 +2,7 @@
 #define FUNCTIONS_HPP
 
 #include "unidadeControle.hpp"
+#include "mmu.hpp"
 #include <filesystem> // Para manipulação de diretórios
 #include <unordered_set>
 
@@ -32,6 +33,12 @@ void ordenarFila_SJF();
 bool compararPaginas_SJF(const PaginaMemoria* a, const PaginaMemoria* b);
 
 void* executarCpu_RoundRobin(void* arg);
+
+bool compararQuantum(const PaginaVirtual& a, const PaginaVirtual& b);
+
+void ordenarPaginasVirtuais();
+
+void* executarCpu_SJF_mapeamento(void* arg);
 
 // ===== Funções auxiliares
 

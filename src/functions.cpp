@@ -1,6 +1,6 @@
 #include "functions.hpp"
 vector<PaginaMemoria*> filaPaginasMemoria; // Usando ponteiros
-
+vector<PaginaVirtual> paginasVirtuais;
 pthread_mutex_t filaMutex = PTHREAD_MUTEX_INITIALIZER; // Inicializando o mutex
 
 struct Args {
@@ -9,7 +9,7 @@ struct Args {
 
 unordered_map<char, int> mapaInstrucoes = {{'=',2}, {'+', 5}, {'-', 5}, {'*', 5}, {'/', 5}, {'$',3}, {'?', 3}};
 
-bool similaridade = true;
+bool similaridade = false;
 
 
 // ===== Execução Processos
@@ -99,6 +99,7 @@ size_t encontrarPosicaoInsercao(const unordered_set<string>& novoProcessoTokens)
 void carregarProcessos(const string& diretorio) {
     namespace fs = filesystem;
     int idProcesso = 0;
+    PaginaVirtual pagina;
 
     for (const auto& entry : fs::directory_iterator(diretorio)) {
         if (entry.is_regular_file() && entry.path().extension() == ".data") {
@@ -124,6 +125,8 @@ void carregarProcessos(const string& diretorio) {
 
             auto* pm = new PaginaMemoria();
             pm->pcb = processo;
+            pm->base = filaPaginasMemoria.size();
+            pm->limite = pm->base + 1;
             
             pthread_mutex_init(&pm->mutex, nullptr);
             pthread_cond_init(&pm->cond, nullptr);
@@ -135,7 +138,16 @@ void carregarProcessos(const string& diretorio) {
             }
             //Se similaridade, colocar na fila de acordo com o critério
             if(!similaridade){
+
                 filaPaginasMemoria.push_back(pm);
+                // cout << "Pm: " << pm->base << " e " << pm->limite << endl;
+
+                if (SJF_map){
+                    // Cria uma página virtual para o processo
+                    pagina.enderecoVirtual = transfDecimalBinario(processo.id); // Endereço virtual (ID em binário)
+                    pagina.quantumNecessario = processo.quantumNecessario;     // Quantum necessário
+                    paginasVirtuais.push_back(pagina);
+                }
             }
             else{
                 // Obtém tokens do novo processo
@@ -145,7 +157,11 @@ void carregarProcessos(const string& diretorio) {
                 size_t posicao = encontrarPosicaoInsercao(novoProcessoTokens);
                 filaPaginasMemoria.insert(filaPaginasMemoria.begin() + posicao, pm);
             }
-            cout << "\nCarregando processo " << processo.id + 1 << " do arquivo: " << processo.caminhoArquivo << endl;
+            if (!SJF_map){
+                cout << "\nCarregando processo " << processo.id + 1 << " do arquivo: " << processo.caminhoArquivo << endl;
+            }else{
+                cout << "Processo " << processo.id+1 << " carregado. Endereco virtual: " << pagina.enderecoVirtual << endl;
+            }
 
             sleep(2);
         }
@@ -658,6 +674,81 @@ void* executarCpu_RoundRobin(void* arg) {
     return nullptr;
 }
 
+bool compararQuantum(const PaginaVirtual& a, const PaginaVirtual& b) {
+    return a.quantumNecessario < b.quantumNecessario;
+}
+
+void ordenarPaginasVirtuais() {
+    sort(paginasVirtuais.begin(), paginasVirtuais.end(), compararQuantum);
+}
+
+void* executarCpu_SJF_mapeamento(void* arg) {
+
+    CPU* cpu = static_cast<CPU*>(arg);
+
+    ordenarPaginasVirtuais(); // Ordena as páginas virtuais pelo quantum
+
+    while (true) {
+
+        PaginaMemoria* pm = nullptr;
+
+        pthread_mutex_lock(&filaMutex);
+
+        if (paginasVirtuais.empty()) {
+            pthread_mutex_unlock(&filaMutex);
+            break; // Sai do loop se não houver páginas virtuais
+        }
+
+        if (!cpu->ocupada) {
+
+            // Pega a primeira página virtual da lista ordenada
+            PaginaVirtual pagina = paginasVirtuais.front();
+            paginasVirtuais.erase(paginasVirtuais.begin());
+
+            // Converte o endereço virtual (binário) de volta para decimal
+            int idProcesso = transBinarioDecimal(pagina.enderecoVirtual);
+
+            // Procura o processo na filaPaginasMemoria usando o ID convertido
+            for (auto it = filaPaginasMemoria.begin(); it != filaPaginasMemoria.end(); ++it) {
+                if ((*it)->pcb.id == idProcesso) {
+                    pm = *it;
+                    filaPaginasMemoria.erase(it);
+                    break;
+                }
+            }
+
+            if (pm) {
+                pm->pcb.quantum = 2147483647; // Para que o processo não sofra preempção
+                pm->pcb.idCpuAtual = cpu->id;
+            }
+        }
+
+        pthread_mutex_unlock(&filaMutex);
+
+        if (pm != nullptr) {
+            if ((pm->pcb.estado == "Pronto" || pm->pcb.estado == "Bloqueado") && pm->pcb.idCpuAtual == cpu->id) {
+                sleep(0.6);
+                pthread_mutex_lock(&pm->mutex);
+                sleep(0.6);
+                pthread_cond_signal(&pm->cond);
+                pthread_mutex_unlock(&pm->mutex);
+
+                while (pm->pcb.idCpuAtual == cpu->id) {
+                    sleep(0.1);
+                }
+                sleep(0.1);
+
+                pthread_mutex_lock(&filaMutex);
+                cpu->ocupada = false;
+                pthread_mutex_unlock(&filaMutex);
+            }
+        } else {
+            sleep(1); // Espera por novos processos
+        }
+    }
+    return nullptr;
+}
+
 // ===== Funções auxiliares
 
 void LogSaida(const string &mensagem) {
@@ -678,12 +769,11 @@ void LogSaida(const string &mensagem) {
 }
 
 void imprimirDados (PaginaMemoria *pm){
-    if (FCFS || SJF){
+    if (FCFS || SJF || SJF_map){
         LogSaida("\nProcesso " + to_string(pm->pcb.id + 1) + " encerrado!" + 
                 "\nDados finais: \nLinhas Processadas: " + to_string(pm->pcb.linhasProcessadasAtual) +  
                 "\nPrioridade: " + to_string(pm->pcb.prioridade) + 
                 "\nQuantum necessário para executar: " + to_string(pm->pcb.quantumNecessario) +
-                "\nQuantum final: " + to_string(pm->pcb.quantum) +
                 "\nTimestamp: " + to_string(pm->pcb.timestamp) + 
                 "\nEstado: " + pm->pcb.estado + "\n");
     }
